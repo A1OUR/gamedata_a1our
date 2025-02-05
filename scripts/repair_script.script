@@ -1,0 +1,351 @@
+--/ -----------------------------------------------------------------
+--/ VARIABLEs
+--/ -----------------------------------------------------------------
+local iSSVer          = script_server_object_version() or -1 --/ 'Script-Server' версиЯ
+local tMaxVertexIds   = {} --/ массив Tab[IdMap] = {[1]=idGvMin,[2]=idGvMax,[3]=idLvMax}
+local tLevelIdByName  = {} --/ массив ID и имен локаций (Tbl[Name]=ID)
+local tIdsByLevelName = {} --/ массив IDs по имени локации (Tbl[Name]={idMap,idGv,idLv})
+local tInvNames       = {} --/ массив инвентарных имен объектов
+local tSenders        = {} --/ массив имен спамеров
+local tBoxSizes       = {} --/ массив объемов пачек патронов (количество - шт.)
+local tWeights        = {} --/ массив веса предметов
+local tCosts          = {} --/ массив стоимости предметов
+local tClasses        = {} --/ массив классов предметов
+local tLowUp          = nil --/ массив 'кириллицы'
+local oCTime_Start    = nil --/ объект счетчика времени в ‡оне с момента 'даты старта'
+local tPStorA         = nil --/ массив 'pstor' актора
+local oPkF            = net_packet() --/ объект функции длЯ STATE_packet
+local fs              = getFS() --/ переменнаЯ, кеширующаЯ функцию getFS()
+local sini            = system_ini() --/ переменнаЯ, кеширующаЯ функцию system_ini()
+local gmg             = nil --/ переменнаЯ, кеширующаЯ функцию game_graph()
+local sim             = nil --/ переменнаЯ, кеширующаЯ функцию alife()
+local sMapNow,idMapNow --/ текущий уровень
+local idGvMinNow,idGvMaxNow,idLvMaxNow --/ мин&макс Id-вертексов длЯ текущего уровнЯ
+local tPStorTypeValue = {
+	['nil']     = true,
+	['boolean'] = true,
+	['number']  = true,
+	['string']  = true
+}
+
+local counter = 1
+
+function Get_LevelId(idGv)
+	if not gmg then gmg = game_graph() end
+	if idGv and gmg:valid_vertex_id(idGv) then
+		local oVertex = gmg:vertex(idGv)
+		if oVertex then
+			return oVertex:level_id() --/> idLevel | idMap
+		elseif db.is_dbg1 then
+			if callstack then
+				callstack("Get_LevelId: idGv=["..tostring(idGv).."]~>wrong vertex:<Warning!>")
+			else
+				printf("Get_LevelId: idGv=["..tostring(idGv).."]~>wrong vertex:<Warning!>")
+			end
+		end
+	elseif db.is_dbg1 and callstack then
+		callstack("Get_LevelId: idGv=["..tostring(idGv).."]<~NOT_valid:<Warning!>")
+	else
+		printf("Get_LevelId: idGv=[%s]<~NOT_valid:<%s>", idGv, "Warning!")
+	end
+	return nil --/>
+end
+
+function Get_MinMax_IdVertexes(idMap)
+	if not idMap then idMap = alife():level_id() end --/ берем текущий уровень
+	if not tMaxVertexIds[idMap] then
+--		log("Get_MinMax_IdVertexes:idMap=[%s]:[%s]", idMap, ">") --/ #~#
+		if not gmg then gmg = game_graph() end
+		local id,idGvMin,idGvMax = 0,nil,nil
+		while id < 65536 do
+			if gmg:valid_vertex_id(id) and gmg:vertex(id):level_id() == idMap then --/ ID искомой локации?
+				if not idGvMin then
+					idGvMin = id --/ 1-й индекс искомой локации
+				end
+				idGvMax = id --/ текущий (он же последний) искомой локации
+			elseif idGvMin then --id = 65536
+				break
+			end
+			id = id +1
+		end
+		return Get_Max_IdLevelVertex(idMap,idGvMin,idGvMax)
+		--tMaxVertexIds[idMap] = {idGvMin,idGvMax,idLvMax}
+	end
+	--return tMaxVertexIds[idMap][1], tMaxVertexIds[idMap][2], tMaxVertexIds[idMap][3] --/> idGvMin и idGvMax и idLvMax
+	--return idLvMax
+end
+
+function Get_Max_IdLevelVertex(idMap,idGvMin,idGvMax)
+	--local idLvMax = idMap and tMaxVertexIds[idMap] and tMaxVertexIds[idMap][3]
+	--if idLvMax then
+	--	return idLvMax --/>
+	--elseif not (idGvMin and idGvMax) then
+	--	if not idMap then
+	--		idMap = Get_LevelId(idGvMin or idGvMax or alife():level_id())  --/ ... или сканируем текущий уровень
+	--	end
+	--	idGvMin,idGvMax,idLvMax = Get_MinMax_IdVertexes(idMap)
+	--end
+	local idLvMax
+	if not idLvMax and idGvMin and idGvMax then
+		if not gmg then gmg = game_graph() end
+		local id,idLv = 0,nil
+		for id=idGvMin, idGvMax do
+			idLv = gmg:vertex(id):level_vertex_id()
+			if not idLvMax or idLvMax < idLv  then
+				idLvMax = idLv
+			end
+		end
+		--if idMap then tMaxVertexIds[idMap][3] = idLvMax end
+	end
+--	log("%s:Get_LevelVertexIds: idMap==[%s], idGv=[%s/%s], idLvMax=[%s]", sModule, idMap, idGvMin, idGvMax, idLvMax, "") --/#~#
+	return idLvMax --/>
+end
+
+local repairability = 1
+function in_hideout()
+	local news_text = game.translate_string("в зоне")
+    db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+end
+function out_hideout()
+	local news_text = game.translate_string("вне зоны")
+    db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+end
+function repair(obj)
+local obj_sect = obj:section()
+if obj_sect == "enable_rep" then
+    --local owpn = db.actor:item_in_slot(2)
+	--if owpn then
+	--	alife():release(alife():object(owpn:id()), true) --/ удалЯем из игры
+	--	get_console():execute("g_spawn_to_inventory wpn_abakan")
+	--news_text = xr_conditions.gulag_population_le(nil,nil,{"esc_lager",3})
+	--db.actor:give_game_news(tostring(news_text), "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	--db.actor:give_info_portion("bar_barmen_go_read_doc")
+	--db.actor:give_info_portion("bar_barman_need_room")
+	--[[db.actor:give_info_portion("bar_psih_come")
+	db.actor:give_info_portion("agroprom_military_case_done")
+	db.actor:give_info_portion("agroprom_military_case")
+	db.actor:give_info_portion("yan_x16_documents_gain")]]
+	sim_statistic.pstats_test()
+end
+if obj_sect == "enable_rep1" then
+	--actor = db.actor
+	--actor:set_actor_savability(1)
+	--pseudorandom.random_binary()
+	--db.actor:give_info_portion("esc_serious_talk")
+	--escape_dialog.spawn_stash()
+	--alife():create("enable_rep", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+	--local torgash
+	local idi
+	for i=1,65535 do
+	local obj = alife():object(i)
+	if obj then
+		--if obj:name()=="esc_bridge_soldier1" then
+		if obj:name()=="esc_lager5" then
+		idi = i
+			break
+		end
+	end
+	end
+	if obj ~= nil then
+	--local pk = get_netpk(obj)
+	--local news_text = pk:dumpDesc()
+	--local cdata = data.custom_data:getStringRaw()
+	--local cd = parse_custom_data(cdata)
+	news_text = level.get_goodwill(idi, 0)
+	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	news_text =  level.get_goodwill(0, idi)
+	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	--db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	end
+	--local news_text = Get_Never_idLv_by_Pos(nil,0,sobj,Get_MinMax_IdVertexes())
+    --db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	--sobj = alife():create("inventory_box", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id())
+	--alife():use_ai_locations(sobj, false)
+	--end
+end
+if obj_sect == "disable_rep" then
+	--local lvid, gvid = db.actor:level_vertex_id(), db.actor:game_vertex_id()
+	--local pos = db.actor:position()
+	--actor = db.actor
+	--local news_text = actor:get_actor_savability()
+	--pseudorandom.set_key()
+	--alife():create("disable_rep", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+	db.actor:give_info_portion("bar_barman_need_hole")
+end 
+if obj_sect == "dilo_pda_dec" then
+	escape_dialog.dechiph_pda()
+end
+if obj_sect == "repair_kit_w" and repairability == 1 then 
+	local hud = repair_ui(get_hud()) -- указываем на class "repair_ui" (CUIScriptWnd)
+        level.start_stop_menu(hud, true) -- открываем меню
+end
+if obj_sect == "repair_kit" and repairability == 1 then 
+	local item_s6 = db.actor:item_in_slot(6) --объ¤вл¤ем переменную (item_s6)
+    if item_s6 ~= nil and item_s6:condition() >=0.30 and item_s6:condition() ~=1 then --когда костюм можно чинить (состо¤ние больше или равно 30%)
+        item_s6:set_condition(1)
+        local snd_obj = xr_sound.get_safe_sound_object([[interface\inv_detach_addon]])
+        snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+        local news_text = game.translate_string("%c[255,160,160,160]Ремонт комплект:\\n%c[255,0,255,0]Ремонт костюма завершён.")
+        db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+    elseif item_s6 == nil then --когда костюма нет 
+        local news_text = game.translate_string("%c[255,160,160,160]Ремонт комплект:\\n%c[255,255,0,0]Ремонт невозможен: нужно одеть коcтюм.")
+        db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+        alife():create("repair_kit", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+    elseif item_s6:condition() <0.30 then --когда костюм нельз¤ чинить (состо¤ние меньше 30%)
+        local news_text = game.translate_string("%c[255,160,160,160]Ремонт комплект:\\n%c[255,255,0,0]Ремонт невозможен: костюм слишком сильно повреждён.")
+        db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+        alife():create("repair_kit", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+    elseif item_s6:condition() ==1 then --когда костюм в отличном состо¤ние
+        local news_text = game.translate_string("%c[255,160,160,160]Ремонт комплект:\\n%c[255,255,0,0]Ремонт невозможен: %c[255,0,255,0]костюм в отличном состоянии.")
+        db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+        alife():create("repair_kit", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+    end
+end
+--if obj_sect == "ваш предмет" then 
+--local snd = sound_object([[путь к музыке\название музыки]])
+--snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+--end
+
+--if obj_sect == "ваш предмет" then 
+--alife():create("boar_normal",vector():set(-152.0,-18.0,-144.3),98126,45)
+--end
+end
+
+class "repair_ui" (CUIScriptWnd)
+ 
+function repair_ui:__init(owner) super()
+	self.owner = owner
+	self:InitControls()
+	self:InitCallBacks()
+end
+ 
+function repair_ui:__finalize() end
+ 
+function repair_ui:InitControls()
+	self:Init(50,50,550,450)
+ 
+	local xml = CScriptXmlInit()
+	xml:ParseFile("ui_repair_wnd.xml") -- настройки будут воспроизводиться в этом xml файле
+
+	xml:InitStatic("background", self) -- рамка сзади
+ 
+	self:Register(xml:Init3tButton("caption", self),"caption") -- заголовок
+	self:Register(xml:Init3tButton("btn_1", self),"btn_1") -- кнопка на ремонт первого слота
+	self:Register(xml:Init3tButton("btn_2", self),"btn_2") -- кнопка на ремонт второго слота
+	self:Register(xml:Init3tButton("btn_quit", self),"btn_quit") -- кнопка выхода
+end
+ 
+function repair_ui:InitCallBacks()
+	self:AddCallback("btn_1", ui_events.BUTTON_CLICKED, self.repair_1, self) -- кнопка один идет на функцию repair1
+	self:AddCallback("btn_2", ui_events.BUTTON_CLICKED, self.repair_2, self) -- кнопка два идет на функцию repair2
+	self:AddCallback("btn_quit", ui_events.BUTTON_CLICKED, self.on_quit, self) -- кнопка идет на выход
+end
+ 
+function repair_ui:OnKeyboard(dik, keyboard_action) -- функция на отмену сна при нажатии клавиши Esc
+	CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_ESCAPE then
+			self:on_quit()
+		end
+		if dik == DIK_keys.DIK_NUMPAD1 then
+			self:repair_1()
+		end
+		if dik == DIK_keys.DIK_NUMPAD2 then
+			self:repair_2()
+		end
+	end
+	return true
+end
+function repair_ui:repair_1()	
+	local item_s1 = db.actor:item_in_slot(1) --объ¤вл¤ем переменную (item_s1)
+		if item_s1 ~= nil  then --когда костюм можно чинить (состо¤ние больше или равно 30%)
+			item_s1:change_fp(0.01)
+		end
+end
+function repair_ui:repair_2()
+	local item_s2 = db.actor:item_in_slot(2) --объ¤вл¤ем переменную (item_s2)
+		if item_s2 ~= nil and item_s2:condition() >=0.30 and item_s2:condition() ~=1 then --когда костюм можно чинить (состо¤ние больше или равно 30%)
+			item_s2:set_condition(1)
+			local snd_obj = xr_sound.get_safe_sound_object([[interface\inv_detach_addon]])
+			snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+			local news_text = game.translate_string("%c[255,160,160,160]–емонт комплект:\\n%c[255,0,255,0]Ремонт оружия во втором слоте завершён.")
+			self:GetHolder():start_stop_menu(self, true)
+			db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+		elseif item_s2 == nil then --когда костюма нет 
+			local news_text = game.translate_string("%c[255,160,160,160]–емонт комплект:\\n%c[255,255,0,0]Ремонт невозможен: нужно поставить оружие во второй слот.")
+			db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+		elseif item_s2:condition() <0.30 then --когда костюм нельз¤ чинить (состо¤ние меньше 30%)
+			local news_text = game.translate_string("%c[255,160,160,160]–емонт комплект:\\n%c[255,255,0,0]Ремонт невозможен: оружие слишком сильно повреждено.")
+			db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+		elseif item_s2:condition() ==1 then --когда костюм в отличном состо¤ние
+			local news_text = game.translate_string("%c[255,160,160,160]–емонт комплект:\\n%c[255,255,0,0]Ремонт невозможен: %c[255,0,255,0]оружие во втором слоту в отличном состоянии.")
+			db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+		end
+end
+
+function repair_ui:check_game() -- проверка запущена ли игра
+	local check = false
+	if level.present() and (db.actor ~= nil) and db.actor:alive() then
+		check = true
+	end
+	return check
+end
+ 
+function repair_ui:on_quit() -- вот кнопка выхода
+    self:GetHolder():start_stop_menu(self, true)
+    alife():create("repair_kit_w", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id()) -- спаун мешка обратно
+end
+
+function parse_custom_data(str)
+ local t={}
+ if str then
+  for section, section_data in string.gfind(str,"%s*%[([^%]]*)%]%s*([^%[%z]*)%s*") do
+   section = trim(section)
+   t[section]={}
+   for line in string.gfind(trim(section_data), "([^\n]*)\n*") do
+    if string.find(line,"=")~=nil then
+     for k, v in string.gfind(line, "([^=]-)%s*=%s*(.*)") do
+      k = trim(k)
+      if k~=nil and k~='' and v~=nil then 
+       t[section][k]=trim(v) 
+      end
+     end
+    else
+     for k, v in string.gfind(line, "(.*)") do
+      k = trim(k)
+      if k~=nil and k~='' then
+       t[section][k]="<<no_value>>" 
+      end
+     end
+    end
+   end
+  end
+ end
+ return t
+end
+
+function trim (s)
+ return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
+
+function Get_Never_idLv_by_Pos(vPos,iErr,Obj,idLvMaxNow)
+	if not iErr then iErr = 0.5 end --/ если не задана погрешность по дистанции (0 => макс.точность)
+	if not vPos and Obj then --/ если не задана позициЯ ...
+		if type(Obj.position) == 'function' then
+			vPos = Obj:position()
+		else
+			vPos = Obj.position
+		end
+	end
+	local idLv,iDistMin,iDist
+	for id=0,idLvMaxNow do
+		iDist = level.vertex_position(id):distance_to_sqr(vPos)
+		if not iDistMin or iDist < iDistMin then
+			idLv = id
+			iDistMin = iDist
+			if iDistMin < iErr then break end --/ прерываем цикл
+		end
+	end
+--	log("Get_Never_idLv_by_Pos:idLv=[%s/%s],Pos=[%s]:(%s)", idLv, idLvMaxNow, idLv and level.vertex_position(idLv), string.short(iDistMin), "") --/#~#
+	return idLv,iDistMin --/>
+end

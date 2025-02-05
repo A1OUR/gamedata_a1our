@@ -1,0 +1,93 @@
+----------------------------------------------------------------------------------------------------
+-- Button
+----------------------------------------------------------------------------------------------------
+-- Разработчик: Andrey Fidrya (Zmey) af@svitonline.com
+----------------------------------------------------------------------------------------------------
+
+local on_load = 0 
+local pressed = 1
+local switched = 2
+
+class "ph_lamp"
+
+function ph_lamp:__init(obj, storage)
+	self.object = obj
+	self.st = storage
+	self.state = on_load
+end
+
+function ph_lamp:reset_scheme()
+	self.object:set_nonscript_usable(false)
+end
+
+function ph_lamp:update(delta)
+	st = self.st
+	if self.state == on_load then
+		self.state = switched
+		if st.status == false then
+			self.object:get_hanging_lamp():turn_off()
+		end
+	end
+	if self.state == pressed then
+		self.state = switched
+		if st.status == false then
+			self.object:get_hanging_lamp():turn_off()
+		else
+			self.object:get_hanging_lamp():turn_on()
+		end
+	end
+	if xr_logic.try_switch_to_another_section(self.object, self.st, db.actor) then
+		return
+	end
+end
+
+function ph_lamp:try_switch()
+	local st = db.storage[self.object:id()]
+	if st.active_scheme and st.active_scheme == "ph_lamp" and self.st.on_press then
+		if xr_logic.switch_to_section(self.object, self.st, xr_logic.pick_section_from_condlist(db.actor, self.object, self.st.on_press.condlist)) then
+			self.state = pressed
+			return true
+		end
+	end
+	return false
+end
+
+function ph_lamp:hit_callback(obj, amount, local_direction, who, bone_index)
+	return
+end
+
+function ph_lamp:use_callback(victim, who)
+	printf("_bp: ph_button:use_callback: [%s] used by [%s]",
+		victim:name(), who:name())
+
+	if self:try_switch() then
+		return
+	end
+end
+
+---------------------------------------------------------------------------------------------------------------------
+function add_to_binder(npc, ini, scheme, section, storage)
+	printf("DEBUG: add_to_binder: npc:name()='%s', scheme='%s', section='%s'", npc:name(), scheme, section)
+
+ 	local new_action = ph_lamp(npc, storage)
+
+	xr_logic.subscribe_action_for_events(npc, storage, new_action)
+end
+
+function set_scheme(npc, ini, scheme, section, gulag_name)
+	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
+
+	st.logic     = xr_logic.cfg_get_switch_conditions(ini, section, npc)
+	
+	st.on_press  = xr_logic.cfg_get_condlist(ini, section, "on_press", npc)
+
+	st.tooltip  = utils.cfg_get_string(ini, section, "tooltip", npc, false, "")
+	if st.tooltip then
+		npc:set_tip_text(st.tooltip)
+	else
+		npc:set_tip_text("")
+	end
+	
+	st.status = utils.cfg_get_bool(ini, section, "status", npc, false, false)
+end
+

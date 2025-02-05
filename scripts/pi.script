@@ -1,0 +1,21 @@
+ function show_coordinates()
+ local hud = get_hud()
+ local cs = hud:GetCustomStatic("cs_debug")
+ if cs == nil then
+ hud:AddCustomStatic("cs_debug", true)
+ cs = hud:GetCustomStatic("cs_debug")
+ end
+ local lvid, gvid = db.actor:level_vertex_id(), db.actor:game_vertex_id()
+ local pos, dir = db.actor:position(), db.actor:direction()
+ local pos2 = level.vertex_position(lvid)
+ local d = vector():sub(pos, pos2)
+ local valid = (math.abs(d.x) <= 0.35 and math.abs(d.y) < 1.0 and math.abs(d.z) <= 0.35)
+ local msg = string.format("lvid: %d\\n", lvid) ..
+ string.format("gvid: %d\\n", gvid) ..
+ string.format("pos: %f,%f,%f\\n", pos.x, pos.y, pos.z) ..
+ string.format("dir: %f,%f,%f\\n", dir.x, dir.y, dir.z) ..
+ "valid: " .. tostring(valid)
+ if cs ~= nil then
+ cs:wnd():SetText(msg)
+ end
+ end

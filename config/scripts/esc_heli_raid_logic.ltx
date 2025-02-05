@@ -1,0 +1,20 @@
+[logic]
+active = heli_move@idle
+
+[heli_move@idle]
+path_move = heli_sleep3
+engine_sound = false
+on_info = {+esc_raid1_start} heli_move@fly
+invulnerable = true
+mute = true
+
+[heli_move@fly]
+path_move = heli_raid
+on_signal = fly_end| %+heli_raid_desant%
+on_signal2 = heli_sig| heli_move@sleep
+
+[heli_move@sleep]
+path_move = heli_sleep3
+engine_sound = false
+invulnerable = true
+mute = true

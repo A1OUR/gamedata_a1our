@@ -1,0 +1,99 @@
+----------------------------------------------------------------------------------------------------
+-- Blowout hideout
+----------------------------------------------------------------------------------------------------
+
+local state_nowhere = 0 -- схема только что включилась
+local state_inside = 1 -- актер внутри
+local state_outside = 2 -- актер снаружи
+
+class "actor_hideout"
+
+function actor_hideout:__init( obj, storage )
+	self.object = obj
+	self.st = storage
+end
+
+function actor_hideout:reset_scheme()
+	
+	self.state = state_nowhere -- еще неясно, в зоне он, или нет
+	
+	self:switch_state(db.actor)
+end
+
+function actor_hideout:update( delta )
+
+	local actor = db.actor
+
+	if xr_logic.try_switch_to_another_section( self.object, self.st, actor ) then
+		return
+	end	
+	if (db.Flag2 == 1 or db.Dead2 == 1) and db.FlagEsc == 0 then
+		if level.map_has_object_spot(self.object:id(), "green_location") == 0 then
+			level.map_add_object_spot(self.object:id(), "green_location", "Укрытие от выброса")
+		end
+	else
+		if level.map_has_object_spot(self.object:id(), "green_location") == 1 then
+			level.map_remove_object_spot(self.object:id(), "green_location")
+		end
+	end
+	
+	self:switch_state( actor )
+end
+
+function actor_hideout:switch_state( actor )
+	local state = self.state
+	
+	if state == state_nowhere then
+		if self.object:inside( actor:center() ) then
+			ogsm_surge.in_hideout()
+			self:zone_enter()
+			return
+		else
+			ogsm_surge.out_hideout()
+			self:zone_leave()
+			return
+		end
+	end
+	if state == state_outside then
+		if self.object:inside( actor:center() ) then
+			ogsm_surge.in_hideout()
+			self:zone_enter()
+			return
+		end
+	end
+	if state == state_inside then
+		if not self.object:inside( actor:center() ) then
+			local news_text = game.translate_string("left zone")
+			db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+			self:zone_leave()
+			ogsm_surge.out_hideout1()
+			return
+		end
+	end
+end
+
+function actor_hideout:zone_enter()
+	self.state = state_inside
+	--ogsm_surge.in_hideout()
+end
+
+function actor_hideout:zone_leave()
+	self.state = state_outside
+	--ogsm_surge.out_hideout()
+end
+
+---------------------------------------------------------------------------------------------------------------------
+function add_to_binder(npc, ini, scheme, section, storage)
+	printf("DEBUG: add_to_binder: scheme='%s', section='%s'", scheme, section)
+
+	local new_action = actor_hideout(npc, storage)
+
+	-- Зарегистрировать все actions, в которых должен быть вызван метод reset_scheme при изменении настроек схемы:
+	xr_logic.subscribe_action_for_events(npc, storage, new_action)
+end
+
+function set_scheme(npc, ini, scheme, section, gulag_name)
+	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
+	st.logic = xr_logic.cfg_get_switch_conditions(ini, section, npc)
+end
+

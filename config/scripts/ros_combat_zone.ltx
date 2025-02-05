@@ -1,0 +1,16 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+ros_in_combat_zone} sr_idle@1
+
+[sr_idle@1]
+on_actor_outside = {+bar_heli_scene_mir -bar_kill_professor_start -bar_kill_professor_done} %-bar_heli_scene_mir +bar_freedom_attack_ecolog% nil, {-bar_heli_scene_mir} %+bar_freedom_attack_ecolog% nil, {+bar_heli_scene_mir +bar_kill_professor_start -bar_kill_professor_done} %-bar_heli_scene_mir +bar_freedom_attack_ecolog =bar_freedom_angry_actor_notify% nil
+
+
+[sr_idle@wait]
+on_timer = 15000 | nil %+bar_freedom_attack_ecolog%
+on_info = {+rostok_actor_kill_killer} sr_idle@kill
+
+[sr_idle@kill]
+on_timer = 5000 | nil %+bar_freedom_attack_ecolog%

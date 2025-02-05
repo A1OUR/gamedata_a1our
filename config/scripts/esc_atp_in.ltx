@@ -1,0 +1,8 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+esc_atp_alarm} sr_idle@alarm
+
+[sr_idle@alarm]
+on_actor_inside = %+actor_near_atp% nil

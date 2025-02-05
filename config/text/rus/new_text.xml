@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+  <string id="escape_trader_start_dialog_33">
+    <text>А если хочешь ещё немного денег подзаработать - могу подсказать как.</text>
+  </string>
+  <string id="escape_trader_start_dialog_331">
+    <text>Что там у тебя за работёнка?</text>
+  </string>
+  <string id="escape_trader_start_dialog_3311">
+    <text>Можешь мне с одним артефактом помочь. Я заплачу больше, чем другие торговцы.</text>
+  </string>
+  <string id="escape_trader_start_dialog_33111">
+    <text>Ну и где я этот артефакт искать буду?</text>
+  </string>
+	<string id="escape_trader_start_dialog_33112">
+		<text>Неохота мне артефакт твой искать...</text>
+	</string>
+  <string id="escape_trader_start_dialog_331111">
+    <text>По слухам, где-то тут на Кордоне сталкеры заметили редкий артефакт, Светляк. Где именно он лежит - не могу сказать, однако тут сталкеры толковали, что видели свечение рядом с аномальным болотцем за АТП, в развалинах деревни рядом с заброшенной фермой и рядом со свалкой бетонных плит за ЖД насыпью, как раз за хутором, где тебя Лис ждёт. Я думаю, что это мог быть как раз тот самый Светляк. Ты мне его принесешь - а я заплачу как полагается. \nТолько учти - артефакт радиоактивный, не долго и до беды, за наследство не боишься? Вот, возьми пожалуй контейнер взаймы. Хороший контейнер - больших денег стоит! Только сильно не мешкай, тащи сразу как найдешь. Если принесешь, то я тебе попроще и полегче контейнерок дам. Думаю он тебе еще пригодиться.</text>
+  </string>
+  <string id="escape_trader_start_dialog_3311111">
+    <text>Если я найду что-нибудь, постараюсь не забыть принести.</text>
+  </string>
+  <string id="escape_trader_start_dialog_34">
+    <text>Ну что там с артефактом для меня?</text>
+  </string>
+  <string id="escape_trader_start_dialog_341">
+    <text>Вот, принес я твой артефакт. Занятная штука.</text>
+  </string>
+  <string id="escape_trader_start_dialog_342">
+    <text>Что? Артефакт? Ничего я не нашёл.</text>
+  </string>
+  <string id="escape_trader_start_dialog_3411">
+    <text>Отлично, вот твоё вознаграждение.</text>
+  </string>
+  <string id="escape_trader_start_dialog_34111">
+    <text>Спасибо.</text>
+  </string>
+  <string id="escape_trader_start_dialog_4">
+    <text>Здорово, Меченый. Рад видеть тебя живым.</text>
+  </string>
+  <string id="escape_trader_start_dialog_5">
+    <text>Приветствую Меченого! Как успехи?</text>
+  </string>
+  <string id="escape_trader_start_dialog_51">
+    <text>Задание выполнил. Вот артефакт.</text>
+  </string>  
+  <string id="nimble_kurtka_quest_title">
+    <text>Найти куртку</text>
+  </string>
+  <string id="nimble_kurtka_quest_1">
+    <text>Принести куртку</text>
+  </string>
+  <string id="nimble_kurtka_quest_2">
+    <text>Проверить место, на которое указал Шустрый</text>
+  </string>
+  <string id="nimble_kurtka_quest_3">
+    <text>Проверить место из записки</text>
+  </string>
+  <string id="nimble_kurtka_quest_4">
+    <text>Узнать где бандиты спрятали куртку</text>
+  </string>
+  <string id="nimble_kurtka_quest_5">
+    <text>Забрать куртку из тайника</text>
+  </string>
+  <string id="nimble_kurtka_quest_6">
+    <text>Принести куртку</text>
+  </string>
+  <string id="nimble_kurtka_quest_hint_1">
+    <text>Предположительное месторасположение куртки</text>
+  </string>
+  <string id="nimble_kurtka_quest_hint_2">
+    <text>Место, где бандиты ждут должника. Возможно стоит найти простой бандитский костюм, и выдать себя за этого должника.</text>
+  </string>
+  <string id="nimble_kurtka_quest_hint_3">
+    <text>Шустрый</text>
+  </string>
+  <string id="kurtka_1">
+    <text>Оба-на, Грига пожаловал! Я уж думал ты сюда труханёшь сунуться. Ну чё, принёс?</text>
+  </string>
+  <string id="kurtka_21">
+    <text>Что, "принёс?"</text>
+  </string>
+  <string id="kurtka_22">
+    <text>Да, забирай.</text>
+  </string>
+  <string id="kurtka_3">
+    <text>Э, лопух, ты меня то за дурака то не держи! Бабки гони, и не выёживайся!</text>
+  </string>
+  <string id="kurtka_23">
+    <text>Погоди-погоди, скоро принесу.</text>
+  </string>
+  <string id="kurtka_4">
+    <text>Не кипишуй, вот бабки.</text>
+  </string>
+  <string id="kurtka_6">
+    <text>...</text>
+  </string>
+  <string id="kurtka_51">
+    <text>Такс, значит, давай пда...Так, ну вроде и всё, заначку с твоим барахлом я тебе на карте отметил.</text>
+  </string>
+  <string id="kurtka_52">
+    <text>Ну всё, амбец тебе падла! Валим его!</text>
+  </string>
+  <string id="qkurtka_1">
+    <text>Не знаешь, где заработать?</text>
+  </string>
+  <string id="qkurtka_2">
+    <text>Хмм..Пока сидел в плену, слышал что бандиты говорили об их тайнике, где они хабар складывают. Слышал что они куртку там клевую спрятали, и что на следующий день их тайник для себя какой-то монстр облюбовал. Да так облюбовал, что они теперь ходить туда бояться. Принеси мне костюмчик, будь другом, а я уж с тобой рассчитаюсь.</text>
+  </string>
+  <string id="qkurtka_31">
+    <text>Хорошо, сбегаю, принесу.</text>
+  </string>
+  <string id="qkurtka_311">
+    <text>Я берусь её принести.</text>
+  </string>
+  <string id="qkurtka_32">
+    <text>В другой раз.</text>
+  </string>
+  <string id="qkurtka_321">
+    <text>Да ничего.</text>
+  </string>
+  <string id="qkurtka_34">
+    <text>Вот она, твоя куртка.</text>
+  </string>
+  <string id="qkurtka_35">
+    <text>Я не хочу больше искать эту куртку.</text>
+  </string>
+  <string id="qkurtka_41">
+    <text>Уверен?</text>
+  </string>
+  <string id="qkurtka_42">
+    <text>Отличная работа, спасибо Меченый, вот твоя награда.</text>
+  </string>
+  <string id="qkurtka_5">
+    <text>Да.</text>
+  </string>
+  <string id="qkurtka_51">
+    <text>Нет, думаю ещё поищу.</text>
+  </string>
+  <string id="qkurtka_6">
+    <text>Ну ладно, ничего страшного, может кого ещё пошлю.</text>
+  </string>
+  <string id="qkurtka_4">
+    <text>Ну, дерзай! Надеюсь, ещё увидимся.</text>
+  </string>
+  <string id="qkurtka_11">
+    <text>Насчёт той куртки.</text>
+  </string>
+  <string id="qkurtka_21">
+    <text>Ну?</text>
+  </string>
+  <string id="item_pda_dilo_desc">
+    <text>Большинство разделов зашифровано. Возможно опытный техник сможет расшифровать информацию.</text>
+  </string>
+  <string id="item_pda_dilo_name">
+    <text>Пда бандита по кличке Диловар</text>
+  </string>
+  <string id="dilo_pda_title">
+    <text>Взломать пда бандита</text>
+  </string>
+  <string id="dilo_pda_1">
+    <text>Отнести пда технику</text>
+  </string>
+  <string id="dilo_pda_2">
+    <text>Дождаться разблокировки пда</text>
+  </string>
+  <string id="dilo_pda_3">
+    <text>Забрать пда у техника</text>
+  </string>
+  <string id="dilo_pda_4">
+    <text>Просмотреть пда</text>
+  </string>
+  <string id="pda_from_novikov_1">
+    <text>Забрать расшифрованный пда у Сидоровича</text>
+  </string>
+  <string id="pda_from_novikov_2">
+    <text>Забрать пда у техника</text>
+  </string>
+  <string id="pda_dec_0">
+    <text>Смотри, нашёл наладонник, но вот незадача - всё запаролено. Ты умеешь такие ломать?</text>
+  </string>
+  <string id="pda_dec_1">
+    <text>Хах, запросто. Давай косарь...Полтора косаря деревянных, и через пару часов я тебе из него всё вытащу.</text>
+  </string>
+  <string id="pda_dec_21">
+    <text>Погоди, зайду позднее.</text>
+  </string>
+  <string id="pda_dec_2">
+    <text>Держи.</text>
+  </string>
+  <string id="pda_dec_3">
+    <text>Вот он, пароль снял, забирай.</text>
+  </string>
+  <string id="pda_dec_4">
+    <text>Респект, мастер.</text>
+  </string>
+  <string id="pda_dec_31">
+    <text>Так, посмотрим...Хмм...Вот оно как. Такую без проблем ломану, как будет готово - пришлю смс.</text>
+  </string>
+  <string id="pda_dec_41">
+    <text>Буду ждать.</text>
+  </string>
+  <string id="pda_dec_11">
+    <text>Ну как там мой кпк?</text>
+  </string>
+  <string id="amk_zapiska">
+    <text>Записка из тайника.</text>
+  </string>
+  <string id="amk_zapiska_descr">
+    <text>"Грига, паскуда, верни 15 косарей а то барахло своё больше не увидишь. Долг неси в лощинку на востоке свалки, на севере от леска."</text>
+  </string>
+  <string id="escape_trader_indulgencia_0">
+		<text>А у тебя нет связей с другими группировками?</text>
+	</string>
+	<string id="escape_trader_indulgencia_1">
+		<text>А как же, у меня со всеми связь на мази.. только это дороговато... Если уж очень сильно насолил кому - то готовь 100000 деревянных.</text>
+	</string>
+	<string id="escape_trader_indulgencia_21">
+<text>"Долгу" насолил... Не знал, что они такие "чувственные", ты можешь с ними поладить?</text>
+</string>
+<string id="escape_trader_indulgencia_22">
+<text>Свободовцы - враги... Я там одного типа послал подальше, а они все обиделись... Поможешь?</text>
+</string>
+<string id="escape_trader_indulgencia_23">
+<text>Оказия случилась... С нейтралами повздорил... Теперь они меня за мутанта принимают... Помоги!</text>
+</string>
+<string id="escape_trader_indulgencia_24">
+<text>Ладно, в следующий раз поговорим.</text>
+</string>
+<string id="escape_trader_indulgencia_3">
+<text>Хорошо, но подобные услуги стоят недешево. Чем больше у тебя проблем с группировкой, тем больше будет стоить восстановить с ними отношения.\nСейчас проверю твой статус...\nГотово.\nТы точно уверен в том, что хочешь это сделать?</text>
+</string>
+<string id="escape_trader_indulgencia_5">
+<text>Подожди, сейчас свяжусь с влиятельным человечком...\n... Да, на связи... Что? Козлом обозвал?... Хм... Да ещё и послал дальше Припяти?... О-о... Ругался нецензурно? .. Вот блин... Резню устроил и средний палец вверх поднимал? Ну... это он зря... Чего???? Быть не может... Голый зад лидеру группировки показал??? Епть... Угу... Хорошо, возьму втридорога...\nДа, ну ты там отмочил... Еле уладил... </text>
+</string>
+<string id="escape_trader_indulgencia_41">
+<text>Да, Сидорыч, ну неужели непонятно: я хочу восстановить отношения с "Долгом".</text>
+</string>
+<string id="escape_trader_indulgencia_42">
+<text>Да, да, восстановить отношения со "Свободой".</text>
+</string>
+<string id="escape_trader_indulgencia_43">
+<text>Да, я хочу восстановить отношения со Сталкерами, иначе никак...</text>
+</string>
+<string id="escape_trader_indulgencia_6">
+<text>Фу... Вот теперь всё в порядке... Спасибо! </text>
+</string>
+	<string id="esc_art_task_0">
+		<text>Найти артефакт</text>
+	</string>	
+	<string id="esc_art_task_1">
+		<text>Принести артефакт Сидоровичу</text>
+	</string>
+	<string id="esc_art_task_2">
+		<text>Найти артефакт "Светляк".</text>
+	</string>
+	<string id="esc_art_task_3">
+		<text>Вернуться с артефактом обратно.</text>
+	</string>
+	<string id="esc_art_task_descr_text">
+		<text>Сидорович поручил найти на Кордоне особо радиоактивный артефакт "Светляк". Артефакт предоположительно можно найти рядом с аномальным болотцем за АТП, в развалинах деревни рядом с заброшенной фермой или рядом со свалкой бетонных плит за ЖД насыпью, за хутором.</text>
+	</string>
+	<string id="artmod_861_dialog_0">
+		<text>Что у тебя там была за работёнка?</text>
+	</string>
+	<string id="artmod_861_dialog_1">
+		<text>Один из сталкеров нес мне очень нужный документ, не буду говорить откуда и от кого... Уже совсем близко отсюда попал в аномалию, остался жив, но документа с ним уже не было. Сам он пока не может передвигаться, я бы сам сходил - новичков не могу одних оставить... Найди этот документ, я тебя отблагодарю... Это в подземном переходе под железкой, прямо на севере...\nИдет?</text>
+	</string>
+	<string id="artmod_861_dialog_2">
+		<text>Да это же по дороге, конечно принесу...</text>
+	</string>
+	<string id="artmod_861_dialog_3">
+		<text>Нет, Волк, я в аномалии не полезу...</text>
+	</string>
+	<string id="artmod_862_dialog_0">
+		<text>Привет, Волк, все тихо?...</text>
+	</string>
+	<string id="artmod_862_dialog_1">
+		<text>Вояки шебуршаться, кабанчики залетают... А так - все нормуль...</text>
+	</string>
+	<string id="artmod_862_dialog_2">
+		<text>Вот, нашел я твою карту, эта?</text>
+	</string>
+	<string id="artmod_862_dialog_3">
+		<text>Карту? А, похоже тут с обратной стороны что мне нужно. Ага, вот это запишу. Да, да, оно... Держи свою нагруду... \nХмм, тут ещё на карте что-то отмечено. Похоже тут зарисована территория Агропрома и завода "Росток", что-то отмечено. Ну мне сейчас не до этого, если хочешь, могу тебе в добавок эти метки скинуть, может там схрон какой лежит... Нужно?</text>
+	</string>
+	<string id="artmod_862_dialog_4">
+		<text>Давай, почему бы и нет, лишним не будет.</text>
+	</string>
+	<string id="tex_escape_lager_volk_document">
+		<text>Волк просит найти ему потерянный документ в переходе под железной дорогой, на Кордоне.</text>
+	</string>
+	<string id="tex_escape_lager_volk_document_1">
+		<text>Найти потерянный документ</text>
+	</string>
+	<string id="tex_escape_lager_volk_document_2">
+		<text>Найти документ</text>
+	</string>
+	<string id="tex_escape_lager_volk_document_3">
+		<text>Принести документ Волку</text>
+	</string>
+	<string id="tutorial_wounded_talk_1">
+		<text>Ну, допустим.</text>
+	</string>
+	<string id="tutorial_wounded_talk_11">
+		<text>Так вот, у меня есть одно дельце, на котором мы с тобой сможем чутка подзаработать. Интересно?</text>
+	</string>
+	<string id="tutorial_wounded_talk_111">
+		<text>Ну, давай уже, что там у тебя?</text>
+	</string>
+	<string id="tutorial_wounded_talk_1111">
+		<text>Смотри, Сидорович предлагает тем сталкерам, с которыми он долго и успешно работает, разные эксклюзивные предложения, так называемые "контракты". Чаще всего ему нужны различные артефакты и трофеи от мутантов в большом количестве. Не знаю уж, что он с ними делает, но, думаю есть заказщики. Так вот, я должен был ему собрать 10 хвостов слыпых собак и 10 копыт кабана, только что удавалось собрать приходилось продавать, чтобы купить припасов. Сроки поджимают, а у меня ещё ничего нет. Давай так - ты соберёшь нужные трофеи и мы разделим награду напополам. Ну что, по рукам? Учитывай, что такой заказ тебе Сидор пока не даст, так что не упусти свой шанс.</text>
+	</string>
+	<string id="tutorial_wounded_talk_11111">
+		<text>Извини, но сейчас у меня есть дела поважнее.</text>
+	</string>
+	<string id="tutorial_wounded_talk_11112">
+		<text>По рукам, соберу что нужно.</text>
+	</string>
+	<string id="tutorial_wounded_talk_11113">
+		<text>50 на 50? Не жирновато ли тебе будет? Я ведь всю работу за тебя делаю. Давай хотя бы тебе 30, мне - 70.</text>
+	</string>
+	<string id="tutorial_wounded_talk_111131">
+		<text>Ладно, согласен, я перегнул, давай 30 на 70. По рукам?</text>
+	</string>
+	<string id="tutorial_wounded_talk_1111311">
+		<text>По рукам, уж так-то лучше.</text>
+	</string>
+	<string id="tutorial_wounded_talk_1111312">
+		<text>Знаешь что, я ещё подумал, и понял, что ты меня разводишь. 10 на 90 - иначе просто не честно.</text>
+	</string>
+	<string id="tutorial_wounded_talk_11113121">
+		<text>Нет уж брат, тут ты загнул, давай уж 50 на 50 или никак.</text>
+	</string>
+	<string id="tutorial_wounded_talk_111131211">
+		<text>Эх, хрен с ним, по рукам.</text>
+	</string>
+	<string id="tutorial_wounded_talk_111131212">
+		<text>Да пошёл ты, с такими предложениями.</text>
+	</string>
+	<string id="esc_tolik_contract_1">
+		<text>Найти части мутантов для Толика</text>
+	</string>
+	<string id="esc_tolik_contract_2">
+		<text>Собрать 10 собачьих хвостов и 10 копыт кабана</text>
+	</string>
+	<string id="esc_tolik_contract_3">
+		<text>Принести части мутантов Толику</text>
+	</string>
+	<string id="esc_tolik_contract_4">
+		<text>Принести части мутантов Сидоровичу</text>
+	</string>
+	<string id="esc_tolik_contract_5">
+		<text>Разделить награду с Толиком</text>
+	</string>
+	<string id="tutorial_wounded_task_0">
+		<text>Привет Толик, насчёт того контракта.</text>
+	</string>
+	<string id="tutorial_wounded_task_1">
+		<text>Что там у тебя?</text>
+	</string>
+	<string id="tutorial_wounded_task_11">
+		<text>Я всё собрал.</text>
+	</string>
+	<string id="tutorial_wounded_task_12">
+		<text>Да пока ничего.</text>
+	</string>
+	<string id="tutorial_wounded_task_13">
+		<text>Я не хочу больше искать твою требуху.</text>
+	</string>
+	<string id="tutorial_wounded_task_131">
+		<text>А чё так? Ты уверен?</text>
+	</string>
+	<string id="tutorial_wounded_task_1311">
+		<text>Да, мне не до этого.</text>
+	</string>
+	<string id="tutorial_wounded_task_13111">
+		<text>Ну и хрен с тобой.</text>
+	</string>
+	<string id="tutorial_wounded_task_1312">
+		<text>Передумал, ещё поищу.</text>
+	</string>
+	<string id="tutorial_wounded_task_111">
+		<text>Красава, Меченый, неси это всё Сидору, скажешь, что от меня. Вернёшься, разделим как договаривались.</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_0">
+		<text>У меня тут для тебя посылка от Толика.</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_1">
+		<text>Какая ещё посылка, что там у тебя?</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_11">
+		<text>Хвосты и копыта по контракту.</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_111">
+		<text>Вот Толик трепло, он теперь всем про мой бизнес будет разносить? Это должно было быть предложение только для своих, каким чёртом он тебя сюда ввязал?</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_1111">
+		<text>Да не парься ты, он только мне и рассказал, да и какая тебе разница, если товар у тебя.</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_11111">
+		<text>Он поди ещё тебя заставил за него бегать, сам то я видел, он всё в лагере дрых. Вот что Меченый, я тебе заплачу за эту работу, и можешь все деньги себе забирать, а Толяну передай, что с ним дела у меня закончены. Сам же потом подходи, если хочешь, ты то, я думаю, сможешь по ответственнее мои поручения выполнять.</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_111111">
+		<text>Да ладно тебе, не лишай парня работы, ему только на броник накопить - и он сможет ещё себя показать в деле.</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_111112">
+		<text>Понял тебя.</text>
+	</string>
+	<string id="tutorial_wounded_task_sidor_1111111">
+		<text>Да он задрал уже, сколько ему ещё под мои попечительством чалиться... Ладно, пока что пригрею его, но ты ему передай, что вечно так продолжаться не может.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_0">
+		<text>Толян, тут у меня весточка от Сидора.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_1">
+		<text>Ну что, не зажал награду? Давай тогда поделим, как договаривались.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_11">
+		<text>Вот, держи, твоя доля.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_111">
+		<text>Вот уж спасибо, Меченый, выручил меня.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_112">
+		<text>Вот уж спасибо, Меченый, выручил меня. Слушай, ты же всё за меня сделал, давай я тебе тайничок один подкину, он глубоко в Зоне, я в тех краях не бываю, а тебе, думаю, будет полезно.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_12">
+		<text>Знаешь что, Толян, мне Сидор сказал, что вы с ним больше не работаете, а деньги за контракт разрешил мне целиком забрать.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_121">
+		<text>Что? И ты согласился?</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_1211">
+		<text>Ну уж нет. Я Сидора уговорил, чтобы он тебя пока не списывал со счетов. Вот, держи, твоя доля.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_12111">
+		<text>Спасибо Меченый! Человечище! Слушай, ты же всё за меня сделал, давай я тебе тайничок один подкину, он глубоко в Зоне, я в тех краях не бываю, а тебе, думаю, будет полезно.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_1212">
+		<text>Конечно. Ты то уж побольше меня Зону топтал, знаешь чай, что слабаки тут не нужны.</text>
+	</string>
+	<string id="tutorial_wounded_task_aftermatch_12121">
+		<text>Ну и урод ты, хрен мочёный, вали чтобы я тебя не видел!</text>
+	</string>
+	<string id="tex_esc_tolik_contract">
+		<text>Сидорович предлагает тем сталкерам, с которыми он долго и успешно работает, разные эксклюзивные предложения, так называемые "контракты". Чаще всего ему нужны различные артефакты и трофеи от мутантов в большом количестве. Толик должен был ему собрать 10 хвостов слыпых собак и 10 копыт кабана, но не смог. Он предложил мне собрать трофеи за него, а награду разделить.</text>
+	</string>
+	<string id="tolik">
+		<text>Толик</text>
+	</string>
+	<string id="artmod_141_dialog_0">
+		<text>Ну вы даёте, с вами водки не разживёшься.</text>
+	</string>
+	<string id="artmod_141_dialog_1">
+		<text>Сталкер, не наглей. Хотели бы - вообще бы не пускали. У меня скоро юбилей... Круглая дата... Вот я и хочу отметить его по настоящему... Закуски у нас валом, а вот горячительного не хватает...</text>
+	</string>
+	<string id="artmod_141_dialog_11">
+		<text>И что мне теперь, ящик водки вам притаганить? С какого перепугу?</text>
+	</string>
+	<string id="artmod_141_dialog_111">
+		<text>Хмм... Знаешь, а почему бы и нет. \nСам я не могу смотаться к барыге - ибо служба... Может принесешь мне бутылочек десять водки, будет у меня праздник.. и тебе будет чем поживиться: \nПатронов подкину... \nБудешь у нас на хорошем счету, сможешь потом тут даром ходить...</text>
+	</string>
+	<string id="artmod_141_dialog_1111">
+		<text>Хе, ишь как придумал. Посмотрим, может и разживусь.</text>
+	</string>
+	<string id="artmod_141_dialog_1112">
+		<text>Неее, я дальше пойду...</text>
+	</string>
+	<string id="artmod_142_dialog_2">
+		<text>Здравия желаю, с юбилеем вас...</text>
+	</string>
+	<string id="artmod_142_dialog_21">
+		<text>Принес, что ли?</text>
+	</string>
+	<string id="artmod_142_dialog_211">
+		<text>Да, вот десять бутылочек... Не паленая... Не сомневайтесь...</text>
+	</string>
+	<string id="artmod_142_dialog_2111">
+		<text>Ну удружил... Запомню я тебя... Если что нужно... держи вот тебе две.. нет, даже три пачки... и не простых, а бронебойных... Своим скажу, чтобы с тебя больше не драли за проходю\nБудет желание подходи - может чего еще сторгуем, денег при себе не держу, а вот снаряги армейской у нас навалом, за бутылёк-другой могу обменять...</text>
+	</string>
+	<string id="artmod_143_dialog_0">
+		<text>Начальник, чё ты там про юбилей говорил?</text>
+	</string>
+	<string id="artmod_143_dialog_1">
+		<text>У меня скоро юбилей... Круглая дата... Вот я и хочу отметить его по настоящему... Закуски у нас валом, а вот горячительного не хватает...\nСам я не могу смотаться к барыге - ибо служба... Может принесешь мне бутылочек десять водки, будет у меня праздник.. и тебе будет чем поживиться: \nПатронов подкину... \nБудешь у нас на хорошем счету, сможешь потом тут даром ходить...</text>
+	</string>
+	<string id="tex_esc_bridge_vodka">
+		<text>Майор Кузнецов может подкинуть патронов к калашу и обещает потом позволить проходить задаром, в обмен на десять бутылок водки...</text>
+	</string>
+	<string id="kuz">
+		<text>Майор Кузнецов</text>
+	</string>
+	<string id="tex_esc_bridge_vodka_1">
+		<text>Принести 10 бутылок Кузнецову</text>
+	</string>
+	<string id="tex_esc_bridge_vodka_2">
+		<text>Принести 10 бутылок Водки</text>
+	</string>
+	<string id="tex_esc_bridge_vodka_3">
+		<text>Собрать 10 бутылок водки</text>
+	</string>
+	<string id="tex_esc_bridge_vodka_4">
+		<text>Принести водку Кузнецову</text>
+	</string>
+	<string id="esc_fox_medkit_1">
+		<text>Принести 10 аптечек Лису</text>
+	</string>
+	<string id="esc_fox_medkit_2">
+		<text>Принести 10 аптечек</text>
+	</string>
+	<string id="esc_fox_medkit_3">
+		<text>Собрать 10 аптечек</text>
+	</string>
+	<string id="esc_fox_medkit_4">
+		<text>Принести аптечки Лису</text>
+	</string>
+	<string id="tex_esc_fox_medkit">
+		<text>Лису аптечки нужны, не меньше 10 комплектов...</text>
+	</string>
+		<string id="artmod_161_dialog_0">
+		<text>Что, постоянно аптечки нужны?...</text>
+	</string>
+	<string id="artmod_161_dialog_1">
+		<text>Да не говори... Последнее время эти слепые псы еще больше мутировали... достаточно крохотной ранки и каюк... поэтому приходится сразу же обеззараживаться и вырезать целый кусок зараженного мяса...
+		\nЕсли согласен - я тебе за десяток аптечек расскажу, где вояки схрон устроили...</text>
+	</string>
+	<string id="artmod_161_dialog_2">
+		<text>Ладно соберу... Мда - ЗОНА... Чем дальше тем страшнее...</text>
+	</string>
+	<string id="artmod_161_dialog_3">
+		<text>Извини Лис, мне нужно дальше идти...</text>
+	</string>
+	<string id="artmod_162_dialog_0">
+		<text>Лис, я принес тебе, как обещал 10 аптечек..</text>
+	</string>
+	<string id="artmod_162_dialog_1">
+		<text>Армейских? Нет?</text>
+	</string>
+	<string id="artmod_162_dialog_2">
+		<text>Нет, простых, армейских не достал...</text>
+	</string>
+	<string id="artmod_162_dialog_3">
+		<text>Все равно спасибо... Вот, давай свой Пда, я тебе поставлю метку на схрон военных. Они там складывают хабар, что у сталкеров отобрали, думаю найдёшь, чем поживиться. И держи ещё грошей впридачу, вдруг тот схрон уже кто обнёс.</text>
+	</string>
+	<string id="bandit_tip_1">
+		<text>Валите пленного, эти уроды за ним пришли!</text>
+	</string>
+</string_table>

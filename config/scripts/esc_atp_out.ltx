@@ -1,0 +1,12 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+esc_atp_alarm +actor_near_atp} sr_idle@alarm
+
+[sr_idle@alarm]
+on_actor_outside = {!esc_bandits_die} %+esc_bandits_kill_prisoner% sr_idle@spam, {=esc_bandits_die} nil
+on_info = {=esc_bandits_die} nil
+
+[sr_idle@spam]
+on_timer = 1000 | %=bandit_tip_1% nil

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<game_information_portions>
+	<info_portion id="stash_assigned"></info_portion>
+	<info_portion id="esc_secret_attic"></info_portion>
+	<info_portion id="esc_secret_bridge_vagon"></info_portion>
+	<info_portion id="escape_lager_volk_document_start">
+		<task>escape_lager_volk_document</task>
+	</info_portion>
+	<info_portion id="kvest_art_started">
+		<task>esc_test_art_task</task>
+	</info_portion>
+	<info_portion id="test_quest_art_vziat"></info_portion>
+	<info_portion id="test_quest_art_otdan"></info_portion>
+	<info_portion id="nimble_kurtka_end"></info_portion>
+	<info_portion id="nimble_kurtka_start">
+		<task>nimble_kurtka_quest</task>
+	</info_portion>
+	<info_portion id="poluchen_pda_dilo">
+		<task>dilo_pda_quest</task>
+	</info_portion>
+	<info_portion id="pda_ok_novikov">
+		<task>pda_from_novikov</task>
+	</info_portion>
+	<info_portion id="esc_nimble_die"></info_portion>
+	<info_portion id="nimble_kurtka_found"></info_portion>
+	<info_portion id="nimble_kurtka_asked"></info_portion>
+	<info_portion id="nimble_kurtka_fail"></info_portion>
+	<info_portion id="nimble_kurtka_have"></info_portion>
+	<info_portion id="nimble_zapis_found"></info_portion>
+	<info_portion id="pda_ok"></info_portion>
+	<info_portion id="pda_talked"></info_portion>
+	<info_portion id="pda_gave"></info_portion>
+	<info_portion id="pda_used"></info_portion>
+		<!-- трансмутации покупные -->
+
+	<info_portion id="artm_af_gold_fish">
+	<article>zone_artifact_rec_ribka</article>
+	</info_portion>
+
+	<info_portion id="artm_af_soul">
+	<article>zone_artifact_af_soul</article>
+	</info_portion>
+
+	<info_portion id="artm_af_dummy_spring">
+	<article>zone_artifact_af_dummy_spring</article>
+	</info_portion>
+
+	<info_portion id="artm_af_dummy_glassbeads">
+	<article>zone_artifact_af_dummy_glassbeads_spring</article>
+	</info_portion>
+
+	<info_portion id="artm_af_electra_moonlight">
+	<article>zone_artifact_af_electra_moonlight</article>
+	</info_portion>
+	<info_portion id="dolg_mir"></info_portion>
+	<info_portion id="stalker_mir"></info_portion>
+	<info_portion id="freedom_mir"></info_portion>
+	<info_portion id="dolg_mir1"></info_portion>
+	<info_portion id="stalker_mir1"></info_portion>
+	<info_portion id="freedom_mir1"></info_portion>
+	<info_portion id="saving_disabled"></info_portion>
+	<info_portion id="kill_fox"></info_portion>
+	<info_portion id="kill_tutorial_wounded"></info_portion>
+	<info_portion id="test_stash"></info_portion>
+	<info_portion id="test_stash1"></info_portion>
+	<info_portion id="heli_raid_desant"></info_portion>
+	<info_portion id="escape_lager_volk_document_have"></info_portion>
+	<info_portion id="escape_lager_volk_document_done"></info_portion>
+	<info_portion id="esc_tolik_contract_start">
+        <task>esc_tolik_contract</task>
+    </info_portion>
+    <info_portion id="esc_tolik_contract_have"></info_portion>
+	<info_portion id="esc_tolik_contract_done"></info_portion>
+	<info_portion id="esc_tolik_contract_fail"></info_portion>
+	<info_portion id="esc_tolik_contract_good_deal"></info_portion>
+	<info_portion id="esc_tolik_contract_part_1"></info_portion>
+	<info_portion id="esc_tolik_contract_part_2"></info_portion>
+	<info_portion id="esc_tolik_contract_fu"></info_portion>
+	<info_portion id="esc_bridge_vodka_done"></info_portion>
+	<info_portion id="esc_bridge_vodka_ask"></info_portion>
+	<info_portion id="esc_bridge_soldier5_umer"></info_portion>
+	<info_portion id="esc_bridge_free"></info_portion>
+	<info_portion id="fox_dead"></info_portion>
+	<info_portion id="esc_fox_medkit_done"></info_portion>
+	<info_portion id="esc_atp_alarm"></info_portion>
+	<info_portion id="actor_near_atp"></info_portion>
+	<info_portion id="esc_bandits_kill_prisoner"></info_portion>
+	<info_portion id="esc_bridge_vodka_start">
+		<task>esc_bridge_vodka</task>
+	</info_portion>
+	<info_portion id="esc_fox_medkit_start">
+		<task>esc_fox_medkit</task>
+	</info_portion>
+</game_information_portions>

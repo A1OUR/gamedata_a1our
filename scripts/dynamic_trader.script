@@ -1,0 +1,23 @@
+function spawn_start()
+	torg = level_object_by_sid(616)
+	if torg then
+		--alife():create("af_medusa", torg:position(), torg:level_vertex_id(), torg:game_vertex_id(), torg:id())
+		torg:iterate_inventory(clear_items, torg)
+	end
+end
+
+function spawn_items(torg, item)
+    local section = item:section()
+
+    if section == "af_medusa" then
+		get_console():execute("мидузо")
+    end
+end
+
+function clear_items(torg, item)
+	local section = item:section()
+	if section == "bolt" then
+		return true
+    end
+	alife():release(alife():object(item:id()), true)
+end

@@ -1,0 +1,196 @@
+	<game_task id="esc_test_art_task">
+            <title>esc_art_task_0</title>
+            <objective>
+                    <text>esc_art_task_1</text>
+                    <icon>ui_iconsTotal_find_item</icon>
+					<article>esc_art_task_descr</article>
+                    <infoportion_complete>test_quest_art_otdan</infoportion_complete>
+			</objective>
+            <objective>
+                    <text>esc_art_task_2</text> 
+                    <infoportion_complete>test_quest_art_vziat</infoportion_complete>
+			</objective>
+            <objective>
+                    <text>esc_art_task_3</text>
+                    <map_location_type hint="escape_trader">blue_location</map_location_type>
+                    <object_story_id>Escape_Trader</object_story_id>
+                    <infoportion_complete>test_quest_art_otdan</infoportion_complete>
+            </objective>
+	</game_task>
+	
+	<game_task id="nimble_kurtka_quest">
+            <title>nimble_kurtka_quest_title</title>
+            <objective>
+                    <text>nimble_kurtka_quest_1</text>
+                    <icon>ui_iconsTotal_find_item</icon>
+					<article>find_kurtka_descr</article>
+                    <infoportion_complete>nimble_kurtka_end</infoportion_complete>
+					<infoportion_fail>nimble_kurtka_fail</infoportion_fail>
+			</objective>
+            <objective>
+                    <text>nimble_kurtka_quest_2</text> 
+                    <map_location_type hint="nimble_kurtka_quest_hint_1">green_location</map_location_type> 
+                    <object_story_id>Escape_kurtka</object_story_id-->
+                    <infoportion_complete>nimble_zapis_found</infoportion_complete>
+			</objective>
+			<objective>
+                    <text>nimble_kurtka_quest_3</text> 
+                    <map_location_type hint="nimble_kurtka_quest_hint_2">green_location</map_location_type> 
+                    <object_story_id>gar_collector_camp</object_story_id-->
+                    <infoportion_complete>kurtka_pogovoril</infoportion_complete>
+			</objective>
+			<objective>
+                    <text>nimble_kurtka_quest_4</text> 
+                    <infoportion_complete>kurtka_end_dialog</infoportion_complete>
+			</objective>
+			<objective>
+                    <text>nimble_kurtka_quest_5</text>
+					<map_location_type hint="gar_kurtka_taynik">green_location</map_location_type> 
+                    <object_story_id>gar_secret_0012</object_story_id-->
+                    <infoportion_complete>nimble_kurtka_found</infoportion_complete>
+			</objective>
+            <objective>
+                    <text>nimble_kurtka_quest_6</text>
+                    <map_location_type hint="nimble_kurtka_quest_hint_3">blue_location</map_location_type>
+                    <object_story_id>Escape_shustryi</object_story_id>
+                    <infoportion_complete>nimble_kurtka_end</infoportion_complete>
+            </objective>
+	</game_task>
+	
+	<game_task id="dilo_pda_quest">
+            <title>dilo_pda_title</title>
+            <objective>
+                    <icon>ui_iconsTotal_find_item</icon>
+					<article>dilo_pda_quest_descr</article>
+                    <infoportion_complete>pda_used</infoportion_complete>
+			</objective>
+            <objective>
+                    <text>dilo_pda_1</text> 
+                    <infoportion_complete>pda_gave</infoportion_complete>
+			</objective>
+			<objective>
+                    <text>dilo_pda_2</text> 
+                    <infoportion_complete>pda_ok</infoportion_complete>
+			</objective>
+            <objective>
+                    <text>dilo_pda_3</text>
+                    <infoportion_complete>pda_talked</infoportion_complete>
+            </objective>
+			<objective>
+                    <text>dilo_pda_4</text>
+                    <infoportion_complete>pda_used</infoportion_complete>
+            </objective>
+	</game_task>
+	
+	<game_task id="pda_from_novikov">
+            <title>pda_from_novikov_1</title>
+            <objective>
+                    <icon>ui_iconsTotal_find_item</icon>
+					<article>pda_from_novikov_descr</article>
+                    <infoportion_complete>pda_talked</infoportion_complete>
+			</objective>
+            <objective>
+                    <text>pda_from_novikov_2</text>
+                    <map_location_type hint="escape_trader">blue_location</map_location_type>
+                    <object_story_id>Escape_Trader</object_story_id>
+                    <infoportion_complete>pda_talked</infoportion_complete>
+            </objective>
+	</game_task>
+	
+	<game_task id="escape_lager_volk_document">
+		<title>tex_escape_lager_volk_document_1</title>
+		<objective>
+			<text>tex_escape_lager_volk_document_1</text>
+			<icon>ui_iconsTotal_found_thing</icon>
+			<infoportion_complete>escape_lager_volk_document_done</infoportion_complete>
+			<infoportion_fail>esc_wolf_dead</infoportion_fail>
+			<article>tex_escape_lager_volk_document</article>
+		</objective>
+		<objective>
+			<text>tex_escape_lager_volk_document_2</text>
+			<function_complete>sak_dialog.escape_lager_volk_document_have</function_complete>
+			<infoportion_set_complete>escape_lager_volk_document_have</infoportion_set_complete>
+		</objective>
+		<objective>
+			<text>tex_escape_lager_volk_document_3</text>
+			<map_location_type hint="volk">blue_location</map_location_type>
+			<object_story_id>Escape_novice_lager_volk</object_story_id>
+			<infoportion_complete>escape_lager_volk_document_done</infoportion_complete>
+		</objective>
+	</game_task>
+	
+	<game_task id="esc_tolik_contract">
+		<title>esc_tolik_contract_1</title>
+		<objective>
+			<icon>ui_iconsTotal_monster_part</icon>
+			<infoportion_complete>esc_tolik_contract_done</infoportion_complete>
+			<infoportion_fail>esc_tolik_contract_fail</infoportion_fail>
+			<article>tex_esc_tolik_contract</article>
+		</objective>
+		<objective>
+			<text>esc_tolik_contract_2</text>
+			<function_complete>sak_dialog.tolik_contract_have</function_complete>
+			<infoportion_set_complete>esc_tolik_contract_have</infoportion_set_complete>
+		</objective>
+		<objective>
+			<text>esc_tolik_contract_3</text>
+			<map_location_type hint="tolik">blue_location</map_location_type>
+			<object_story_id>Escape_tutorial_wounded</object_story_id>
+			<infoportion_complete>esc_tolik_contract_part_1</infoportion_complete>
+		</objective>
+		<objective>
+			<text>esc_tolik_contract_4</text>
+			<map_location_type hint="escape_trader">blue_location</map_location_type>
+            <object_story_id>Escape_Trader</object_story_id>
+			<infoportion_complete>esc_tolik_contract_part_2</infoportion_complete>
+		</objective>
+		<objective>
+			<text>esc_tolik_contract_5</text>
+			<map_location_type hint="tolik">blue_location</map_location_type>
+			<object_story_id>Escape_tutorial_wounded</object_story_id>
+			<infoportion_complete>esc_tolik_contract_done</infoportion_complete>
+		</objective>
+	</game_task>
+	
+	<game_task id="esc_bridge_vodka">
+		<title>tex_esc_bridge_vodka_1</title>
+		<objective>
+			<text>tex_esc_bridge_vodka_2</text>
+			<icon>ui_iconsTotal_deficit</icon>
+			<infoportion_complete>esc_bridge_vodka_done</infoportion_complete>
+			<infoportion_fail>esc_bridge_soldier5_umer</infoportion_fail>
+			<article>tex_esc_bridge_vodka</article>
+		</objective>
+		<objective>
+			<text>tex_esc_bridge_vodka_3</text>
+			<function_complete>sak_dialog.have_10vodka</function_complete>
+		</objective>
+		<objective>
+			<text>tex_esc_bridge_vodka_4</text>
+			<map_location_type hint="kuz">blue_location</map_location_type>
+			<object_story_id>esc_kuznetsov</object_story_id>
+			<infoportion_complete>esc_bridge_vodka_done</infoportion_complete>		
+		</objective>
+	</game_task>
+	
+	
+	<game_task id="esc_fox_medkit">
+		<title>esc_fox_medkit_1</title>
+		<objective>
+			<text>esc_fox_medkit_2</text>
+			<icon>ui_iconsTotal_esc_help_wounded_from_raid</icon>
+			<infoportion_complete>esc_fox_medkit_done</infoportion_complete>
+			<infoportion_fail>fox_dead</infoportion_fail>
+			<article>tex_esc_fox_medkit</article>
+		</objective>
+		<objective>
+			<text>esc_fox_medkit_3</text>
+			<function_complete>sak_dialog.esc_fox_medkit_have</function_complete>
+		</objective>
+		<objective>
+			<text>esc_fox_medkit_4</text>
+			<map_location_type hint="esc_fox">blue_location</map_location_type>
+			<object_story_id>Escape_stalker_from_raid</object_story_id>
+			<infoportion_complete>esc_fox_medkit_done</infoportion_complete>		
+		</objective>
+	</game_task>

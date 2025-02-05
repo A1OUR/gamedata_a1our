@@ -1,0 +1,11 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+esc_blockpost_alarm} sr_idle@alarm, {+escape_blockpost_case_have -esc_blockpost_alarm} sr_idle@case
+
+[sr_idle@alarm]
+on_info = {=gulag_casualities_ge(esc_blokpost:3)} nil %+esc_raid1_start%, {+escape_blockpost_case_have -escape_blockpost_case_done} nil %+esc_raid1_start%, {-esc_blockpost_alarm +esc_blockpost_normal} sr_idle
+
+[sr_idle@case]
+on_info = {+esc_blockpost_alarm} nil %+esc_raid1_start%, {+escape_blockpost_case_done} sr_idle

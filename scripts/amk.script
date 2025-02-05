@@ -1,0 +1,292 @@
+function on_item_take(obj)
+art_sys.check(obj)
+local actor = db.actor
+if actor ~= nil and actor:object("esc_wolf_map") ~= nil and actor:dont_has_info("escape_lager_volk_document_have") then
+actor:give_info_portion("escape_lager_volk_document_have")
+end
+if actor ~= nil and actor:object("amk_af_night_star") ~= nil and actor:dont_has_info("test_quest_art_vziat") then
+actor:give_info_portion("test_quest_art_vziat")
+end
+if actor ~= nil and actor:object("outfit_bandit_m1") ~= nil and actor:dont_has_info("nimble_kurtka_found") and actor:has_info("toynik_info")	then
+actor:give_info_portion("nimble_kurtka_found")
+--level_tasks.remove_location (5042, "gar_kurtka_loc")
+end
+if actor ~= nil and actor:object("amk_zapiska") ~= nil and actor:dont_has_info("nimble_zapis_found") then
+actor:give_info_portion("nimble_zapis_found")
+end
+if actor ~= nil and actor:object("dilo_pda") ~= nil then
+actor:give_info_portion("kurtka_pogovoril")
+actor:give_info_portion("poluchen_pda_dilo")
+end
+if actor:object("bar_ecolog_flash") ~= nil then
+	if actor:has_info("ros_actor_say_has_no_flash") then
+		actor:disable_info_portion("bar_heli_scene_mir")
+		if not has_alife_info("ros_freedom_angry_send_msg") then
+			if not has_alife_info("bar_heli_scene_volkodav_die") then 
+				news_manager.send_tip(actor, "bar_freedom_attack_spy", 5, "volkodav", nil, 509)
+				db.actor:give_info_portion("ros_freedom_angry_send_msg") 
+				db.actor:give_info_portion("bar_kill_professor_not_reward") 
+			else 
+				news_manager.send_tip(actor, "bar_freedom_attack_spy", 5, "freedom")
+				db.actor:give_info_portion("ros_freedom_angry_send_msg") 
+				db.actor:give_info_portion("bar_kill_professor_not_reward") 
+			end 
+		end
+	end
+end
+end
+function on_item_drop(obj)
+	arc_main.lose_item(obj)
+	--local news_text = obj:get_upgrades()
+end
+function on_actor_update()
+	arc_main.actor_update()
+	--ogsr_outfit_arms.on_first_update()
+end
+
+function to_slot(obj)
+
+end
+
+function spawn_item(spawn_item, pos)
+	return alife():create(spawn_item, pos, 1, db.actor:game_vertex_id())
+end
+function send_tip(news_text, header, timeout, showtime, sender, sound)
+	if news_text==nil then return end
+	if header==nil then header=game.translate_string("st_tip") end
+	if timeout == nil then timeout = 0 end
+	if showtime == nil then showtime = 5 end
+	
+	local player
+	if sound=="news" then
+		player=pda_news
+	elseif sound=="task" then
+		player=pda_task
+	else
+		player=pda_tips
+	end		
+	
+	player:play(db.actor, timeout, sound_object.s2d)
+	
+	if sender == nil then
+		sender = "default"
+	end
+	local x = tips_icons[sender][1]
+	local y = tips_icons[sender][2]
+	
+	local news_text = "%c[255,160,160,160]"..header.."\\n".."%c[default]"..news_text
+	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(x,y,83,47), timeout*1000, showtime*1000)
+	return true
+end
+function parse_object_packet(ret,stpk,updpk)
+  ret.gvid=stpk:r_u16()
+  ret.obf32u1=stpk:r_float()
+  ret.obs32u2=stpk:r_s32()
+  ret.lvid=stpk:r_s32()
+  ret.oflags=stpk:r_s32()
+  ret.custom=stpk:r_stringZ()
+  ret.sid=stpk:r_s32()
+  ret.obs32u3=stpk:r_s32()
+  return ret
+end
+
+function parse_visual_packet(ret,stpk,updpk)
+  ret.visual=stpk:r_stringZ()
+  ret.vsu8u1=stpk:r_u8()
+  return ret
+end
+
+function fill_object_packet(ret,stpk,updpk)
+  stpk:w_u16(ret.gvid)
+  stpk:w_float(ret.obf32u1)
+  stpk:w_s32(ret.obs32u2)
+  stpk:w_s32(ret.lvid)
+  stpk:w_s32(ret.oflags)
+  stpk:w_stringZ(ret.custom)
+  stpk:w_s32(ret.sid)
+  stpk:w_s32(ret.obs32u3)
+end
+
+function fill_visual_packet(ret,stpk,updpk)
+  stpk:w_stringZ(ret.visual)
+  stpk:w_u8(ret.vsu8u1)
+end
+-- удаляем объект из игры
+function remove_item(remove_item)
+  if remove_item~=nil then
+    alife():release(alife():object(remove_item:id()), true)
+    return true
+  end
+  return false
+end
+
+-- выбрасываем объект из инвентаря, применимо к ГГ
+function drop_item(npc,item)
+  if item~=nil then
+--      npc:mark_item_dropped(item)
+    npc:drop_item(item)
+  end
+end
+function get_npc_relation(obj,target)
+  local rel = obj:relation(target)
+  local relation
+  if rel==game_object.neutral then
+    relation="neutral"
+  elseif rel==game_object.friend then
+    relation="friend"
+  elseif rel==game_object.enemy then
+    relation="enemy"
+  else
+    return false
+  end
+  return relation
+end
+
+function spawn_at_way(section, way, index)
+	if index == nil then
+		index = 0
+	end
+	p = patrol(way)
+	sobj = alife():create(section, (p:point(index)),  p:level_vertex_id(index), p:game_vertex_id(index))
+	alife():use_ai_locations(sobj, false)
+end
+
+--удаляем предмет из инвентаря по имени
+function remove_item_from_inventory_by_name(remove_item_name,npc)
+  return remove_item_from_inventory(npc:object(remove_item_name),npc)
+end
+
+--удаляем предмет из инвентаря
+function remove_item_from_inventory(remove_item,npc)
+  if npc==nil then npc=db.actor end
+  if remove_item~=nil then
+--      npc:mark_item_dropped(remove_item)
+    alife():release(alife():object(remove_item:id()), true)
+    return true
+  end
+  return false
+end
+
+function trim (s)
+	return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
+
+function str_explode(div,str,clear)
+	local t={}
+	local cpt = string.find (str, div, 1, true)
+	if cpt then
+		repeat
+			if clear then
+				table.insert( t, trim(string.sub(str, 1, cpt-1)) )
+			else
+				table.insert( t, string.sub(str, 1, cpt-1) )
+			end
+			str = string.sub( str, cpt+string.len(div) )
+			cpt = string.find (str, div, 1, true)
+		until cpt==nil
+	end
+	if clear then
+		table.insert(t, trim(str))
+	else
+		table.insert(t, str)
+	end
+	return t
+end
+
+local relation_matrix={}
+local relation_matrix_monsters={}
+
+function build_tables()
+	rel_enemy,rel_friend = utils.cfg_get_number(system_ini(), "game_relations", "goodwill_enemy", nil, false, -1000), utils.cfg_get_number(system_ini(), "game_relations", "goodwill_friend", nil, false, 1000)
+	local s_comm_list = utils.cfg_get_string(system_ini(), "game_relations", "communities", nil, false, "", "")
+	local comm_list = {}
+	local s_value = amk.str_explode(",", amk.trim(s_comm_list), true)
+	for a=1, table.getn(s_value), 2 do
+		local s_comm = s_value[a]
+		table.insert(comm_list, s_comm)
+	end
+  
+	local tmp={}
+	local result, id, value = nil, nil, nil
+	for a=0,system_ini():line_count("communities_relations")-1 do
+		result, id, value = system_ini():r_line("communities_relations",a,"","")
+		if id~=nil and trim(id)~="" and trim(id)~=nil then
+			relation_matrix[trim(id)]={}
+			table.insert(tmp, trim(id))
+		end
+	end
+	
+	for a=1,table.getn(tmp) do
+		local value = utils.cfg_get_string(system_ini(), "communities_relations", tmp[a], nil, false, "", "")
+		local idx = tmp[a]
+		local m_value = amk.str_explode(",", amk.trim(value), true)
+		for i=1, table.getn(m_value) do
+			local idx2 = comm_list[i]
+			local v = m_value[i]
+			if relation_matrix[idx] and idx2~=nil and v ~= nil then
+				relation_matrix[idx][idx2]=tonumber(amk.trim(v))
+			end
+		end
+	end
+	
+	
+	local s_comm_list = utils.cfg_get_string(system_ini(), "monster_communities", "communities", nil, false, "", "")
+	local comm_list = {}
+	local s_value = amk.str_explode(",", amk.trim(s_comm_list), true)
+	for a=1, table.getn(s_value), 2 do
+		local s_comm = s_value[a]
+		--get_console():execute(s_comm)
+		table.insert(comm_list, s_comm)
+	end
+  
+	local tmp={}
+	local result, id, value = nil, nil, nil
+	for a=0,system_ini():line_count("monster_relations")-1 do
+		result, id, value = system_ini():r_line("monster_relations",a,"","")
+		if id~=nil and trim(id)~="" and trim(id)~=nil then
+			relation_matrix_monsters[trim(id)]={}
+			table.insert(tmp, trim(id))
+		end
+	end
+	
+	for a=1,table.getn(tmp) do
+		local value = utils.cfg_get_string(system_ini(), "monster_relations", tmp[a], nil, false, "", "")
+		local idx = tmp[a]
+		local m_value = amk.str_explode(",", amk.trim(value), true)
+		for i=1, table.getn(m_value) do
+			local idx2 = comm_list[i]
+			local v = m_value[i]
+			if relation_matrix_monsters[idx] and idx2~=nil and v ~= nil then
+				relation_matrix_monsters[idx][idx2]=tonumber(amk.trim(v))
+			end
+		end
+	end
+end
+
+function relation_check(from,to)
+	if relation_matrix[from] and relation_matrix[from][to] then
+		return relation_matrix[from][to]
+	else
+		--get_console():execute(from.."_or_"..to)
+		if relation_matrix_monsters[from] and relation_matrix_monsters[from][to] then
+			return relation_matrix_monsters[from][to]
+		else
+			--get_console():execute(from.."_or2_"..to)
+			return 0
+		end
+	end
+end
+--[[
+copiright © xStream
+
+MMMMMMM    MMMMM    MMMMMM  MMMMMMMMMMMMM  MMMMMMMMMMM     MMMMMMMMMMM    MMMMMM    MMMMMMM     MMMMMM
+ MMMMMMM MMMMMM  MMMMMMMMMM MMMMMMMMMMMMMM MMMMMMMMMMMMMM  MMMMMMMMMMM   MMMMMMMM   MMMMMMMM   MMMMMMM
+  MMMMMMMMMMMM  MMMMMMMMMMMM MMMMMMMMMMMMM  MMMMMMMMMMMMMM MMMMMMMMMMM   MMMMMMMM    MMMMMMMM MMMMMMMM
+   MMMMMMMMM     MMMMMMMM MMM   MMMMMMM     MMMMMMMMMMMMMM MMMMMMM      MMMMMMMMMM   MMMMMMMMMMMMMMMMM
+    MMMMMMM       MMMMMMM       MMMMMM      MMMMMMM  MMMMM MMMMMMM      MMMMMMMMMM   MMMMMMMMMMMMMMMMM
+    MMMMMMMM       MMMMMMM      MMMMMM      MMMMMMM MMMM   MMMMMMMMMM  MMMM MMMMMMM  MMMMMMMMMMMMMMMMM
+   MMMMMMMMMM        MMMMM      MMMMMM      MMMMMMMMMMM    MMMMMMM     MMMM  MMMMMM  MMMMMMMMMMMMMMMMM
+  MMMMM  MMMMM    MMMMMMMM      MMMMMM      MMMMMMMMMMMMMM MMMMMMMMMMM MMMMMMMMMMMMM MMMMM MMMMM MMMMM
+ MMMMM   MMMMMM    MMMMMM       MMMMMM      MMMMMMM MMMMM  MMMMMMMMMM MMMMMMM MMMMMM MMMM   MM   MMMM 
+ 
+]]
