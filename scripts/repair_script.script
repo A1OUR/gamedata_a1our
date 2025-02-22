@@ -164,13 +164,12 @@ if obj_sect == "enable_rep1" then
 	--end
 end
 if obj_sect == "disable_rep" then
-	--local lvid, gvid = db.actor:level_vertex_id(), db.actor:game_vertex_id()
-	--local pos = db.actor:position()
-	--actor = db.actor
-	--local news_text = actor:get_actor_savability()
-	--pseudorandom.set_key()
-	--alife():create("disable_rep", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
-	db.actor:give_info_portion("bar_barman_need_hole")
+local x= -207.79945373535
+local y= -22.537057876587
+local z= -128.32077026367
+local level_vertex= 64301
+local game_vertex_id= 56
+alife():create("test_stalker_respawn_1",vector():set(x,y,z),level_vertex,game_vertex_id)
 end 
 if obj_sect == "dilo_pda_dec" then
 	escape_dialog.dechiph_pda()

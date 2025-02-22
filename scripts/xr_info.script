@@ -893,13 +893,13 @@ local info_by_rank = {
 
 function loadInfo(npc, char_ini)
 	-- Загрузка из кастом даты
-	if not npc:has_info("stash_assigned") then
+	--[[if not npc:has_info("stash_assigned") then
 		npc:give_info_portion("stash_assigned")
 		local my_tr = treasure_manager.give_treasure(npc)
 		if my_tr ~= nil then
 			npc:give_info_portion(my_tr)
 		end
-	end
+	end]]
 	if char_ini:section_exist("known_info") then
 		local n = char_ini:line_count("known_info")
 		local result, id, value = 0,"",""

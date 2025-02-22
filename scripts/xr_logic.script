@@ -9,57 +9,57 @@
 ----------------------------------------------------------------------------------------------------
 -- ФУНКЦИИ, КОТОРЫЕ РАЗРЕШЕНО ВЫЗЫВАТЬ ИЗ ДРУГИХ СКРИПТОВ
 ----------------------------------------------------------------------------------------------------
-	Активация схем производится с помощью функций:
+  Активация схем производится с помощью функций:
 
 function gulag_activate(npc, ini, section, gulag_name, death, combat, actor_dialogs, trade, hit)
 Предназначение:
-	активирует заданную схему, используется схемой гулаг. Тип скрипта определяется автоматически по имени секции.
+  активирует заданную схему, используется схемой гулаг. Тип скрипта определяется автоматически по имени секции.
 Здесь:
-	npc - персонаж, для которого будет активирована схема
-	ini - его customdata
-	section - имя секции, которая должна быть активирована
-	gulag_name - имя гулага, которое будет добавлено спереди к именам путей
-	death, combat, actor_dialogs, trade, hit - имена секций, задающих поведение при смерти и в бою
+  npc - персонаж, для которого будет активирована схема
+  ini - его customdata
+  section - имя секции, которая должна быть активирована
+  gulag_name - имя гулага, которое будет добавлено спереди к именам путей
+  death, combat, actor_dialogs, trade, hit - имена секций, задающих поведение при смерти и в бою
 
 function assign_storage_and_bind(npc, ini, scheme, section)
 Предназначение:
-	Вызывает функцию add_to_binder схемы, а также создает (если его еще нет) и возвращает ссылку на storage
-	для схемы. Примечание: в storage при этом могут оставаться старые данные, схема должна очистить его
-	самостоятельно.
+  Вызывает функцию add_to_binder схемы, а также создает (если его еще нет) и возвращает ссылку на storage
+  для схемы. Примечание: в storage при этом могут оставаться старые данные, схема должна очистить его
+  самостоятельно.
 
 function subscribe_action_for_events(npc, storage, new_action)
 Предназначение:
-	Регистрирует класс для получения нотификаций о таких событиях как сброс схемы, сохранение и т.д.
-	Класс реализует соответствующие функции (reset_scheme() и т.д.), которые будут вызываться из xr_logic
-	в нужные моменты.
+  Регистрирует класс для получения нотификаций о таких событиях как сброс схемы, сохранение и т.д.
+  Класс реализует соответствующие функции (reset_scheme() и т.д.), которые будут вызываться из xr_logic
+  в нужные моменты.
 
 function pick_section_from_condlist(actor, npc, condlist)
 Предназначение:
-	Проверяет условия condlist, и если они успешны - ставит указанные infoportions и возвращает текст.
-	Если условия не выполняются - возвращает nil.
+  Проверяет условия condlist, и если они успешны - ставит указанные infoportions и возвращает текст.
+  Если условия не выполняются - возвращает nil.
 
 function try_switch_to_another_section(npc, st, actor)
 Предназчанение:
-	Используя настройки xr_logic из storage персонажа, пытается переключить его на другую схему, если
-	хоть одно из условий переключения сработало. Обычно вызывается из метода update класса персонажа.
+  Используя настройки xr_logic из storage персонажа, пытается переключить его на другую схему, если
+  хоть одно из условий переключения сработало. Обычно вызывается из метода update класса персонажа.
 
 function is_active(npc, st)
 Предназначение:
-	Вызывается из evaluator-а (или в самом начале update у предметов и монстров) для проверки, что данная
-	схема сейчас активна (схема определяется по данным в storage).
+  Вызывается из evaluator-а (или в самом начале update у предметов и монстров) для проверки, что данная
+  схема сейчас активна (схема определяется по данным в storage).
 
 function cfg_get_switch_conditions(ini, section, npc)
 Предназначение:
-	Считывает все возможные условия переключения схем.
+  Считывает все возможные условия переключения схем.
 
 function parse_condlist(npc, section, field, src)
 Предназначение:
-	Распарсивает условия вида: {+infop1} section1 %-infop2%, {+infop3 -infop4} section2 ... в таблицу.
-	Параметры section и field используются только в сообщениях об ошибках. Если строка src считана не из файла,
-	а передается в эту функцию гулагом, то нужно задать следующие параметры:
+  Распарсивает условия вида: {+infop1} section1 %-infop2%, {+infop3 -infop4} section2 ... в таблицу.
+  Параметры section и field используются только в сообщениях об ошибках. Если строка src считана не из файла,
+  а передается в эту функцию гулагом, то нужно задать следующие параметры:
 --]]
---		section = "[[[gulag_tasks.script]]]"
---		field = "[[[gulag_name=имя_гулага]]]"
+--    section = "[[[gulag_tasks.script]]]"
+--    field = "[[[gulag_name=имя_гулага]]]"
 --[[
 ----------------------------------------------------------------------------------------------------
 -- ПРИВАТНЫЕ ФУНКЦИИ
@@ -67,40 +67,40 @@ function parse_condlist(npc, section, field, src)
 
 function activate_by_section(npc, ini, section, loading)
 Предназначение:
-	Активирует указанную секцию. Если в данный момент какая-либо секция уже активирована, сообщает об ошибке.
+  Активирует указанную секцию. Если в данный момент какая-либо секция уже активирована, сообщает об ошибке.
 
 function switch_to_section(npc, st, section)
 Предназначение:
-	Выполняет переключение с одной секции на другую, если новая секция не nil. Если же она nil, остается
-	активной старая секция.
+  Выполняет переключение с одной секции на другую, если новая секция не nil. Если же она nil, остается
+  активной старая секция.
 
 function abort_syntax_error_in_cond(npc, section, field)
 Предназначение:
-	Сообщает о синтаксической ошибке в условиях переключения схем секции section и поля field, и останавливает
-	игру.
+  Сообщает о синтаксической ошибке в условиях переключения схем секции section и поля field, и останавливает
+  игру.
 
 function parse_infop(rslt, str)
 Предназначение:
-	Распарсивает условия вида " +infop1 =func -infop2 " и т.д. (все не перечислены) в таблицу.
+  Распарсивает условия вида " +infop1 =func -infop2 " и т.д. (все не перечислены) в таблицу.
 
 function cfg_get_number_and_condlist(ini, section, field, npc)
 function cfg_get_string_and_condlist(ini, section, field, npc)
 function cfg_get_condlist(ini, section, field, npc)
 Предназначение:
-	Считывает из customdata различные условия переключения схем.
+  Считывает из customdata различные условия переключения схем.
 
 function add_condition(lst, at, cond)
 Предназначение:
-	Добавляет условие в список условий переключения схем.
+  Добавляет условие в список условий переключения схем.
 
 function cfg_get_overrides(ini, section, npc)
 Предназначение:
-	Считывает настройки для схем общего поведения.
+  Считывает настройки для схем общего поведения.
 
 function generic_scheme_overrides(npc)
 Предназначение:
-	Возвращает ссылку на настройки схем общего поведения, актуальные для работающей в данный момент схемы,
-	либо nil, если ни одна из секций не активна, либо настройки не заданы.
+  Возвращает ссылку на настройки схем общего поведения, актуальные для работающей в данный момент схемы,
+  либо nil, если ни одна из секций не активна, либо настройки не заданы.
 
 --]]
 
@@ -109,103 +109,103 @@ function generic_scheme_overrides(npc)
 --      вызывается при включении набора скриптов через секцию logic у персонажа. Если в секции logic присутствует только
 --      поле cfg, использует конфигурационный файл, заданный в этом поле, и возвращает новый ini file.
 -- Здесь:
---	npc - персонаж, для которого будет активирована схема
---	ini - его customdata
---	stype - тип скрипта. Поскольку имя секции все еще неизвестно, его нужно задавать явно. Допустимые значения
---	        перечислены в файле modules.script.
---	section - имя секции logic
---	gulag_name - имя гулага, если скрипт включается гулагом, а не биндером
+--  npc - персонаж, для которого будет активирована схема
+--  ini - его customdata
+--  stype - тип скрипта. Поскольку имя секции все еще неизвестно, его нужно задавать явно. Допустимые значения
+--          перечислены в файле modules.script.
+--  section - имя секции logic
+--  gulag_name - имя гулага, если скрипт включается гулагом, а не биндером
 --]]
 function configure_schemes(npc, ini, ini_filename, stype, section_logic, gulag_name)
-	--printf("DEBUG: enable_scripts: npc:name()=%s", npc:name())
+  --printf("DEBUG: enable_scripts: npc:name()=%s", npc:name())
 
-	local npc_id = npc:id()
-	local st     = db.storage[npc_id]
+  local npc_id = npc:id()
+  local st     = db.storage[npc_id]
 
-	-- если какая-то схема была до этого активна, деактивировать её
-	if st.active_section then
-		issue_event(npc, st[st.active_scheme], "deactivate", npc)
-	end
+  -- если какая-то схема была до этого активна, деактивировать её
+  if st.active_section then
+    issue_event(npc, st[st.active_scheme], "deactivate", npc)
+  end
 
-	local actual_ini
-	local actual_ini_filename
-	if not ini:section_exist(section_logic) then
-		if not gulag_name then
-			-- Общие схемы должны работать и без logic:
-			actual_ini_filename = ini_filename
-			actual_ini = ini -- персонаж не обязательно должен иметь секцию logic
-		else
-			-- Иначе это персонаж Gulag-а и ему не задали работу:
-			abort("ERROR: object '%s': unable to find section '%s'", npc:name(), section_logic)
-		end
-	else
-		local filename = utils.cfg_get_string(ini, section_logic, "cfg", npc, false, "")
-		if filename then
-			printf("_bp: enable_scripts: object '%s' has external configuration file '%s'", npc:name(), filename)
-			-- Рекурсивно обработать конфигурационный файл, на который ссылается поле cfg
-			actual_ini_filename = filename
-			actual_ini = ini_file(filename)
-			return configure_schemes(npc, actual_ini, actual_ini_filename, stype, section_logic, gulag_name)
-			--[[
-			if actual_ini:line_count(section_logic) == 0 then
-				abort("file '%s' does not exist or is empty, or has no section '%s'",
-					filename, section_logic)
-			end
-			--]]
-		else
-			printf("_bp: enable_scripts: object '%s' has NO external configuration file, using '%s'", npc:name(), ini_filename)
-			actual_ini_filename = ini_filename
-			actual_ini = ini
-		end
-	end
+  local actual_ini
+  local actual_ini_filename
+  if not ini:section_exist(section_logic) then
+    if not gulag_name then
+      -- Общие схемы должны работать и без logic:
+      actual_ini_filename = ini_filename
+      actual_ini = ini -- персонаж не обязательно должен иметь секцию logic
+    else
+      -- Иначе это персонаж Gulag-а и ему не задали работу:
+      abort("ERROR: object '%s': unable to find section '%s'", npc:name(), section_logic)
+    end
+  else
+    local filename = utils.cfg_get_string(ini, section_logic, "cfg", npc, false, "")
+    if filename then
+      printf("_bp: enable_scripts: object '%s' has external configuration file '%s'", npc:name(), filename)
+      -- Рекурсивно обработать конфигурационный файл, на который ссылается поле cfg
+      actual_ini_filename = filename
+      actual_ini = ini_file(filename)
+      return configure_schemes(npc, actual_ini, actual_ini_filename, stype, section_logic, gulag_name)
+      --[[
+      if actual_ini:line_count(section_logic) == 0 then
+        abort("file '%s' does not exist or is empty, or has no section '%s'",
+          filename, section_logic)
+      end
+      --]]
+    else
+      printf("_bp: enable_scripts: object '%s' has NO external configuration file, using '%s'", npc:name(), ini_filename)
+      actual_ini_filename = ini_filename
+      actual_ini = ini
+    end
+  end
 
-	-- Поскольку в момент активации схемы могли работать ранее установленные общие схемы, нужно их все отключить:
-	disable_generic_schemes(npc, stype)
-	-- Включаем все общие схемы (раненный, коллбек на попадание и т.д.):
-	enable_generic_schemes(actual_ini, npc, stype, section_logic)
+  -- Поскольку в момент активации схемы могли работать ранее установленные общие схемы, нужно их все отключить:
+  disable_generic_schemes(npc, stype)
+  -- Включаем все общие схемы (раненный, коллбек на попадание и т.д.):
+  enable_generic_schemes(actual_ini, npc, stype, section_logic)
 
-	-- Инициализация торговли
-	if stype == modules.stype_stalker or
-	   npc:clsid() == clsid.script_trader
-	then
-		local trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_generic.ltx")
-		trade_manager.trade_init(npc, trade_ini)
-	end
-	
-	st.active_section = nil
-	st.active_scheme = nil
-	if gulag_name then
-		st.gulag_name = gulag_name
-	else
-		st.gulag_name = ""
-	end
-	st.stype = stype
-	st.ini = actual_ini
-	st.ini_filename = actual_ini_filename
-	st.section_logic = section_logic
+  -- Инициализация торговли
+  if stype == modules.stype_stalker or
+     npc:clsid() == clsid.script_trader
+  then
+    local trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_generic.ltx")
+    trade_manager.trade_init(npc, trade_ini)
+  end
+  
+  st.active_section = nil
+  st.active_scheme = nil
+  if gulag_name then
+    st.gulag_name = gulag_name
+  else
+    st.gulag_name = ""
+  end
+  st.stype = stype
+  st.ini = actual_ini
+  st.ini_filename = actual_ini_filename
+  st.section_logic = section_logic
 
-	return st.ini
+  return st.ini
 end
 
 -- Вызывается биндером с целью определить первую активную схему
 function determine_section_to_activate(npc, ini, section_logic, actor)
-	if not ini:section_exist(section_logic) then
-		return "nil"
-	end
+  if not ini:section_exist(section_logic) then
+    return "nil"
+  end
 
-	-- Распарсить строку выбора активной секции с учетом команд, заключенных в %%
-	local active_section_cond = cfg_get_condlist(ini, section_logic, "active", npc)
-	local active_section
-	if not active_section_cond then
-		abort("object '%s': section '%s': unable to find field 'active'", npc:name(), section_logic)
-	else
-		active_section = pick_section_from_condlist(actor, npc, active_section_cond.condlist)
-		if not active_section then
-			abort("object '%s': section '%s': section 'active' has no conditionless else clause",
-				npc:name(), section_logic)
-		end
-	end
-	return active_section
+  -- Распарсить строку выбора активной секции с учетом команд, заключенных в %%
+  local active_section_cond = cfg_get_condlist(ini, section_logic, "active", npc)
+  local active_section
+  if not active_section_cond then
+    abort("object '%s': section '%s': unable to find field 'active'", npc:name(), section_logic)
+  else
+    active_section = pick_section_from_condlist(actor, npc, active_section_cond.condlist)
+    if not active_section then
+      abort("object '%s': section '%s': section 'active' has no conditionless else clause",
+        npc:name(), section_logic)
+    end
+  end
+  return active_section
 end
 
 ------------------------------------------------------------------------------------------------------------
@@ -274,7 +274,11 @@ function enable_generic_schemes(ini, npc, stype, section)
 		xr_wounded.set_wounded (npc, ini, "wounded", wounded_section)
 
 		xr_abuse.set_abuse(npc, ini, "abuse", section)
-
+		
+		if anomaly_evader then
+      		anomaly_evader.set_evade(npc,ini,"evader",section)
+    	end
+    	
 		local meet_section = utils.cfg_get_string (ini, section, "meet", npc, false, "")
 		xr_meet.set_meet (npc, ini, "meet", meet_section)
 
