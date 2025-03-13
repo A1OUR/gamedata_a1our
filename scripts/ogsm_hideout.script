@@ -1,7 +1,7 @@
 ---------------- Схема поведения НПС при выбросе для OGSM 2.x -----------------
 
 ------------------------- Copyright 2007-2008 DEXXX ---------------------------
---Gnomi123: Вроде как очень всрато реализовал, но работает. Возможно стоит что-то уменьшить и перенести на движок
+--Gnomi123: Вроде как очень всрато реализовал, но работает. Возможно стоит что-то уменьшить и перенести на движок (эти скрипты уже не помню откуда)
 --/ -----------------------------------------------------------------
 --/ VARIABLEs
 --/ -----------------------------------------------------------------
@@ -134,36 +134,16 @@ local npc_run = {}
 local npc_sit = {}
 local npc_go = {}
 
-
--- We check whether NPC is in specific rectangle zone (are set for special places, 
--- such as bar, where NPCs should not react to blowout at all)
-function npc_in_zone(obj,lev,pos_psy_x,pos_psy_y,size_psy_x,size_psy_y,z1,z2)
-local level_name = level.name()
-if level_name ~= lev then
-	return false
-end
-local pos = obj:position()
-local x1 = pos_psy_x
-local x2 = pos_psy_y
-local y1 = size_psy_x
-local y2 = size_psy_y
-if (pos.x >= x1 and pos.x <= x2) and (pos.z >= y1 and pos.z <= y2) and (pos.y >= z1) and (pos.y <= z2) then
-	return true
-end
-return false
-end
-
 -- We get the nearest to NPC hide
 function get_nearest_hide(npc)
 local hideout_list = {}
 for k,v in pairs(restrictor_list) do
-	local community, radius = get_community_hide(v)
 	local obj = level.object_by_id(v.id)
-	if obj then --and string.find(community, npc:character_community()) then
+	if obj then --and string.find(v.community, npc:character_community()) then
 		local npc_pos = npc:position()
 		local hide_pos = obj:position()
 		local distance = npc_pos:distance_to(hide_pos)
-		local hide = {obj = obj, rad = radius, dist = distance}
+		local hide = {obj = obj, rad = v.rad, dist = distance, lvid = v.lvid}
 		table.insert(hideout_list, hide)
 	end
 end
@@ -175,7 +155,7 @@ end
 function get_nearest_special_hide(npc)
 local special_hideout_list = {}
 for k,v in pairs(special_restrictor_list) do
-	local obj = level.object_by_id(v.id)
+	local obj = level.object_by_id(v)
 	if obj then
 		local npc_pos = npc:position()
 		local hide_pos = obj:position()
@@ -204,6 +184,7 @@ function is_in_specific_zone(npc)
 	local hide = get_nearest_special_hide(npc)
 		if hide then
 			if utils.npc_in_zone(npc, hide.obj) then
+				--get_console():execute(tostring(npc:name()).."_in_"..tostring(hide.obj:name()))
 				return true
 			end
 		end
@@ -273,10 +254,13 @@ for i=1,65535 do
 	local obj = alife():object(i)
 	if obj then
 		if string.find(obj:name(), level.name().."_hide_restrictor") then
-			table.insert(restrictor_list, obj)
+			local community, radius = get_community_hide(obj)
+			local lvid = Get_Never_idLv_by_Pos(nil,0,obj,Get_MinMax_IdVertexes())
+			get_console():execute(tostring(obj:name()).."_"..tostring(lvid).."_"..tostring(obj.id).."_"..tostring(radius).."_"..tostring(community))
+			table.insert(restrictor_list, {lvid = lvid, id = obj.id, rad = radius, community = community, })
 		end
 		if string.find(obj:name(), level.name().."_special_hide_restrictor") then
-			table.insert(special_restrictor_list, obj)
+			table.insert(special_restrictor_list, obj.id)
 		end
 	end
 end
@@ -308,9 +292,9 @@ function evaluator_blowout:__init(name, storage) super (nil, name)
 end
 function evaluator_blowout:evaluate()
 	if not self.object:best_enemy() and 
-	   db.Flag2==1 and db.Dead2==0 and 
+	   db.Flag2==1 and db.Dead2==0 and -- blowout started but not in a deadly phase
 	   not (level.name()=="l11_pripyat" and self.object:character_community() == "monolith") and
-	   not is_in_hide(self.object) and not is_in_specific_zone(self.object) then
+	   not is_in_hide(self.object) and not is_in_specific_zone(self.object) then  -- guy is not in a hideout or ignore zone
 	   --c:execute("blowout_started")
 		self.st.blowout = true
 	else
@@ -327,7 +311,7 @@ function evaluator_hideout:__init(name, storage) super (nil, name)
 end
 function evaluator_hideout:evaluate()
 	--c:execute("evaluator_hideout:evaluate_for"..self.object:name())
-	if db.Dead2==1 and not is_in_hide(self.object) and not is_in_specific_zone(self.object) then
+	if db.Dead2==1 and not is_in_hide(self.object) and not is_in_specific_zone(self.object) then  -- blowout is in a deadly phase and guy is not in a hideout or ignore zone
 		self.st.hideout_lost = true
 	else
 		self.st.hideout_lost = false
@@ -342,7 +326,7 @@ function evaluator_inhide:__init(name, storage) super (nil, name)
 end
 function evaluator_inhide:evaluate()
 	--c:execute("evaluator_inhide:eval_for"..self.object:name())
-	if db.Flag2==1 and is_in_hide(self.object) then
+	if db.Flag2==1 and is_in_hide(self.object) then   -- blowout started and guy is in a hideout
 		self.st.inhide = true
 	else
 		self.st.inhide = false
@@ -364,12 +348,11 @@ function action_hideout:initialize()
 	npc:clear_animations()
 	npc:set_detail_path_type(move.line)
 	npc:set_path_type(game_object.level_path)
-	npc:remove_all_restrictions()
 	if npc_run[npc:id()] ~= 1 then
 		self.hide = get_nearest_hide(npc)
 		if self.hide then
 			--npc:add_restrictions(self.hide.obj:name(), "")
-			self.vertex = Get_Never_idLv_by_Pos(nil,0,self.hide.obj,Get_MinMax_IdVertexes())
+			self.vertex = self.hide.lvid
 			self.offset = vector():set(math.random()*3-1, 0, math.random()*3-1)
 			self.offset:normalize()
 			self.radius = math.random(1, self.hide.rad-1)
@@ -377,7 +360,6 @@ function action_hideout:initialize()
 			utils.send_to_nearest_accessible_vertex(npc, self.dest_lvid)
 			state_mgr.set_state(npc, "assault")
 		else
-			npc:remove_all_restrictions()
 			state_mgr.set_state(npc, "hide")
 		end
 		npc_run[npc:id()] = 1
@@ -406,7 +388,6 @@ function action_raskolbas:initialize()
 	npc:set_desired_position()
 	npc:set_desired_direction()
 	npc:clear_animations()
-	npc:remove_all_restrictions()
 	local ran = math.random(1,2)
 	if npc_psy[npc:id()] ~= 1 then
 		if npc:character_community() == "monolith" then
@@ -446,10 +427,9 @@ function action_inhide:initialize()
 	npc:clear_animations()
 	npc:set_detail_path_type(move.line)
 	npc:set_path_type(game_object.level_path)
-	npc:remove_all_restrictions()
 	self.hide = get_nearest_hide(npc)
 	if self.hide then
-		self.vertex = Get_Never_idLv_by_Pos(nil,0,self.hide.obj,Get_MinMax_IdVertexes())
+		self.vertex = self.hide.lvid
 		self.offset = vector():set(math.random()*3-1, 0, math.random()*3-1)
 		self.offset:normalize()
 		self.radius = math.random(1, self.hide.rad-1)
@@ -493,7 +473,6 @@ function action_inhide:finalize()
 	local npc = self.object
 	npc_sit[npc:id()] = 0
 	npc_go[npc:id()] = 0
-	npc:remove_all_restrictions()
 end
 
 
