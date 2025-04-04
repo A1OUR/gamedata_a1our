@@ -114,7 +114,7 @@ function __do_timer_action(select_string,params_string)
 -- 1. Настало время выброса.
 	if select_string=="bl1" then
 		if ogsm_surge then
-			if (level.name() ~= "l03u_agr_underground") and (level.name() ~= "l08u_brainlab") and (level.name() ~= "l10u_bunker") and (level.name() ~= "l04u_labx18") and (level.name() ~= "l12u_sarcofag") and (level.name() ~= "l12u_control_monolith") and (level.name() ~= "l12_stancia") and (level.name() ~= "l12_stancia_2") and blow_stopper() == false then
+			if (level.name() ~= "l03u_agr_underground") and (level.name() ~= "l08u_brainlab") and (level.name() ~= "l10u_bunker") and (level.name() ~= "l04u_labx18") and (level.name() ~= "l12u_sarcofag") and (level.name() ~= "l12u_control_monolith") and (level.name() ~= "l12_stancia") and (level.name() ~= "l12_stancia_2") and blow_stopper() == true then
 				if sleep_manager and sleep_manager.is_sleep_active() then sleep_manager.stopper() end
 				start_timer("bl2",1)
 			else

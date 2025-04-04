@@ -192,7 +192,6 @@ function se_monster:on_unregister()
 --'		local community, rank = sim_statistic.getNpcType(self)
 --'		level.map_remove_object_spot(self.id, "alife_presentation_monstr")
 --'	end
-
 	smart_terrain.unregister_npc(self)
 end
 --------------------

@@ -16,6 +16,7 @@ if not editor() then
 	CTime_0 = game.CTime()
 end
 
+
 local monster_classes
 
 local disagreed, agreed, agreed_exclusive = 0, 1, 2
@@ -189,7 +190,7 @@ function se_smart_terrain:STATE_Read( packet, size )
 
 		self.population_locked = packet:r_bool()
 	end
-
+	self.marked = false
 --	printf( "after read [%s]", self:name())
 --	self:print()
 end
@@ -204,7 +205,7 @@ end
 --   xr_gulag.get_gulag_by_name()
 --   xr_gulag.get_gulag_by_sid()
 function se_smart_terrain:initialize_if_needed()
-	level.map_add_object_spot(self.id, "green_location", self:name())
+	--level.map_add_object_spot(self.id, "green_location", self:name())
 	if not self.initialized then
 		sim_statistic.update()
 
@@ -433,7 +434,13 @@ function se_smart_terrain:smart_terrain_accepts_obj( obj, obj_agreement )
 --		printf("[%s] disagreed", obj:name())
 		return false
 	end
-
+	if task_manager.isloaded() == true then
+		if task_manager.get_random_task():is_target(self.id) == true then
+			return false
+		end
+	else
+		return false
+	end
 --'	if obj:name() == "esc_wolf" then
 --'		printf("before checking: pop = %s, cap = %s", tostring(self.gulag:get_non_exclusive_population()), tostring(self.gulag.capacity_non_exclusive))
 --'	end
@@ -608,9 +615,7 @@ function se_smart_terrain:suitable( obj )
 --'	if obj:name() == "esc_wolf" then
 --'		printf("[%s] suitable [%s]", self:name(), obj:name())
 --'	end
-
 	local v = 0
-	
 	--' Повысить подходящесть эксклюзивного смарттеррейна
 	if self:obj_accepts_smart_terrain(obj) == agreed_exclusive then
 		v = 100000 --'Так чтобы все эксклюзивные были заведомо лучше
@@ -731,7 +736,7 @@ function se_smart_terrain:unregister_npc( obj )
 	obj:clear_smart_terrain()
 
 	sim_statistic.remove( obj )
-
+	level.map_remove_object_spot(obj.id, "red_location")
 --'	if sim_statistic.show_stalker_spot == true and obj:alive() then
 --'		local community, rank = sim_statistic.getNpcType(obj)
 --'		local spot = "alife_presentation_monstr"
@@ -773,12 +778,33 @@ function se_smart_terrain:kick_someone_non_exclusive( new_npc_info )
 	abort( "[smart_terrain %s] can't add npc, all are exclusive or there are no suitable jobs", self:name() )
 end
 
+
+function se_smart_terrain:reset_npc_logic(obj)
+	if obj then
+		local npc = level.object_by_id(obj.id)
+		local npc_id = obj.id
+		if npc then
+			xr_logic.reset_generic_schemes_on_scheme_switch(npc, "nil", "nil")
+		end
+		if db.storage[npc_id] then
+			db.storage[npc_id].overrides = nil
+			db.storage[npc_id].active_section = nil
+			db.storage[npc_id].active_scheme = nil	
+		end
+	end
+end
+
+
 -- выдать объекту задание.
+
 function se_smart_terrain:task( obj )
 	local path_name = self.gulag:get_obj_job_path_name( obj.id )
 	if not path_name then
+		get_console():execute("problems_with_"..tostring(self:name())..tostring(obj:name()))
 		printf("[smart_terrain %s] task: obj=%s job_path=nil, CLEARING", self:name(), obj:name() )
+		self.gulag:free_obj( obj.id )
 		self:unregister_npc(obj) --'Затычка против вылета.
+		self:reset_npc_logic(obj)
 		return CALifeSmartTerrainTask("simulation_default_path")
 	end
 
@@ -1128,56 +1154,76 @@ function se_smart_terrain:update()
 		return
 	end
 
---'	self:initialize_if_needed()
-
+	if self.marked == false and task_manager.isloaded() == true then
+		--dbglog("trying to mARK")
+		local mark_them = task_manager.get_random_task():is_target(self.id)
+		if mark_them == true then
+			self.marked = true
+			for id, npc_info in pairs( self.npc_info ) do
+				dbglog("adding mapspot")
+				level.map_add_object_spot(id, "red_location", npc_info.name)
+			end
+		end
+	end
+	
+	if self.marked == true then
+		local mark_them = task_manager.get_random_task():is_target(self.id)
+		if mark_them == false then
+			self.marked = false
+			for id, npc_info in pairs( self.npc_info ) do
+					dbglog("removin mapspot")
+					level.map_remove_object_spot(id, "red_location", npc_info.name)
+			end
+		end
+	end
+	
 	if self:is_gulag_available() then
 		if self.check_time < game.get_game_time() then
 			self.check_time = game.get_game_time() + check_period
-			
+			local mark_them = task_manager.get_random_task():is_target(self.id)
 			local leave_by_timeout
-			
-			--' проверять, не собрался ли кто-то к этому времени уже уходить
-			for id, npc_info in pairs( self.npc_info ) do
-				if (npc_info.cond and xr_logic.pick_section_from_condlist( db.actor_proxy, npc_info.se_obj, npc_info.cond ) == nil)
-				then
-					printf("[smart_terrain %s] leaving %s", self:name(), npc_info.name)
-					self:unregister_npc( npc_info.se_obj )
-				end
-				
-				leave_by_timeout = false
-				if (game.get_game_time() >= npc_info.stay_end ) then
-					-- allow to leave only if not exclusive (or exclusives allowed to leave)
-					if ((not npc_info.exclusive) or (npc_info.exclusive and smart_terrain.allow_timeout_for_exclusives))
+			if mark_them == false then
+				--' проверять, не собрался ли кто-то к этому времени уже уходить
+				for id, npc_info in pairs( self.npc_info ) do
+					if (npc_info.cond and xr_logic.pick_section_from_condlist( db.actor_proxy, npc_info.se_obj, npc_info.cond ) == nil)
 					then
-						-- stalkers could stay till morning... mosnters otherwise - till evening
-						if (IsMonster(npc_info.se_obj)) then
-							-- monsters
-							-- if allowed to leave whenever or if now is night
-							if utils.is_day() == false
-							then
-								leave_by_timeout = true
-							end
-						else
-							-- stalkers
-							-- if allowed to leave whenever or if now is day
-							if utils.is_day() == true
-							then
-								leave_by_timeout = true
+						printf("[smart_terrain %s] leaving %s", self:name(), npc_info.name)
+						self:unregister_npc( npc_info.se_obj )
+					end
+					leave_by_timeout = false
+					if (game.get_game_time() >= npc_info.stay_end ) then
+						-- allow to leave only if not exclusive (or exclusives allowed to leave)
+						if ((not npc_info.exclusive) or (npc_info.exclusive and smart_terrain.allow_timeout_for_exclusives))
+						then
+							-- stalkers could stay till morning... mosnters otherwise - till evening
+							if (IsMonster(npc_info.se_obj)) then
+								-- monsters
+								-- if allowed to leave whenever or if now is night
+								if utils.is_day() == false
+								then
+									leave_by_timeout = true
+								end
+							else
+								-- stalkers
+								-- if allowed to leave whenever or if now is day
+								if utils.is_day() == true
+								then
+									leave_by_timeout = true
+								end
 							end
 						end
 					end
-				end
-				
-				if leave_by_timeout
-				then
-					if (npc_info.name == debug_obj_name)
+					
+					if leave_by_timeout
 					then
-						dbglog("[smart_terrain %s] leaving %s by timeout", self:name(), npc_info.name)
+							if (npc_info.name == debug_obj_name)
+							then
+								dbglog("[smart_terrain %s] leaving %s by timeout", self:name(), npc_info.name)
+							end
+							self:unregister_npc( npc_info.se_obj )
 					end
-					self:unregister_npc( npc_info.se_obj )
 				end
 			end
-
 			if self.gulag:get_population() == 0 then
 				self:remove_gulag()
 			else

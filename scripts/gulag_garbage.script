@@ -1466,7 +1466,7 @@ function load_states(gname, type)
 						return 2 -- в кемпе
 					else
 						if has_alife_info("gar_counter_fire") then
-							return 3
+						 	return 2
 						else
 							return 1  -- идут
 						end

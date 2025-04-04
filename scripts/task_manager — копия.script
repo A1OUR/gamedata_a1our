@@ -1,15 +1,4 @@
 local random_task = nil
-local loaded = false
-
-function parse_comms( s )
-    local t = {}
-
-    for name in string.gfind( s, "([%w_\\]+)%p*" ) do
-        t[name] = true
-    end
-
-    return t
-end
 
 local parent_by_story = {
 	[003] = "trader",
@@ -97,13 +86,6 @@ function CRandomTask:__init()
 		if self.task_ini:line_exist(id, "target") then
 			curr_task_info.target		= self.task_ini:r_string(id, "target")
 		end
-		if self.task_ini:line_exist(id, "target_community") then
-			curr_task_info.target_community = parse_comms(self.task_ini:r_string(id, "target_community"))
-			for k ,v in pairs(curr_task_info.target_community) do
-				dbglog(k..tostring(v))
-			end
-		end
-		curr_task_info.min_comed				= utils.cfg_get_number(self.task_ini, id, "min_comed", nil, false)
 		if self.task_ini:line_exist(id, "text") then
 			curr_task_info.text			= self.task_ini:r_string(id, "text")
 		end
@@ -236,10 +218,7 @@ function CRandomTask:load(p)
 		self.task_info[id].last_task_time = utils.r_CTime(p)
 		
 		if self.task_info[id].type == "defend_lager" then                                                           
-			local defend_object = alife():object(self.task_info[id].selected_target)     
-			if not defend_object then
-				defend_object = alife():actor()
-			end
+			local defend_object = alife():object(self.task_info[id].selected_target)                                  
 			local sm_ini = defend_object:spawn_ini()                                                                  
 			self.task_info[id].defend_target = utils.cfg_get_number(sm_ini, "random_task", "defend_target", nil, true)
 		end                                                                                                         
@@ -412,6 +391,7 @@ function CRandomTask:action_refuse_task(actor, npc, p1, p2)
 end
 --' ѕровер€ем, не выполнен ли таск
 function CRandomTask:task_complete(p1, p2)
+	get_console():execute("func_vyzov")
 	if db.actor == nil then
 		return false
 	end
@@ -712,11 +692,6 @@ function CRandomTask:check_task_props(task_id)
 end
 --' ѕровер€ем можем ли мы сейчас выдать какой либо самоинициализующийс€ таск
 function CRandomTask:actor_update()
-
-	if loaded == false then
-		loaded = true
-	end
-	
 	for k,v in pairs(self.task_id_self_inited) do
 		if self.task_info[v].status == "normal" then
 			self:check_task_props(v)
@@ -806,7 +781,7 @@ function CRandomTask:task_reward(npc, actor, p1, p2)
 				end
 
 				if task_desc.reward_reputation ~= nil then
-					db.actor:change_character_reputation(db.actor:character_reputation() + task_desc.reward_reputation)
+					db.actor:change_character_reputation(task_desc.reward_reputation)
 				end
 
 				if task_desc.reward_relation ~= nil then
@@ -831,7 +806,7 @@ function CRandomTask:task_reward_storyline(task)
 	end
 
 	if task_desc.reward_reputation ~= nil then
-		db.actor:change_character_reputation(db.actor:character_reputation() + task_desc.reward_reputation)
+		db.actor:change_character_reputation(task_desc.reward_reputation)
 	end
 
 	if task_desc.reward_relation ~= nil then
@@ -893,36 +868,14 @@ function CRandomTask:register_target(obj)
 		end
 
 	elseif obj:clsid() == clsid.smart_terrain then
-		if obj.gulag:get_population_comed() > 4 then
-			dbglog(alife():level_name(game_graph():vertex(obj.m_game_vertex_id ):level_id() ))
-			dbglog(obj:name().." comed "..obj.gulag:get_population_comed())
-		end
 		--' ¬озможно регистрируетс€ цель дл€ квеста "вынести лагерь"
 		for k,v in pairs(self.task_id_by_type["eliminate_lager"]) do
-			if self.task_info[v].target_community ~= nil then
-				local found_community = false
-				for obj_id, npc_info in pairs( obj.npc_info ) do
-					if  self.task_info[v].target_community[tostring(obj:get_obj_community(alife():object(obj_id)))] == true then
-						dbglog((alife():object(obj_id)):name().." is in one of accepted comms")
-						found_community = true
-						break
-					end
-				end
-				if found_community == false then
-					break
-				end
-			end
-			if self.task_info[v].min_comed ~= nil then
-				if obj.gulag:get_population_comed() < self.task_info[v].min_comed then
-					break
-				end
-			end
-			--if obj:name() == self.task_info[v].target then
+			if obj:name() == self.task_info[v].target then
 				if self.task_info[v].target_objects == nil then
 					self.task_info[v].target_objects = {}
 				end
 				table.insert(self.task_info[v].target_objects, obj.id)
-			--end
+			end
 		end
 		--' Ћибо регистрируетс€ цель дл€ квеста "защитить лагерь"
 		for k,v in pairs(self.task_id_by_type["defend_lager"]) do
@@ -985,21 +938,6 @@ function CRandomTask:stats(obj)
 		end
 	end
 end
-
--- €вл€етс€ ли гулаг таргетом задани€
-function CRandomTask:is_target(gulag_id)
-	for k,v in pairs(self.task_id_by_type["eliminate_lager"]) do
-		if gulag_id == self.task_info[v].selected_target and self.task_info[v].status == "selected" then
-			return true
-		end
-	end
-	return false
-end
-
-function isloaded()
-	return loaded
-end
-
 function get_random_task()
 	if random_task == nil then
 		random_task = CRandomTask()

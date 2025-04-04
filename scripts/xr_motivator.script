@@ -279,6 +279,8 @@ function motivator_binder:update(delta)
 	local object_alive = self.object:alive()
 
     if self.first_update == false then
+		local anomaly_detector = self.object:get_custom_monster():anomaly_detector()
+		anomaly_detector:deactivate(true)
         if object_alive == false then
 			death_manager.drop_manager(self.object):create_release_item()
         end        
@@ -395,6 +397,7 @@ function motivator_binder:save(packet)
 end
 
 function motivator_binder:load(reader)
+
   self.loaded = true
 
   printf("motivator_binder:load(): self.object:name()='%s'", self.object:name())
@@ -489,9 +492,9 @@ function addCommonPrecondition(action)
 	action:add_precondition (world_property(xr_evaluators_id.chugai_heli_hunter_base, false))
 	action:add_precondition (world_property(xr_evaluators_id.abuse_base, false))
 	if rx_ai then rx_ai.addCommonPrecondition(action) end
-  if anomaly_evader then
+  --[[if anomaly_evader then
     action:add_precondition (world_property(1099,false))
-  end
+  end]]
   if outfit_evaluator then
     action:add_precondition (world_property(1101,false)) -- outfit evaluator
   end
