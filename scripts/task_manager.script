@@ -628,15 +628,52 @@ function CRandomTask:check_task_props(task_id)
 			self.task_info[task_id].enabled_props = false
 			return
 		end
-		for k,v in pairs(self.task_info[task_id].target_objects) do
-			local gulag = alife():object(v).gulag
-			if gulag:get_population_comed() > 0 then
-				self.task_info[task_id].enabled_props = true
-				return 
+		
+		if self.task_info[task_id].all_targets == nil then
+			self.task_info[task_id].all_targets = self.task_info[task_id].target_objects
+		end
+		
+		self.task_info[task_id].good_targets = {}
+		
+		for k,v in pairs(self.task_info[task_id].all_targets) do
+			self.task_info[task_id].good_target = true
+			local obj = alife():object(v)
+			local gulag = obj.gulag
+			if gulag:get_population_comed() == 0 then
+				self.task_info[task_id].good_target = false
+			end
+			if self.task_info[task_id].target_community ~= nil and self.task_info[task_id].good_target == true then
+				self.task_info[task_id].found_community = false
+				for obj_id, npc_info in pairs( obj.npc_info ) do
+					if  self.task_info[task_id].target_community[tostring(obj:get_obj_community(alife():object(obj_id)))] == true then
+						dbglog((alife():object(obj_id)):name().." is in one of accepted comms")
+						self.task_info[task_id].found_community = true
+						break
+					end
+				end
+				if self.task_info[task_id].found_community == false then
+					self.task_info[task_id].good_target = false
+				end
+			end
+			if self.task_info[task_id].min_comed ~= nil and self.task_info[task_id].good_target == true then
+				if obj.gulag:get_population_comed() < self.task_info[task_id].min_comed then
+					self.task_info[task_id].good_target = false
+				end
+			end
+			if self.task_info[task_id].good_target == true then
+				table.insert(self.task_info[task_id].good_targets, v)
 			end
 		end
-		self.task_info[task_id].enabled_props = false
-		return
+		
+		self.task_info[task_id].target_objects = self.task_info[task_id].good_targets
+		
+		if next(self.task_info[task_id].good_targets) == nil then
+			self.task_info[task_id].enabled_props = false
+			return
+		else
+			self.task_info[task_id].enabled_props = true
+			return
+		end
 	elseif self.task_info[task_id].type == "defend_lager" then
 		if self.task_info[task_id].target_objects == nil then
 			self.task_info[task_id].enabled_props = false
@@ -899,24 +936,6 @@ function CRandomTask:register_target(obj)
 		end
 		--' Возможно регистрируется цель для квеста "вынести лагерь"
 		for k,v in pairs(self.task_id_by_type["eliminate_lager"]) do
-			if self.task_info[v].target_community ~= nil then
-				local found_community = false
-				for obj_id, npc_info in pairs( obj.npc_info ) do
-					if  self.task_info[v].target_community[tostring(obj:get_obj_community(alife():object(obj_id)))] == true then
-						dbglog((alife():object(obj_id)):name().." is in one of accepted comms")
-						found_community = true
-						break
-					end
-				end
-				if found_community == false then
-					break
-				end
-			end
-			if self.task_info[v].min_comed ~= nil then
-				if obj.gulag:get_population_comed() < self.task_info[v].min_comed then
-					break
-				end
-			end
 			--if obj:name() == self.task_info[v].target then
 				if self.task_info[v].target_objects == nil then
 					self.task_info[v].target_objects = {}
