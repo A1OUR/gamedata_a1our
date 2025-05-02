@@ -758,7 +758,7 @@ states = {
 			},
 
 	-- ѕси раненый
-	psy_pain = {weapon = "drop",
+	psy_pain = {weapon = "none",
 				movement = move.stand,
 				mental = anim.free,
 				bodystate = move.standing,

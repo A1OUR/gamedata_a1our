@@ -311,7 +311,7 @@ function help_wounded(npc)
 	end
 	xr_wounded.unlock_medkit(selected_npc)
 	rx_sound.set_sound_play(selected_id,"help_thanks")
-	npc:set_character_rank(npc:character_rank()+math.floor(1/(rx_utils.rank_unit*30)))
+	--npc:set_character_rank(npc:character_rank()+math.floor(1/(rx_utils.rank_unit*30)))
 	npc:change_character_reputation(10)
 end
 

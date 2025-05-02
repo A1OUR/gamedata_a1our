@@ -434,13 +434,6 @@ function se_smart_terrain:smart_terrain_accepts_obj( obj, obj_agreement )
 --		printf("[%s] disagreed", obj:name())
 		return false
 	end
-	if task_manager.isloaded() == true then
-		if task_manager.get_random_task():is_target(self.id) == true then
-			return false
-		end
-	else
-		return false
-	end
 --'	if obj:name() == "esc_wolf" then
 --'		printf("before checking: pop = %s, cap = %s", tostring(self.gulag:get_non_exclusive_population()), tostring(self.gulag.capacity_non_exclusive))
 --'	end

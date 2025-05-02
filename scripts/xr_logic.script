@@ -754,7 +754,8 @@ function try_switch_to_another_section(npc, st, actor)
 				switched = switch_to_section(npc, st, pick_section_from_condlist(actor, npc, c.condlist))
 			end
 		elseif cond_name(c.name, "on_lock") then
-			if pseudorandom.random_lock(npc:story_id()) == c.v1 then
+			--if pseudorandom.random_lock(npc:story_id()) == c.v1 then
+			if 2 == c.v1 then
 				switched = switch_to_section(npc, st, pick_section_from_condlist(actor, npc, c.condlist))
 			end
 		else
@@ -1333,14 +1334,14 @@ function pstor_load_all(obj, reader)
 end
 
 function save_obj(obj, packet)
-	printf("save_obj: obj:name()='%s'", obj:name())
+	dbglog("save_obj: obj:name()='%s'", obj:name())
 
 	local npc_id = obj:id()
 	local st = db.storage[npc_id]
 
 	printf("save_obj: ini_filename='%s'", utils.to_str(st.ini_filename))
-	printf("save_obj: section_logic='%s'", utils.to_str(st.section_logic))
-	printf("save_obj: active_section='%s'", utils.to_str(st.active_section))
+	dbglog("save_obj: section_logic='%s'", utils.to_str(st.section_logic))
+	dbglog("save_obj: active_section='%s'", utils.to_str(st.active_section))
 	printf("save_obj: gulag_name='%s'", utils.to_str(st.gulag_name))
 
 	if st.ini_filename then
@@ -1385,7 +1386,7 @@ function save_obj(obj, packet)
 end
 
 function load_obj(obj, reader)
-	printf("load_obj: obj:name()='%s'", obj:name())
+	dbglog("load_obj: obj:name()='%s'", obj:name())
 	local npc_id = obj:id()
 	local st = db.storage[npc_id]
 
@@ -1405,7 +1406,6 @@ function load_obj(obj, reader)
 		-- При этом реальная active_section станет равной nil.
 		active_section = "nil"
 	end
-
 	--local active_scheme = reader:r_stringZ()
 	--if active_scheme == "" then
 	--	active_scheme = nil
@@ -1421,14 +1421,14 @@ function load_obj(obj, reader)
 	st.loaded_ini_filename = ini_filename
 	st.loaded_section_logic = section_logic
 	st.loaded_active_section = active_section
-	--st.loaded_active_scheme = active_scheme
+	st.loaded_active_scheme = active_scheme
 	st.loaded_gulag_name = gulag_name
 	--st.loaded_stype = stype
 
 	printf("load_obj: ini_filename='%s'", utils.to_str(st.loaded_ini_filename))
-	printf("load_obj: section_logic='%s'", utils.to_str(st.loaded_section_logic))
-	printf("load_obj: active_section='%s'", utils.to_str(st.loaded_active_section))
-	--printf("load_obj: active_scheme='%s'", utils.to_str(st.loaded_active_scheme))
+	dbglog("load_obj: section_logic='%s'", utils.to_str(st.loaded_section_logic))
+	dbglog("load_obj: active_section='%s'", utils.to_str(st.loaded_active_section))
+	dbglog("load_obj: active_scheme='%s'", utils.to_str(st.loaded_active_scheme))
 	printf("load_obj: gulag_name='%s'", utils.to_str(st.loaded_gulag_name))
 
 	load_logic(obj, reader)

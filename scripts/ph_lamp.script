@@ -31,6 +31,8 @@ function ph_lamp:update(delta)
 	if self.state == pressed then
 		self.state = switched
 		if st.status == false then
+			get_console():execute(tostring(self.object==nil))
+			get_console():execute(tostring(self.object:get_hanging_lamp()==nil))
 			self.object:get_hanging_lamp():turn_off()
 		else
 			self.object:get_hanging_lamp():turn_on()

@@ -46,7 +46,7 @@ function generic_object_binder:update(delta)
 	if self.first_update == false then
 		local anomaly_detector = self.object:get_custom_monster()
 		if anomaly_detector ~= nil then
-			anomaly_detector:anomaly_detector():activate(true)
+			anomaly_detector:anomaly_detector():deactivate(true)
 			get_console():execute(self.object:name().."_anomal")
 			self.first_update = true
 		end

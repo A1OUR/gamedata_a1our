@@ -15,8 +15,6 @@ function actor_update(delta)
 end
 
 function bind( obj )
---	db.storage[obj:id()] = { }
-
 	obj:bind_object( restrictor_binder( obj ) )
 end
 
