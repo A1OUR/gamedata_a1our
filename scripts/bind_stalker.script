@@ -68,7 +68,10 @@ function actor_binder:net_spawn(data)
 		self.object:set_actor_safety(true)
 	end
 	self.object:set_hardcore_saves(true)
-	local OnObjectExitOnline = function (objectId, gameObject)
+	
+	ph_lamp.load()
+	
+	--[[local OnObjectExitOnline = function (objectId, gameObject)
 		if db.actor:has_info("dolg_mir") then
 			if gameObject:character_community() == "dolg" and gameObject:relation(db.actor) == game_object.enemy then
 				gameObject:set_relation(game_object.neutral, db.actor);
@@ -97,7 +100,7 @@ function actor_binder:net_spawn(data)
 			end
         end
     end
-	end
+	end]]
 	return true
 end
 ----------------------------------------------------------------------------------------------------------------------

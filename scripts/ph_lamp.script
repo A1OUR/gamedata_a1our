@@ -5,14 +5,27 @@
 ----------------------------------------------------------------------------------------------------
 
 local on_load = 0 
-local pressed = 1
-local switched = 2
+local switched = 1
+local loaded = false
+local lamp_list = {}
+local xvars = get_stored_vars()
+
+function load()
+	get_console():execute("lamps_saved_"..tostring(xvars.lamps_saved))
+	if xvars.lamps_saved == 1 then
+		local t = xvars.lamps()
+		for i, v in pairs(t) do
+			get_console():execute("lamp_"..tostring(i).."_is_"..tostring(v))
+			lamp_list[i] = v
+		end
+	end
+	loaded = true
+end
 
 class "ph_lamp"
 
 function ph_lamp:__init(obj, storage)
 	self.object = obj
-	self.st = storage
 	self.state = on_load
 end
 
@@ -21,37 +34,27 @@ function ph_lamp:reset_scheme()
 end
 
 function ph_lamp:update(delta)
-	st = self.st
 	if self.state == on_load then
-		self.state = switched
-		if st.status == false then
-			self.object:get_hanging_lamp():turn_off()
-		end
-	end
-	if self.state == pressed then
-		self.state = switched
-		if st.status == false then
-			get_console():execute(tostring(self.object==nil))
-			get_console():execute(tostring(self.object:get_hanging_lamp()==nil))
-			self.object:get_hanging_lamp():turn_off()
+		if loaded == true then
+			self.state = switched
+			get_console():execute("lamp_"..tostring(self.object:id()).."_is_"..tostring(lamp_list[self.object:id()]))
+			if lamp_list[self.object:id()] ~= nil then
+				self.status = lamp_list[self.object:id()]
+			else
+				self.status = st.base_status
+			end
+			if self.status == false then
+				get_console():execute("lamp_"..tostring(self.object:id()).."_is_turned_off")
+				self.object:set_tip_text("turn_on")
+				self.object:get_hanging_lamp():turn_off()
+			else
+				self.object:set_tip_text("turn_off")
+			end
 		else
-			self.object:get_hanging_lamp():turn_on()
+			return
 		end
 	end
-	if xr_logic.try_switch_to_another_section(self.object, self.st, db.actor) then
-		return
-	end
-end
-
-function ph_lamp:try_switch()
-	local st = db.storage[self.object:id()]
-	if st.active_scheme and st.active_scheme == "ph_lamp" and self.st.on_press then
-		if xr_logic.switch_to_section(self.object, self.st, xr_logic.pick_section_from_condlist(db.actor, self.object, self.st.on_press.condlist)) then
-			self.state = pressed
-			return true
-		end
-	end
-	return false
+	return
 end
 
 function ph_lamp:hit_callback(obj, amount, local_direction, who, bone_index)
@@ -59,37 +62,33 @@ function ph_lamp:hit_callback(obj, amount, local_direction, who, bone_index)
 end
 
 function ph_lamp:use_callback(victim, who)
-	printf("_bp: ph_button:use_callback: [%s] used by [%s]",
-		victim:name(), who:name())
-
-	if self:try_switch() then
-		return
+	if self.status == true then
+		self.object:set_tip_text("turn_on")
+		self.object:get_hanging_lamp():turn_off()
+		xvars.lamps_saved = 1
+		lamp_list[self.object:id()] = false
+		xvars.lamps = lamp_list
+		self.status = false
+	else 
+		self.object:set_tip_text("turn_off")
+		self.object:get_hanging_lamp():turn_on()
+		xvars.lamps_saved = 1
+		lamp_list[self.object:id()] = true
+		xvars.lamps = lamp_list
+		self.status = true
 	end
+	return
 end
 
 ---------------------------------------------------------------------------------------------------------------------
 function add_to_binder(npc, ini, scheme, section, storage)
-	printf("DEBUG: add_to_binder: npc:name()='%s', scheme='%s', section='%s'", npc:name(), scheme, section)
-
- 	local new_action = ph_lamp(npc, storage)
-
+	local new_action = ph_lamp(npc, storage)
 	xr_logic.subscribe_action_for_events(npc, storage, new_action)
 end
 
 function set_scheme(npc, ini, scheme, section, gulag_name)
 	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
-
 	st.logic     = xr_logic.cfg_get_switch_conditions(ini, section, npc)
-	
-	st.on_press  = xr_logic.cfg_get_condlist(ini, section, "on_press", npc)
-
-	st.tooltip  = utils.cfg_get_string(ini, section, "tooltip", npc, false, "")
-	if st.tooltip then
-		npc:set_tip_text(st.tooltip)
-	else
-		npc:set_tip_text("")
-	end
-	
-	st.status = utils.cfg_get_bool(ini, section, "status", npc, false, false)
+	st.base_status = utils.cfg_get_bool(ini, section, "base_status", npc, false, false)
 end
 
