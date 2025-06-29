@@ -1,0 +1,95 @@
+----------------------------------------------------------------------------------------------------
+-- Button
+----------------------------------------------------------------------------------------------------
+-- Разработчик: Andrey Fidrya (Zmey) af@svitonline.com
+----------------------------------------------------------------------------------------------------
+
+--local on_load = 0 
+--local switched = 1
+--local loaded = false
+--local lamp_list = {}
+local xvars = get_stored_vars()
+
+function load()
+	get_console():execute("lamps_saved_"..tostring(xvars.lamps_saved))
+	if xvars.lamps_saved == 1 then
+		local t = xvars.lamps()
+		for i, v in pairs(t) do
+			get_console():execute("lamp_"..tostring(i).."_is_"..tostring(v))
+			lamp_list[i] = v
+		end
+	end
+	loaded = true
+end
+
+class "ph_lamp"
+
+function ph_lamp:__init(obj, storage)
+	self.object = obj
+	self.state = on_load
+	self.st = storage
+end
+
+function ph_lamp:reset_scheme()
+	self.object:set_nonscript_usable(false)
+end
+
+function ph_lamp:update(delta)
+	if self.state == on_load then
+		if loaded == true then
+			self.state = switched
+			get_console():execute("lamp_"..tostring(self.object:id()).."_is_"..tostring(lamp_list[self.object:id()]))
+			if lamp_list[self.object:id()] ~= nil then
+				self.status = lamp_list[self.object:id()]
+			else
+				self.status = self.st.base_status
+			end
+			if self.status == false then
+				get_console():execute("lamp_"..tostring(self.object:id()).."_is_turned_off")
+				self.object:set_tip_text("turn_on")
+				self.object:get_hanging_lamp():turn_off()
+			else
+				self.object:set_tip_text("turn_off")
+			end
+		else
+			return
+		end
+	end
+	return
+end
+
+function ph_lamp:hit_callback(obj, amount, local_direction, who, bone_index)
+	return
+end
+
+function ph_lamp:use_callback(victim, who)
+	if self.status == true then
+		self.object:set_tip_text("turn_on")
+		self.object:get_hanging_lamp():turn_off()
+		xvars.lamps_saved = 1
+		lamp_list[self.object:id()] = false
+		xvars.lamps = lamp_list
+		self.status = false
+	else 
+		self.object:set_tip_text("turn_off")
+		self.object:get_hanging_lamp():turn_on()
+		xvars.lamps_saved = 1
+		lamp_list[self.object:id()] = true
+		xvars.lamps = lamp_list
+		self.status = true
+	end
+	return
+end
+
+---------------------------------------------------------------------------------------------------------------------
+function add_to_binder(npc, ini, scheme, section, storage)
+	local new_action = ph_lamp(npc, storage)
+	xr_logic.subscribe_action_for_events(npc, storage, new_action)
+end
+
+function set_scheme(npc, ini, scheme, section, gulag_name)
+	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
+	st.logic     = xr_logic.cfg_get_switch_conditions(ini, section, npc)
+	st.base_status = utils.cfg_get_bool(ini, section, "base_status", npc, false, false)
+end
+

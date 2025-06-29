@@ -1,0 +1,94 @@
+function id_to_num(id)
+	return tonumber(id) % 100
+end
+
+function parse_spawns(line)
+	if line == nil then
+		return {}
+	end
+
+	--' если default-ов больше, чем значений в ini, то забить недостающие последним значением из ini
+	local t = se_respawn.parse_names(line)
+	local n = table.getn(t)
+		
+	local ret_table = {}
+	local k = 1
+
+	while k <= n do
+		local spawn = {}
+		spawn.section = t[k]
+		-- ѕровер€ем что это не последн€€ запись
+		if t[k+1] ~= nil then
+			local p = tonumber(t[k+1])
+			-- провер€ем что вторым числом задана веро€тность, а не друга€ секци€ спавну
+			if p then
+				-- забиваем число
+				spawn.prob = p
+				k = k + 2
+			else
+				-- забиваем дефолт 1
+				spawn.prob = 1
+				k = k + 1
+			end
+		else
+			spawn.prob = 1
+			k = k + 1
+		end
+		table.insert(ret_table, spawn)
+	end
+	return ret_table
+end
+
+--' Ќа конструкторе вычитываем LTX и создаем заготовки квестов.
+local ini = ini_file("misc\\lockpick_manager.ltx")
+
+--' »терируемс€ по всем настройкам фраз
+if not ini:section_exist("list") then
+	abort("There is no section [list] in lockpick_manager.ltx")
+end
+local n = ini:line_count("list")
+local id, value = "",""
+
+--' начальна€ установка
+local treasure_info = {}
+
+for i=0,n-1 do
+	result, id, value	= ini:r_line("list",i,"","")
+	
+	treasure_info[id] = {}
+	treasure_info[id].items		= parse_spawns(utils.cfg_get_string(ini, id, "items", nil, true, ""))
+
+
+	if treasure_info[id].items == nil then
+		abort("cant find 'items' in %s", id)
+	end
+end
+
+
+function spawn_items(obj)
+	for k,v in pairs(treasure_info) do
+		if k == obj:name() then
+			db.actor:give_game_news(tostring(obj:name()).." ballls", "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+			sobj=alife():object(obj:id())
+			for kk,vv in pairs(v.items) do
+				get_console():execute(tostring(vv.section).."_"..tostring(vv.prob))
+				if ammo_section[vv.section] == true then
+					se_respawn.create_ammo(vv.section,	
+							obj:position(),
+							obj:level_vertex_id(),	
+							obj:game_vertex_id(),
+							obj:id(),vv.prob)
+				else
+					for i=1,vv.prob do
+						alife():create(vv.section,
+									obj:position(),
+								obj:level_vertex_id(),	
+								obj:game_vertex_id(),
+								obj:id())
+					end
+				end
+			end
+			level.map_add_object_spot_ser( sobj.id, "treasure", game.translate_string("pisyun"))
+		end
+	end
+end

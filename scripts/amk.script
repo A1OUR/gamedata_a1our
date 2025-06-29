@@ -151,6 +151,15 @@ function spawn_at_way(section, way, index)
 	alife():use_ai_locations(sobj, false)
 end
 
+function teleport_to_way(way, index)
+	if index == nil then
+		index = 0
+	end
+	dir = vector():set(math.random(-1000, 1000)/1000.0, 0.0001, math.random(-1000, 1000)/1000.0)
+	p = patrol(way)
+	level.change_level( p:game_vertex_id(index), p:level_vertex_id(index), (p:point(index)), dir )
+end
+
 --удаляем предмет из инвентаря по имени
 function remove_item_from_inventory_by_name(remove_item_name,npc)
   return remove_item_from_inventory(npc:object(remove_item_name),npc)

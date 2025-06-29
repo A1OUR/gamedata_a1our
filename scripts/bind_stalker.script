@@ -70,6 +70,7 @@ function actor_binder:net_spawn(data)
 	self.object:set_hardcore_saves(true)
 	
 	ph_lamp.load()
+	--ph_lock.load()
 	
 	--[[local OnObjectExitOnline = function (objectId, gameObject)
 		if db.actor:has_info("dolg_mir") then

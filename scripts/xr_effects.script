@@ -2677,11 +2677,13 @@ function story_save(actor, npc, p)
 end
 
 function no_lockpick(actor, npc)
-	db.actor:give_game_news("No lockpicks", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
+	--db.actor:give_game_news("No lockpicks", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
+	db.actor:give_game_news(tostring(npc:name()), "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
 end
 
 function unlocked(actor, npc)
 	db.actor:give_game_news("Unlocked", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
+	lockpick_manager.spawn_items(npc)
 end
 
 function disable_saving(actor, npc)

@@ -1,24 +1,5 @@
 [logic]
-active      = ph_idle@idle
-
-[ph_idle@idle]
-nonscript_usable = false
-on_lock = 1 | ph_button@locked
-on_lock2 = 2 | ph_button@unlocked
-on_lock3 = 3 | ph_button@unlocked1
-[ph_button@locked]
-anim_blend  = false
-anim        =
-on_press    = {=actor_has_item(lockpick)} %=play_snd(device\door_locked) =remove_lockpick% ph_button@unlocked, {!actor_has_item(lockpick)} %=no_lockpick%
-tooltip     = lockpick
-nonscript_usable = false
-
-[ph_button@unlocked]
-anim_blend  = false
-anim        =
-on_press    = {=actor_has_item(lockpick)} %=play_snd(device\door_locked) =remove_lockpick% ph_button@unlocked1, {!actor_has_item(lockpick)} %=no_lockpick%
-tooltip     = lockpick
-nonscript_usable = false
+active      = ph_button@unlocked1
 
 [ph_button@unlocked1]
 anim_blend  = false
@@ -28,5 +9,10 @@ tooltip     = lockpick
 nonscript_usable = false
 
 [ph_idle@enable]
+on_info = ph_idle@enable1
+nonscript_usable = false
+tooltip     = lockpick
+
+[ph_idle@enable1]
 nonscript_usable = true
 tips = st_search_treasure

@@ -77,6 +77,7 @@ load_scheme("ph_appforce",    "ph_force",    stype_item)
 load_scheme("ph_death",       "ph_on_death", stype_item)
 load_scheme("ph_oscillate",   "ph_oscillate",stype_item)  
 load_scheme("ph_lamp",   	  "ph_lamp",     stype_item)  
+--load_scheme("ph_lock",   	  "ph_lock",     stype_item)  
 load_scheme("fx_sound",		  "fx_sound",    stype_item)
 
 ----------------------------------------------------------------------

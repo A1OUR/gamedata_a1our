@@ -27,6 +27,7 @@ class "ph_lamp"
 function ph_lamp:__init(obj, storage)
 	self.object = obj
 	self.state = on_load
+	self.st = storage
 end
 
 function ph_lamp:reset_scheme()
@@ -41,7 +42,7 @@ function ph_lamp:update(delta)
 			if lamp_list[self.object:id()] ~= nil then
 				self.status = lamp_list[self.object:id()]
 			else
-				self.status = st.base_status
+				self.status = self.st.base_status
 			end
 			if self.status == false then
 				get_console():execute("lamp_"..tostring(self.object:id()).."_is_turned_off")
