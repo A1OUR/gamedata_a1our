@@ -1179,6 +1179,9 @@
 	<character id="sim_stalker_novice">
 		<class>sim_stalker_novice</class>
 	</character>
+	<character id="sim_stalker_novice_sunrise">
+		<class>sim_stalker_novice_sunrise</class>
+	</character>
 	<character id="sim_stalker_general">
 		<class>sim_Stalker_general</class>
 	</character>

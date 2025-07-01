@@ -588,6 +588,92 @@
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
 	
+	<specific_character id="esc_stalker_novice_default11" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_green_stalker_10</icon>
+		<map_icon x="1" y="0"></map_icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>esc_stalker_novice</class>
+		<community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect> <terrain_sect>stalker_terrain</terrain_sect>
+		
+		<rank>34</rank>
+		<reputation>6</reputation>
+		<money min="200" max="600" infinitive="0"/>
+		
+		<snd_config>characters_voice\human_01\newbie\</snd_config>
+		<crouch_type>-1</crouch_type>		
+		<visual>actors\novice\green_stalker_10</visual>
+		<supplies>
+			[spawn] \n
+			wpn_pb \n
+			ammo_9x18_fmj = 1 \n
+			device_torch \n
+#include "gameplay\character_items.xml" \n
+#include "gameplay\character_food.xml"
+		</supplies>
+		
+#include "gameplay\character_criticals_3.xml"
+#include "gameplay\character_dialogs.xml"
+	</specific_character>
+	
+		<specific_character id="esc_stalker_novice_default12" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_green_stalker_6</icon>
+		<map_icon x="0" y="0"></map_icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>esc_stalker_novice</class>
+		<community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect> <terrain_sect>stalker_terrain</terrain_sect>
+		
+		<rank>78</rank>
+		<reputation>0</reputation>
+		<money min="200" max="600" infinitive="0"/>
+
+		<visual>actors\novice\green_stalker_6</visual>
+		<snd_config>characters_voice\human_02\stalker\</snd_config>
+		<crouch_type>1</crouch_type>
+		<supplies>
+			[spawn] \n
+			wpn_bm16 \n
+			ammo_12x70_buck \n	
+			device_torch \n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+
+#include "gameplay\character_criticals_3.xml"
+#include "gameplay\character_dialogs.xml"
+	</specific_character>
+	
+	
+<!-- 	<specific_character id="esc_stalker_novice_default13" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>icon_green_stalker_9</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>esc_stalker_novice</class>
+		<community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect> <terrain_sect>stalker_terrain</terrain_sect>
+		
+		<rank>73</rank>
+		<reputation>20</reputation>
+		<money min="200" max="600" infinitive="0"/>
+
+		<visual>actors\novice\green_stalker_9</visual>
+		<snd_config>characters_voice\human_02\newbie\</snd_config>
+		<crouch_type>1</crouch_type>
+		<supplies>
+			[spawn] \n
+			wpn_pb \n
+			ammo_9x18_fmj = 1 \n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+
+#include "gameplay\character_criticals_3.xml"
+#include "gameplay\character_dialogs.xml"
+	</specific_character> -->
+	
 <!-------------------------------------ranger----------------------------------------------------->	
 	<specific_character id="esc_ranger" team_default = "1">
 		<name>esc_petruha_name</name>
@@ -622,7 +708,7 @@
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 	</specific_character>
 	
-<!-------------------------------------soldier_commander----------------------------------------------------->		
+<!-------------------------------------soldier_commander sop----------------------------------------------------->		
 	<specific_character id="esc_soldier_commander" team_default = "1">
 		<name>esc_soldier_commander_name</name>
 		<icon>ui_npc_u_soldier_beret_1</icon>

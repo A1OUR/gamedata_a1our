@@ -352,6 +352,7 @@ function CRandomTask:action_give_task(actor, npc, p1, p2)
 			end
 		end
 		objective:set_object_id(task_desc.selected_target)
+		task:set_title(task_desc.selected_target)
 	elseif task_desc.type == "defend_lager" then
 		objective:set_map_hint(task_desc.text)
 		objective:set_map_location("defend_lager_location")

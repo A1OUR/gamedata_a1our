@@ -244,7 +244,7 @@ end
 -- вызывается симулятором.
 function se_respawn:on_register()
   cse_alife_smart_zone.on_register( self )
-  --printf("RESPAWN: [%s] se_respawn on_register", tostring(self:name()))
+  dbglog("RESPAWN: [%s] se_respawn on_register", tostring(self:name()))
 	init_respawn_params(self)
 end
 -- Создаем объект
