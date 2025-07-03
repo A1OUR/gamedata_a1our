@@ -1165,6 +1165,9 @@
 	<character id="sim_bandit_novice">
 		<class>sim_bandit_novice</class>
 	</character>
+	<character id="sim_bandit_novice_lox">
+		<class>sim_bandit_novice_lox</class>
+	</character>
 	<character id="sim_bandit_general">
 		<class>sim_bandit_general</class>
 	</character>
@@ -1274,11 +1277,11 @@
 	</character>
 
    <!--SOLDIERS-->
-	<character id="sim_soldier_regular">
-		<class>sim_Soldier_regular</class>
+	<character id="sim_soldier_novice">
+		<class>sim_soldier_novice</class>
 	</character>
- 	<character id="sim_soldier_specnaz">
-		<class>sim_soldier_specnaz</class>
+ 	<character id="sim_soldier_novice_specnaz">
+		<class>sim_soldier_novice_specnaz</class>
 	</character>
 	<character id="sim_soldier_commander">
 		<class>sim_Soldier_commander</class>
