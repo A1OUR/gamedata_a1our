@@ -1282,6 +1282,9 @@
 	</character>
  	<character id="sim_soldier_novice_specnaz">
 		<class>sim_soldier_novice_specnaz</class>
+	</character> 	
+	<character id="sim_soldier_novice_sniper">
+		<class>sim_soldier_novice_sniper</class>
 	</character>
 	<character id="sim_soldier_commander">
 		<class>sim_Soldier_commander</class>
