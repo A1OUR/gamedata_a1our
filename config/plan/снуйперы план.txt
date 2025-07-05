@@ -1,0 +1,6 @@
+hit_probability_gd_novice	= 0.20
+hit_probability_gd_stalker	= 0.30
+hit_probability_gd_veteran	= 0.40
+hit_probability_gd_master	= 0.50
+
+Если вырезать из файла то урон при попадапнии будет проходить с 100% шансом
