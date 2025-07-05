@@ -2325,7 +2325,7 @@ function checkStalker(npc_community, gulag_type, npc_rank, se_obj)
 	end
 
 	if gulag_type == "esc_specnaz" then
-		return se_obj:profile_name() == "esc_soldier_specnaz"
+		return se_obj:profile_name() == "sim_soldier_novice_specnaz"
 	end
 
 	if gulag_type == "esc_blokpost" then

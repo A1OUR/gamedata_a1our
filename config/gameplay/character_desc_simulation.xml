@@ -9216,7 +9216,7 @@ ammo_5.45x39_fmj \n
         <rank>56</rank>
         <reputation>5</reputation>
 
-        <visual>actors\soldier\soldier_bandana_obichniy</visual>
+        <visual>actors\soldier\soldier_obichniy</visual>
         <snd_config>characters_voice\human_01\military\</snd_config>
         <crouch_type>0</crouch_type>
         <supplies>
@@ -9463,7 +9463,7 @@ ammo_5.45x39_fmj \n
         <rank>56</rank>
         <reputation>5</reputation>
 
-        <visual>actors\soldier\soldier_bandana_obichniy</visual>
+        <visual>actors\soldier\soldier_obichniy</visual>
         <snd_config>characters_voice\human_01\military\</snd_config>
         <crouch_type>0</crouch_type>
         <supplies>
@@ -9714,7 +9714,7 @@ ammo_7.62x54_7h14 \n
         <rank>56</rank>
         <reputation>5</reputation>
 
-        <visual>actors\soldier\soldier_bandana_obichniy</visual>
+        <visual>actors\soldier\soldier_obichniy</visual>
         <snd_config>characters_voice\human_01\military\</snd_config>
         <crouch_type>0</crouch_type>
         <supplies>
@@ -9961,7 +9961,7 @@ ammo_7.62x54_7h14 \n
         <rank>56</rank>
         <reputation>5</reputation>
 
-        <visual>actors\soldier\soldier_bandana_obichniy</visual>
+        <visual>actors\soldier\soldier_obichniy</visual>
         <snd_config>characters_voice\human_01\military\</snd_config>
         <crouch_type>0</crouch_type>
         <supplies>

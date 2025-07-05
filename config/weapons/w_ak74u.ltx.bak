@@ -7,8 +7,8 @@ $prefetch 				= 8
 scheduled				= off               ;[] option for ALife Simulator
 cform               	= skeleton
 class               	= WP_LR300			; class of the weapon that corresponding to CPP class
-min_radius              = 0
-max_radius              = 500
+min_radius          	= 30				; [] for AI
+max_radius          	= 100				; [] for AI
 description				= enc_weapons1_wpn-ak74u
 	
 ef_main_weapon_type		= 2
@@ -66,23 +66,22 @@ kill_msg_height		= 30
 ;
 ;-----------------------------------------------------------------------------------
 ;params of weapon recoil
-fire_dispersion_base			= 0.0		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
-control_inertion_factor			= 1.56f
+fire_dispersion_base			= 0.35		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+control_inertion_factor			= 1.09f
 
 ;отдача
-cam_relax_speed         		= 3.7		;скорость возврата в исходное положение
-cam_relax_speed_ai         		= 14.81
-cam_dispersion          		= 0		;увеличения угла (в градусах) с каждым выстрелом
-cam_dispersion_inc			= 0		;увеличениe cam_dispersion с каждым выстрелом
-cam_dispertion_frac			= 0		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
-cam_max_angle				= 0	    	;максимальный угол отдачи
-cam_max_angle_horz			= 0		;(degree) maximum shot horizontal degree
-cam_step_angle_horz			= 0		;(degree) size of step camera moved in horizontal position while shooting
+cam_relax_speed         		= 6;0.3		;скорость возврата в исходное положение
+cam_dispersion          		= 0.3		;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc			= 0.20;0.15		;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac			= 0.9		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle				= 9.0		;максимальный угол отдачи
+cam_max_angle_horz			= 30.0		;(degree) maximum shot horizontal degree 
+cam_step_angle_horz			= 1.25;1.1		;(degree) size of step camera moved in horizontal position while shooting
 
-fire_dispersion_condition_factor 	= 0	    	;увеличение дисперсии в процентах при максимальном износе
-misfire_probability 		= 0.00003	;вероятность осечки при максимальном износе
+fire_dispersion_condition_factor 	= 5		;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 		= 0.003	;вероятность осечки при максимальном износе 
 misfire_condition_k			= 0.05
-condition_shot_dec 			= 0.00000	;увеличение износа при каждом выстреле
+condition_shot_dec 			= 0.0001	;увеличение износа при каждом выстреле
 ;-----------------------------------------------------------------------------------
 
 fire_point             		=  0.0, 0.262, 0.447		; position (3rd person view) for particles of fire 
@@ -95,21 +94,20 @@ grenade_flame_particles		= weapons\generic_weapon01
 shell_point		 			= 0.00, 0.262, 0.189			; position (3rd person view) for shell to throw out
 shell_particles	 			= weapons\generic_shells	; name of the particles for shells
 
-PDM_disp_base 				= 2.86
-PDM_disp_vel_factor 		= 1.2
-PDM_disp_accel_factor 		= 1.4
-PDM_crouch	 				= 0.8
-PDM_crouch_no_acc 			= 0.5
+PDM_disp_base 				= 1.0
+PDM_disp_vel_factor 			= 0.95
+PDM_disp_accel_factor 			= 0.95
+PDM_crouch	 			= 1.0
+PDM_crouch_no_acc 			= 1.0
 
 ; ttc
-hit_power        	= 0.8
-hit_impulse		 	= 19
-hit_type 			= fire_wound
+hit_power               = 2;0.32, 0.36, 0.39, 0.42		;size of damage by bullet
+hit_impulse		 		= 140		;size of physic impulse by bullet	
+hit_type 				= fire_wound 	;[] type of the wound
 
-fire_distance          	= 500
-bullet_speed			= 735 ;начальная скорость пули
-rpm                     = 675
-; end ttc
+fire_distance            		= 200 ;1000		;maximum fire distance that bullet can fly
+bullet_speed				= 790		;starting bullet speed
+rpm                      		= 600;735		;max round per minute
 
 use_aim_bullet				= true		;Поддерживается ли первая суппер пуля
 time_to_aim					= 1.0	
@@ -232,8 +230,3 @@ zoom_rotate_y		= 0.017900
 
 
 zoom_hide_crosshair	= true						;to hide crosshair in zoom 
-
-[wpn_ak74u_trader]:wpn_ak74u
-GroupControlSection		= spawn_group
-discovery_dependency	= 
-$spawn              	= "weapons\ak-74u-trader"	; name and section in level editor

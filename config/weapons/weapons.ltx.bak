@@ -39,33 +39,34 @@
 #include "w_abakan.ltx"
 #include "w_g36.ltx"
 #include "m134.ltx"
-
+#include "w_samopal.ltx"
+#include"m1891.ltx"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Огнестрельное оружие
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [bullet_manager]
-tracer_width					= 0.2      ; 0.15
-tracer_length_max				= 50    ; 50
-tracer_length_min				= 5     ; 2
+tracer_width					= 0.08
+tracer_length_max				= 10.0	;24.0 ;14.0	
+tracer_length_min				= 2		;0.2
 
 ;расстояние после которого учитывается hit_probabilty полностью
-hit_probability_max_dist		= 0.5;
+hit_probability_max_dist		= 10;
 
-gravity_const					= 9.8295
+gravity_const					= 9.81
 ;сопротивление воздуха, процент, который отнимается от скорости полета пули
-air_resistance_k				=  0.999       ;0.3
+air_resistance_k				= 0.5;0.3
 
 ;размер шага времени (в милисекундах), по которому проигрываются 
 time_step						= 33
 ;минимальная скорость (м/с), на которой пуля еще считается и показывается
-min_bullet_speed				= 90      ; 3.0
+min_bullet_speed				= 3.0
 ;cколько процентов энергии потеряет пуля при столкновении с материалом (при падении под прямым углом)
-collision_energy_min			= 0.36
+collision_energy_min			= 0.80 ;0.75; 0.90
 ;сколько процентов энергии останется у пули при любом столкновении
-collision_energy_max			= 0.64
+collision_energy_max			= 0.5 ;0.7;0.50
 
-whine_sounds					= weapons\whine_1, weapons\whine_2, weapons\whine_3, weapons\whine_4, weapons\whine01, weapons\whine02
+whine_sounds					= weapons\whine_1, weapons\whine_2, weapons\whine_3, weapons\whine_4, weapons\whine_5, weapons\whine_6, weapons\whine_7, weapons\whine_8, weapons\whine_9, weapons\whine_10, weapons\whine_11, weapons\whine_12, weapons\whine_13, weapons\whine_14, weapons\whine_15, weapons\whine_16, weapons\whine_17, weapons\whine01, weapons\whine02, weapons\whine03, weapons\whine04, weapons\whine05, weapons\whine06, weapons\whine07, weapons\whine08, weapons\whine09, weapons\whine10, weapons\whine11, weapons\whine12, weapons\whine13, weapons\whine14, weapons\whine15
 explode_particles				= explosions\expl_bullet,explosions\expl_bullet_00,explosions\expl_bullet_01
 
 
@@ -277,14 +278,15 @@ inv_grid_x			= 16
 inv_grid_y			= 11
 
 k_dist			= 1
-k_disp			= 1
-k_hit			= 1.72
+k_disp			= 3
+k_hit			= 1
 k_impulse		= 1
-k_pierce		= 1.19
+k_ap		= 10000
+k_pierce		= 10000
 impair			= 1
 buck_shot		= 1
-tracer			= off
-wm_size         = 0.0545
+tracer			= on
+wm_size         = 0.05
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [ammo_5.45x39_ap]:ammo_base
@@ -311,14 +313,14 @@ inv_grid_x			= 12
 inv_grid_y			= 11
 
 k_dist			= 1
-k_disp			= 1
-k_hit			= 0.98
+k_disp			= 2.5;3
+k_hit			= 1
 k_impulse		= 0.95
-k_pierce		= 1.61
+k_pierce		= 1.75
 impair			= 1.02
 buck_shot		= 1
-tracer			= off
-wm_size         = 0.0545
+tracer			= on
+wm_size         = 0.05
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [ammo_5.56x45_ss190]:ammo_base
