@@ -12,7 +12,7 @@ function ph_button:__init(obj, storage)
 end
 
 function ph_button:reset_scheme()
-	if  self.st.anim then
+	if  self.st.anim ~= nil then
 	self.object:play_cycle(self.st.anim, self.st.blending)
 	end
 	self.object:set_nonscript_usable(false)
@@ -89,7 +89,7 @@ function set_scheme(npc, ini, scheme, section, gulag_name)
 		npc:set_tip_text("")
 	end
 
-	st.anim = utils.cfg_get_string(ini, section, "anim", npc, true, "")
+	st.anim = utils.cfg_get_string(ini, section, "anim", npc, false, "", nil)
 	st.blending = utils.cfg_get_bool (ini, section, "anim_blend", npc, false, true)
     if st.blending == nil then 	
        st.blending = true 

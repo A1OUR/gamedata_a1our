@@ -1,0 +1,12 @@
+[logic]
+active = ph_button@agro
+ 
+[ph_button@agro]
+tooltip     = rostok_volkodav_message_2_3
+on_press    = %=agr_disable_installation +agr_installation_disabled =disable_ui% ph_button@agro_wait
+on_info 	= %+agr_installation_disabled% ph_button@agro_end
+
+[ph_button@agro_wait]
+on_timer = 2000 | %=enable_ui% ph_button@agro_end
+
+[ph_button@agro_end]
