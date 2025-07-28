@@ -1,12 +1,16 @@
 [logic]
-active = ph_button@agro
- 
+active = ph_button@agro_disabled
+
+[ph_button@agro_disabled]
+tooltip     = agr_disable_installation_cant_tip
+on_info 	= ph_button@agro {+agr_installation_can_disable}
+
 [ph_button@agro]
-tooltip     = rostok_volkodav_message_2_3
-on_press    = %=agr_disable_installation +agr_installation_disabled =disable_ui% ph_button@agro_wait
-on_info 	= %+agr_installation_disabled% ph_button@agro_end
+tooltip     = agr_disable_installation_tip
+on_press    = ph_button@agro_wait %=run_postprocess(agr_u_fade) =disable_ui%
+on_info 	= ph_button@agro_end {+agr_installation_disabled}
 
 [ph_button@agro_wait]
-on_timer = 2000 | %=enable_ui% ph_button@agro_end
+on_timer = 5000 | %=enable_ui +agr_installation_disabled =agr_disable_installation% ph_button@agro_end
 
 [ph_button@agro_end]

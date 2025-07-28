@@ -1827,7 +1827,12 @@ function agr_krot_sos_1_2( actor, npc )
 	end
 end
 
+function agr_snow_warning_tip( actor, npc )
+	news_manager.send_tip( actor, "agr_snow_warning_tip", 0, "strelok", 10000 )
+end
+
 function agr_disable_installation ()
+	--db.actor:give_info_portion("agr_installation_disabled") 
 	se_obj = alife():object("kat_zone_monolith")
 	alife():release(se_obj, true)
 end

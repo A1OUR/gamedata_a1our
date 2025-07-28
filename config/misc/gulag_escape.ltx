@@ -505,7 +505,6 @@ combat_ignore_keep_when_attacked = true
 def_state_campering = prisoner
 on_info = {=esc_bandits_die} remark@esc_lager_help
 on_info2 = {+esc_shustryi_give_info} sleeper4@esc_lager
-on_info3 = {!esc_bandits_die +esc_bandits_kill_prisoner} %=kill%
 meet = no_meet
 danger = danger_condition@shustryi
 
@@ -1074,7 +1073,7 @@ def_state_moving = raid
 def_state_moving_fire = raid_fire
 def_state_campering = threat
 def_state_campering_fire = threat_fire
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [logic@esc_fabrika_bandit_walker2]
@@ -1084,7 +1083,7 @@ combat_ignore = combat_ignore
 [walker2@esc_fabrika_bandit]
 path_walk = day_walk2
 path_look = day_look2
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [logic@esc_fabrika_bandit_walker3]
@@ -1098,7 +1097,7 @@ def_state_moving = raid
 def_state_moving_fire = raid_fire
 def_state_campering = threat
 def_state_campering_fire = threat_fire
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 ;[logic@esc_fabrika_bandit_walker4]
@@ -1108,7 +1107,7 @@ combat_ignore_cond = {=check_fighting(088)}
 ;[walker4@esc_fabrika_bandit]
 ;path_walk = day_walk4
 ;path_look = day_look4
-;combat_ignore_cond = {=check_fighting(088)}
+;combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [logic@esc_fabrika_bandit_walker4]
@@ -1118,7 +1117,7 @@ combat_ignore = combat_ignore
 [walker4@esc_fabrika_bandit]
 path_walk = day_walk4
 path_look = day_look4
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 on_info = {+esc_prison} remark4@esc_fabrika_bandit
 
 [remark4@esc_fabrika_bandit]
@@ -1126,14 +1125,14 @@ anim = sit
 target = 004
 snd = esc_bandit_shustryi
 on_signal = sound_end| remark5@esc_fabrika_bandit
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 on_info = {-esc_prison} walker4@esc_fabrika_bandit
 
 [remark5@esc_fabrika_bandit]
 anim = sit
 target = 004
 on_timer = 10000| remark4@esc_fabrika_bandit
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 on_info = {-esc_prison} walker4@esc_fabrika_bandit
 
 
@@ -1145,7 +1144,7 @@ combat_ignore = combat_ignore
 center_point = camp_center
 ;path_walk = camp_center_task
 soundgroup = esc_bandits_factory
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [camper@esc_fabrika_bandit_walker1]
@@ -1155,7 +1154,7 @@ combat_ignore = combat_ignore
 [walker11@esc_fabrika_bandit]
 path_walk = day_alarm_walk1
 path_look = day_alarm_look1
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [camper@esc_fabrika_bandit_walker2]
@@ -1165,7 +1164,7 @@ combat_ignore = combat_ignore
 [walker22@esc_fabrika_bandit]
 path_walk = day_alarm_walk2
 path_look = day_alarm_look2
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [camper@esc_fabrika_bandit_walker3]
@@ -1175,7 +1174,7 @@ combat_ignore = combat_ignore
 [walker33@esc_fabrika_bandit]
 path_walk = day_alarm_walk3
 path_look = day_alarm_look3
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [camper@esc_fabrika_bandit_walker4]
@@ -1185,7 +1184,7 @@ combat_ignore = combat_ignore
 [walker44@esc_fabrika_bandit]
 path_walk = day_alarm_walk4
 path_look = day_alarm_look4
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [camper@esc_fabrika_bandit_walker5]
@@ -1195,7 +1194,7 @@ combat_ignore = combat_ignore
 [walker55@esc_fabrika_bandit]
 path_walk = day_alarm_walk5
 path_look = day_alarm_look5
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [camper@esc_fabrika_bandit_walker6]
@@ -1205,7 +1204,7 @@ combat_ignore = combat_ignore
 [walker66@esc_fabrika_bandit]
 path_walk = day_alarm_walk6
 path_look = day_alarm_look6
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 [camper@esc_fabrika_bandit_walker7]
@@ -1215,7 +1214,7 @@ combat_ignore = combat_ignore
 [walker7@esc_fabrika_bandit]
 path_walk = day_night_sniper_walk
 path_look = day_night_sniper_look
-combat_ignore_cond = {=check_fighting(088)}
+combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 
 
 

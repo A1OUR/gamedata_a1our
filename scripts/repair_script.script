@@ -125,12 +125,13 @@ if obj_sect == "enable_rep" then
 	--db.actor:give_info_portion("bar_barman_need_room")
 	--[[db.actor:give_info_portion("bar_psih_come")
 	--db.actor:give_info_portion("agroprom_military_case_done")
-	--db.actor:give_info_portion("agroprom_military_case")
+	--db.actor:give_info_portion("agr_installation_can_disable")
 	--db.actor:give_info_portion("yan_x16_documents_gain")]]
 	--sim_statistic.pstats_test()
 	--task_manager.get_random_task():print_task_targets()
 	--amk.teleport_to_way("gar_angar_seryi_look")
-	xr_effects.agr_disable_installation()
+	--level.add_pp_effector("radar_stop.ppe", 100, false)
+	db.actor:give_info_portion("agr_installation_can_disable")
 end
 if obj_sect == "enable_rep1" then
 	--actor = db.actor

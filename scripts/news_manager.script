@@ -118,6 +118,7 @@ pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
 pda_task = xr_sound.get_safe_sound_object([[device\pda\pda_objective]])
 
 tips_icons = {
+	strelok = { 415, 940},
 	default  = { 0, 658},
 	trader	 = { 332, 893},
 	bes     = { 415, 0},

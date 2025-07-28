@@ -199,6 +199,8 @@
 		<task>cit_doctor_meet</task>
 	</info_portion>
 	<info_portion id="agr_cit_doctor_meet_done"></info_portion>
+	<info_portion id="agr_installation_need_to_disable"></info_portion>
 	<info_portion id="agr_installation_disabled"></info_portion>
+	<info_portion id="agr_installation_can_disable"></info_portion>
 	
 		 

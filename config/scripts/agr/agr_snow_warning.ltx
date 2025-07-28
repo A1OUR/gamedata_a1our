@@ -1,0 +1,9 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_actor_inside = %=agr_snow_warning_tip +agr_installation_need_to_disable% sr_idle1
+on_info = {+agr_installation_disabled} nil
+
+[sr_idle1]
+on_timer = 10000 | %+agr_installation_need_to_disable% nil
