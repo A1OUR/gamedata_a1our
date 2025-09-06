@@ -425,7 +425,9 @@ local level_groups = {
     l12u_control_monolith = "group3",
     l12_stancia_2 = "group3",
 	l13_generators = "group3",
-	l13u_warlab = "group3"
+	l13u_warlab = "group3",
+	promzona = "group1",
+	marsh = "group1"
 }
 
 function se_smart_terrain:smart_terrain_accepts_obj( obj, obj_agreement )

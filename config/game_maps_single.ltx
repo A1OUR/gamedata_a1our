@@ -25,6 +25,8 @@ l13u_warlab
 l14_swamp
 promzona
 pripyat_full
+niichaz
+marsh
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [level_music_tracks]
@@ -40,9 +42,9 @@ max_zoom		= 6.0
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [l01_escape]
-texture         = map\map_escape
-bound_rect      = -317.164, -633.718, 404.880, 811.627
-global_rect	= 355.0,2011.0,	576.0,2453.000000
+bound_rect = -1073.668672,-1073.668672,1073.668672,1073.668672
+texture = map\map_l01_escape
+global_rect	= 221,2020,735,2531
 weathers        = dynamic_default
 music_tracks    = l01_escape_musics
 
@@ -74,7 +76,7 @@ music_tracks    = l03u_agr_underground_musics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [l04_darkvalley]
 texture			= map\map_darkvalley
-bound_rect		= -445.320, -663.867, 449.864, 231.317
+bound_rect = -533.236768,-939.845952,914.773248,507.817248
 global_rect		= 567.0, 1608.0, 1003.0,2044.338
 weathers		= dynamic_default ;pripyat
 music_tracks    = l04_darkvalley_musics
@@ -268,10 +270,23 @@ music_tracks	= l03_agroprom_musics
 
 [promzona]
 texture			= map\map_promzona
-bound_rect		= -319.631, -321.115, 346.146, 424.979
-global_rect		= 675,1625,950,1900
-weathers		= dynamic_default
+bound_rect = -322.280096,-292.595584,322.280096,351.964608
+global_rect		=701.0, 2071.0, 1020.0,2392.344727
+weathers		= default
 music_tracks    = l14_swamp_musics
+
+[niichaz]
+texture			= map\map_test
+bound_rect		= -150.000, -100.000, 52.927, 50.000
+global_rect		= 156.0,833.0,365.691223,988.0
+music_tracks	= l03_agroprom_musics
+
+[marsh]
+texture         = map\map_marsh
+global_rect     = 22.0, 2113.0, 352.0, 2443.000000              
+bound_rect      = -445.000000,-445.000000,755.000000,755.000000  
+weathers		= default
+music_tracks	= l03_agroprom_musics
 
 [def_map]
         bound_rect                       = -10000.0f, -10000.0f, 10000.0f, 10000.0f
