@@ -62,7 +62,8 @@ function amk_particle:update(delta)
 		if self.life_time>-1 and time_global()>self.start_time+self.life_time then 
 			self.started=false
 			self.looped=false
-			self:stop() 
+			self:stop()
+			dbglog("stop")
 			self.finalized=true
 		end
 		local pos

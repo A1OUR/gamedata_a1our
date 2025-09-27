@@ -1,0 +1,43 @@
+local t = {}
+
+function load_job(sj, gname, type, squad, groups)
+	if type == "mar_science_camp" then
+		t = { section = "logic@mar_science_camp_leader",
+			idle = 0,
+			prior = 20, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+	end
+end
+
+function load_states(gname, type)
+	
+	if type == "mar_science_camp" then
+		return function(gulag)
+			return 0
+		end
+	end
+	
+end
+
+
+
+--------------------------------------------------------------------------
+-- Dynamic ltx
+--------------------------------------------------------------------------
+function load_ltx(gname, type)
+	return nil
+end
+
+function checkStalker(npc_community, gulag_type, npc_rank, se_obj)
+	if gulag_type == "mar_science_camp" then
+		return npc_community == "ecolog"
+	end
+	
+	return false
+end
+
+function checkMonster(npc_community, gulag_type)
+	return false
+end

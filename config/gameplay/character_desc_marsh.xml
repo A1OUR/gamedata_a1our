@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<xml>
+
+
+<!---------------------------RESCUE_ECOLOG------------------------>
+
+<specific_character id="mar_science_camp_leader" team_default = "1">
+		<name>yan_semenov_name</name>
+		<icon>ui_npc_u_stalker_ecolog</icon>
+		<map_icon x="0" y="6"></map_icon>
+		<bio>yan_semenov_bio</bio>
+
+		<class>mar_science_camp_leader</class>
+		<community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+		<money min="600" max="2000" infinitive="0"></money>
+		
+		<rank>440</rank>
+		<reputation>50</reputation>
+
+		<visual>actors\ecolog\stalker_ecolog</visual>
+		<snd_config>characters_voice\human_03\ecolog\</snd_config>
+		<crouch_type>1</crouch_type>
+		<supplies>
+			[spawn] \n
+			wpn_walther \n
+			ammo_9x19_fmj \n		
+		</supplies>
+		
+#include "gameplay\character_criticals_3.xml"
+#include "gameplay\character_dialogs.xml"
+	</specific_character>
+</xml>

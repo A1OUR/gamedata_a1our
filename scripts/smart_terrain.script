@@ -205,7 +205,7 @@ end
 --   xr_gulag.get_gulag_by_name()
 --   xr_gulag.get_gulag_by_sid()
 function se_smart_terrain:initialize_if_needed()
-	--level.map_add_object_spot(self.id, "green_location", self:name())
+	level.map_add_object_spot(self.id, "green_location", self:name())
 	if not self.initialized then
 		sim_statistic.update()
 
@@ -742,7 +742,7 @@ function se_smart_terrain:unregister_npc( obj )
 --'		level.map_change_spot_hint(obj.id, spot, str)		
 --'	end
 
-	printf( "[smart_terrain %s] removed %s from gulag type=%s, strn_id=%s", self:name(), obj:name() or "<<<nil>>>", self.gparams.type, obj:smart_terrain_id())
+	dbglog( "[smart_terrain %s] removed %s from gulag type=%s, strn_id=%s", self:name(), obj:name() or "<<<nil>>>", self.gparams.type, obj:smart_terrain_id())
 end
 
 -- изменть ранг сталкера при регистрации в смарт
@@ -1182,7 +1182,7 @@ function se_smart_terrain:update()
 				for id, npc_info in pairs( self.npc_info ) do
 					if (npc_info.cond and xr_logic.pick_section_from_condlist( db.actor_proxy, npc_info.se_obj, npc_info.cond ) == nil)
 					then
-						printf("[smart_terrain %s] leaving %s", self:name(), npc_info.name)
+						--dbglog("[smart_terrain %s] leaving %s", self:name(), npc_info.name)
 						self:unregister_npc( npc_info.se_obj )
 					end
 					leave_by_timeout = false
@@ -1211,10 +1211,7 @@ function se_smart_terrain:update()
 					
 					if leave_by_timeout
 					then
-							if (npc_info.name == debug_obj_name)
-							then
-								dbglog("[smart_terrain %s] leaving %s by timeout", self:name(), npc_info.name)
-							end
+							dbglog("[smart_terrain %s] leaving %s by timeout", self:name(), npc_info.name)
 							self:unregister_npc( npc_info.se_obj )
 					end
 				end
@@ -1313,7 +1310,13 @@ function read_smart_terrain_conditions( self )
 			return conds
 		end
 	end
-
+	if self.ini  then
+	dbglog("npc: %s self.ini is here", self:name())
+	end
+	if self.ini:section_exist( smart_section )  then
+	dbglog("npc: %s self.ini:section_exist( smart_section ) is here", self:name())
+	end
+	dbglog("npc: %s terrain not assgned", self:name())
 	return nil
 end
 

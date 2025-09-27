@@ -1918,4 +1918,8 @@
 	<character id="sim_test_114">
 		<class>sim_test_114</class>
 	</character>
+	
+	<character id="mar_science_camp_leader">
+		<class>mar_science_camp_leader</class>
+	</character>
 </xml>

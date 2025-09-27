@@ -49,13 +49,13 @@ local simMaxCount = {
 	zombied_novice = 20, zombied_experienced = 15, zombied_veteran = 10, zombied_master = 10,
 	
 	rat_weak = 0,	
-	tushkano_weak = 5,tushkano_normal = 50,
-	flesh_weak = 5, flesh_normal = 38, flesh_strong = 22,
-	boar_weak = 5, boar_normal = 15, boar_strong = 5,
-	dog_weak = 5, dog_normal = 35, dog_strong = 5,
-	pseudodog_weak = 3, pseudodog_normal = 35, pseudodog_strong = 5,
+	tushkano_weak = 5,tushkano_normal = 0,
+	flesh_weak = 50, flesh_normal = 0, flesh_strong = 0,
+	boar_weak = 50, boar_normal = 0, boar_strong = 0,
+	dog_weak = 50, dog_normal = 0, dog_strong = 0,
+	pseudodog_weak = 3, pseudodog_normal = 0, pseudodog_strong = 0,
 	psy_dog_weak = 15, psy_dog_normal = 15, psy_dog_strong = 15,
-	zombie_weak = 5, zombie_normal = 50, zombie_strong = 35,
+	zombie_weak = 5, zombie_normal = 0, zombie_strong = 0,
 	snork_weak = 50, snork_normal = 61, snork_strong = 15,
 	poltergeist_weak = 10,
 	pseudo_gigant_weak = 23,
@@ -349,7 +349,7 @@ function se_respawn:create(prob)
             self.position,
             self.m_level_vertex_id, 
             self.m_game_vertex_id)
-		--level.map_add_object_spot(obj.id, "green_location", spawn_section.."_"..tostring(obj.id))
+		--level.map_add_object_spot(obj.id, "red_location", spawn_section.."_"..tostring(obj.id))
     else
       obj = alife():create(spawn_section, 
             self.position,
