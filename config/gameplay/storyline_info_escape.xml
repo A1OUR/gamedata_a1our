@@ -116,3 +116,6 @@
 		<texture x="450" y="50" width="50" height="50">ui\ui_icon_equipment</texture>
         <text>tex_esc_fox_medkit</text>
     </article>
+	<article id="mar_sci_hands" name="mar_sci_hands" article_type="task">
+        <text>mar_sci_hands</text>
+    </article>

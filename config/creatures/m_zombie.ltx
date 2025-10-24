@@ -416,9 +416,12 @@ fire_wound_immunity		= 0.01
 
 [zombie_pitch]:zombie_weak
 $spawn				= "monsters\zombies\zombie_pitch"
-visual				= monsters\korpus
+visual				= monsters\zombi\zombi_pitch
 panic_threshold		= 0.05
 icon				= ui_npc_monster_zombie_2
+
+spec_rank			= pitch
+
 ; speed factors			linear | angular_real | angular_path | min |  max
 Velocity_Stand			= 0,		1.4,			1.4,		1,		1
 Velocity_WalkFwdNormal	= 3,		1.6,			1.6,		0.4,	1
@@ -433,17 +436,18 @@ Accel_Generic			= 1.5
 Accel_Calm			= 2.5
 Accel_Aggressive		= 7.5
 
-sound_idle				= monsters\kamik
-sound_eat				= monsters\kamik
-sound_aggressive			= monsters\kamik
-sound_attack_hit		= monsters\kamik
-sound_take_damage		= monsters\kamik
-sound_die				= monsters\kamik
-sound_threaten			= monsters\kamik		
-sound_landing			= monsters\kamik
-sound_steal				= monsters\kamik
-sound_panic				= monsters\kamik
-sound_growling			= monsters\kamik
-sound_die_in_anomaly	= monsters\kamik
 
+
+sound_idle				= monsters\zombie\zombie_eat_ 
+sound_eat				= monsters\zombie\zombie_eat_ 
+sound_aggressive			= monsters\zombie\zombie_eat_ 
+sound_attack_hit		= monsters\zombie\zombie_eat_ 
+sound_take_damage		= monsters\zombie\zombie_eat_ 
+sound_die				= monsters\zombie\zombie_eat_ 
+sound_threaten			= monsters\biting\def_		
+sound_landing			= monsters\biting\def_
+sound_steal				= monsters\biting\def_
+sound_panic				= monsters\zombie\zombie_eat_ 
+sound_growling			= monsters\biting\def_
+sound_die_in_anomaly	= monsters\zombie\zombie_eat_ 
 

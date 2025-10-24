@@ -143,12 +143,12 @@ function generic_object_binder:death_callback(victim, who)
 	h.impulse = 10
 	self.object:hit(h)
 	if self.object:section() == "zombie_pitch" then
-		particles_object("explosions\\explosion_mine"):play_at_pos(self.object:bone_position("bip01_spine"))
+		particles_object("monsters\\polter_death_00"):play_at_pos(self.object:bone_position("bip01_spine"))
 		local snd_obj = xr_sound.get_safe_sound_object([[ambient\mon_explosion]])
 		snd_obj:play_at_pos(self.object, vector():set(0,0,0), 0, sound_object.s2d)
 		level.add_cam_effector("camera_effects\\shell_shock.anm", 1974, false, "")
 		if who:id() == db.actor:id() then
-			alife():create("mutant_zombie_hand", self.object:position(), self.object:level_vertex_id(), self.object:game_vertex_id())
+			alife():create("mutant_pitch_zombie_hand", self.object:position(), self.object:level_vertex_id(), self.object:game_vertex_id())
 		end
 		local sobj = alife():object(self.object:id())
 		if sobj then
@@ -159,6 +159,20 @@ end
 
 function generic_object_binder:hit_callback(obj, amount, local_direction, who, bone_index)
 --	printf("HIT_CALLBACK: [%s] amount[%s]", obj:name(), amount)
+	if who:section() == "zombie_pitch" then
+		local h = hit() 
+		h.impulse = 0 
+		h.draftsman = who
+		h.direction = vector():set(0,0,0) 
+		h:bone("bip01_spine") -- чтобы учитывалась броня
+		h.power = 1
+		h.type = hit.chemical_burn
+		self.object:hit(h) 
+		h.power = 4 
+		h.type = hit.shock 
+		self.object:hit(h) 
+		who:kill(who)
+	end
 	if self.st.hit then
 		xr_logic.issue_event(self.object, self.st.hit, "hit_callback", obj, amount, local_direction, who, bone_index)
 	end

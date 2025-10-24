@@ -92,4 +92,9 @@
 	<info_portion id="esc_fox_medkit_start">
 		<task>esc_fox_medkit</task>
 	</info_portion>
+	<info_portion id="mar_sci_hands_start">
+		<task>mar_sci_hands</task>
+	</info_portion>
+	<info_portion id="mar_sci_hands_done"></info_portion>
+	<info_portion id="mar_sci_dead"></info_portion>
 </game_information_portions>

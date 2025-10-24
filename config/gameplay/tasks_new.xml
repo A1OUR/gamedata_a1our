@@ -194,3 +194,24 @@
 			<infoportion_complete>esc_fox_medkit_done</infoportion_complete>		
 		</objective>
 	</game_task>
+	
+	
+	<game_task id="mar_sci_hands">
+		<title>mar_sci_hands_1</title>
+		<objective>
+			<icon>ui_iconsTotal_monster_part</icon>
+			<infoportion_complete>mar_sci_hands_done</infoportion_complete>
+			<infoportion_fail>mar_sci_dead</infoportion_fail>
+			<article>mar_sci_hands</article>
+		</objective>
+		<objective>
+			<text>mar_sci_hands_2</text>
+			<function_complete>sak_dialog.mar_sci_hands_have</function_complete>
+		</objective>
+		<objective>
+			<text>mar_sci_hands_3</text>
+			<map_location_type hint="mar_sci_leader">blue_location</map_location_type>
+			<object_story_id>mar_sci_leader</object_story_id>
+			<infoportion_complete>mar_sci_hands_done</infoportion_complete>		
+		</objective>
+	</game_task>

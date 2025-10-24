@@ -9,6 +9,50 @@ function load_job(sj, gname, type, squad, groups)
 		}
 		table.insert(sj, t)
 	end
+	if type == "mar_bandits" then
+		t = { section = "logic@mar_bandits_1",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_2",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_3",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_4",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_kamp",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_kamp",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_kamp",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+	end
 end
 
 function load_states(gname, type)
@@ -18,7 +62,11 @@ function load_states(gname, type)
 			return 0
 		end
 	end
-	
+	if type == "mar_bandits" then
+		return function(gulag)
+			return 0
+		end
+	end
 end
 
 
@@ -34,7 +82,9 @@ function checkStalker(npc_community, gulag_type, npc_rank, se_obj)
 	if gulag_type == "mar_science_camp" then
 		return npc_community == "ecolog"
 	end
-	
+	if gulag_type == "mar_bandits" then
+		return npc_community == "bandit"
+	end
 	return false
 end
 

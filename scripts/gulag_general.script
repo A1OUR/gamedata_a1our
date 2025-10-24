@@ -327,8 +327,8 @@ function load_job(sj, gname, type, squad, groups, st)
 
 							"[mob_home@"..way_name.."]\n"..
 							"path_home = home_"..it.."\n"..
-							"home_min_radius = 200\n"..
-							"home_max_radius = 200\n"
+							"home_min_radius = 20\n"..
+							"home_max_radius = 40\n"
 			ltx = ltx..job_ltx
 			it = it + 1
 		end

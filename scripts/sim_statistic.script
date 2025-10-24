@@ -1,4 +1,6 @@
 -- —бор информации о том, какие сталкеры и в каком количестве обитают в симул€ции
+local ini = system_ini()
+
 
 function dbglog(fmt,...)
    local msg = string.format(fmt, ...)
@@ -19,8 +21,8 @@ function getNpcType(npc)
 		if community == nil then
 			abort("Statistic ERROR: cannot find monstr class for clsid[%s]", get_clsid(npc))
 		end
-	
-		local rank = ranks.get_obj_rank_name(npc)
+		local rank = ini:r_string(npc:section_name(), "spec_rank")
+		dbglog(community..rank.." just checked")
 		return community, rank
 	end
 end

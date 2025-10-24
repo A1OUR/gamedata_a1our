@@ -59,3 +59,10 @@ end
 function give_esc_fox_medkit(first_speaker, second_speaker)
 	sak.out_item_namber("medkit",10)
 end
+
+function mar_sci_hands_have()
+	return sak.have_item_namber("mutant_pitch_zombie_hand",10) ~= false
+end
+function give_mar_sci_hands(first_speaker, second_speaker)
+	sak.out_item_namber("mutant_pitch_zombie_hand",10)
+end

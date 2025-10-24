@@ -20,7 +20,9 @@ end
 local monster_classes
 
 local disagreed, agreed, agreed_exclusive = 0, 1, 2
-
+local exclusive_sections = {
+zombie_pitch = true
+}
 local smart_section = "smart_terrains"
 
 local smart_terrains = {}
@@ -361,9 +363,23 @@ function se_smart_terrain:read_params()
 
 		for i, v in ipairs( t ) do
 			self.accepted_communities[v] = true
+			dbglog(self:name().."_accepts_"..v)
 		end
 	end
+	
+	self.exclusive_sections = nil
+	local t = r_str( ini, sect, "exclusive_sections" )
+	if t then
+		t = parse_names( t )
 
+		self.exclusive_sections = {}
+
+		for i, v in ipairs( t ) do
+			self.exclusive_sections[v] = true
+			dbglog(self:name().."_accepts_"..v)
+		end
+	end
+	
 	local ltx = system_ini()
 
 	self.rank_inc_min = ltx:r_string( "smart_terrain_rank_change", "min" )
@@ -467,7 +483,11 @@ function se_smart_terrain:smart_terrain_accepts_obj( obj, obj_agreement )
 			--get_console():execute("wrong_community")
 			return false
 		end
-
+		
+		if (exclusive_sections[obj:section_name()] and self.exclusive_sections and not self.exclusive_sections[obj:section_name()]) or (not exclusive_sections[obj:section_name()] and self.exclusive_sections) or (exclusive_sections[obj:section_name()] and not self.exclusive_sections) then
+			return false
+		end
+		
 --'		if obj:name() == "esc_wolf" then
 --'			printf( "community=%s rank=%d reputation=%d", community, obj:rank(), obj:reputation() )
 --'		end
@@ -622,7 +642,8 @@ function se_smart_terrain:suitable( obj )
 			v = v + (strn.gulag.capacity - strn.gulag:get_population())*math.random(1,100)
 		end
 	end]]
-	v = v + math.random(1,1000)
+	v = v + math.random(1,1000)* (1 + self.gulag:get_population() / self.gulag.capacity)
+	dbglog("WWWWWW"..v)
 --'	if obj:name() == "esc_wolf" then
 --'		printf( "[smart_terrain %s] obj=%s suitable=%d was_in_smart_terrain=%s",
 --'		        self:name(),
@@ -1151,17 +1172,17 @@ function se_smart_terrain:update()
 
 	if self.marked == false and task_manager.isloaded() == true then
 		--dbglog("trying to mARK")
-		local mark_them = task_manager.get_random_task():is_target(self.id)
-		if mark_them == true then
+		--local mark_them = task_manager.get_random_task():is_target(self.id)
+		--if mark_them == true then
 			self.marked = true
 			for id, npc_info in pairs( self.npc_info ) do
 				dbglog("adding mapspot")
 				level.map_add_object_spot(id, "red_location", npc_info.name)
 			end
-		end
+		--end
 	end
 	
-	if self.marked == true then
+	--[[if self.marked == true then
 		local mark_them = task_manager.get_random_task():is_target(self.id)
 		if mark_them == false then
 			self.marked = false
@@ -1170,7 +1191,7 @@ function se_smart_terrain:update()
 					level.map_remove_object_spot(id, "red_location", npc_info.name)
 			end
 		end
-	end
+	end]]
 	
 	if self:is_gulag_available() then
 		if self.check_time < game.get_game_time() then

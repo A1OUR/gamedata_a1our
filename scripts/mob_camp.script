@@ -4,9 +4,10 @@
 -- Разработчик: Jim
 ----------------------------------------------------------------------------------------------------
 
-local STATE_CAMP					= 1
+--[[local STATE_CAMP					= 1
 local STATE_ALIFE					= 2
 local STATE_MOVE_HOME				= 3
+local 
 
 class "mob_camp"
 
@@ -82,7 +83,7 @@ end
 ----------------------------------------------------------------------------------------------------
 
 function mob_camp:update(delta)
-	
+	dbglog("tessss")
 	if xr_logic.try_switch_to_another_section(self.object, self.st, db.actor) then
 		return
 	end
@@ -163,7 +164,7 @@ function mob_camp:select_state()
 	
 	-- if enemy
 	local enemy = self.object:get_enemy()
-	
+
 	-- if enemy just appeared - signal
 	if enemy ~= nil then
 		if not self.prev_enemy then
@@ -177,12 +178,13 @@ function mob_camp:select_state()
 	
 	if enemy ~= nil then
 		local enemy_dist	= enemy:position():distance_to(home_position)
-		--local my_dist		= self.object:position():distance_to(home_position)
-		
+		local my_dist		= self.object:position():distance_to(home_position)
+		dbglog("enemy dist-my_dist = "..enemy_dist-mydist)
+		_G.abort("Mob_Home : Home Min Radius MUST be < Max Radius. Got: min radius = d, max radius = d., minr, maxr")
 		if (self.state_prev == STATE_MOVE_HOME) and (enemy_dist > self.st.home_min_radius) then 
 		elseif (self.state_prev == STATE_ALIFE) and (enemy_dist > self.st.home_max_radius) then
-			self.state_current = STATE_MOVE_HOME
-			get_console():execute(self.object:name().." is now in state "..self.state_current)
+			--self.state_current = STATE_MOVE_HOME
+			--get_console():execute(self.object:name().." is now in state "..self.state_current)
 		elseif (self.state_prev == STATE_CAMP) and (enemy_dist > self.st.home_min_radius) then
 		else 
 			self.state_current = STATE_ALIFE
@@ -347,5 +349,5 @@ function set_scheme(npc, ini, scheme, section, gulag_name)
 
 	-- load transfer enemy flag ()
 	storage.skip_transfer_enemy = ini:line_exist( section, "skip_transfer_enemy")
-end
+end]]
 

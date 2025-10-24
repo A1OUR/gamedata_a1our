@@ -639,6 +639,7 @@ function CRandomTask:check_task_props(task_id)
 		for k,v in pairs(self.task_info[task_id].all_targets) do
 			self.task_info[task_id].good_target = true
 			local obj = alife():object(v)
+			dbglog("COMED: "..obj:name()..":"..obj.gulag:get_population_comed())
 			local gulag = obj.gulag
 			if gulag:get_population_comed() == 0 then
 				self.task_info[task_id].good_target = false

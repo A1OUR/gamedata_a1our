@@ -192,6 +192,20 @@ function motivator_binder:hit_callback(obj, amount, local_direction, who, bone_i
 		xr_wounded.hit_callback(self.object:id())
 	end
 	if rx_ai then rx_ai.npc_hit(obj,amount,local_direction,who,bone_index,self.object) end
+	if who:section() == "zombie_pitch" then
+		local h = hit() 
+		h.impulse = 0 
+		h.draftsman = who
+		h.direction = vector():set(0,0,0) 
+		h:bone("bip01_spine") -- чтобы учитывалась броня
+		h.power = 1
+		h.type = hit.chemical_burn
+		self.object:hit(h) 
+		h.power = 4
+		h.type = hit.shock 
+		self.object:hit(h) 
+		who:kill(who)
+	end
 end
 
 function motivator_binder:death_callback(victim, who)

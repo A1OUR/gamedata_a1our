@@ -18,7 +18,7 @@ local i,k,v = 0,0,0
 	ecolog_novice = 1, ecolog_experienced = 1, ecolog_veteran = 1, ecolog_master = 1,
 	dolg_novice = 0, dolg_experienced = 5, dolg_veteran = 5, dolg_master = 5,
 	freedom_novice = 50, freedom_experienced = 20, freedom_veteran = 26, freedom_master = 21,
-	bandit_novice = 15, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
+	bandit_novice = 100, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
 	zombied_novice = 20, zombied_experienced = 15, zombied_veteran = 10, zombied_master = 10,
 	
 	rat_weak = 0,	
@@ -45,10 +45,11 @@ local simMaxCount = {
 	ecolog_novice = 1, ecolog_experienced = 1, ecolog_veteran = 1, ecolog_master = 1,
 	dolg_novice = 0, dolg_experienced = 5, dolg_veteran = 5, dolg_master = 5,
 	freedom_novice = 50, freedom_experienced = 20, freedom_veteran = 26, freedom_master = 21,
-	bandit_novice = 15, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
+	bandit_novice = 100, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
 	zombied_novice = 20, zombied_experienced = 15, zombied_veteran = 10, zombied_master = 10,
 	
-	rat_weak = 0,	
+	rat_weak = 0,
+	zombie_pitch = 40,
 	tushkano_weak = 5,tushkano_normal = 0,
 	flesh_weak = 50, flesh_normal = 0, flesh_strong = 0,
 	boar_weak = 50, boar_normal = 0, boar_strong = 0,
