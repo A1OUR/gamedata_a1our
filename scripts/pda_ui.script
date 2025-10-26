@@ -1,0 +1,48 @@
+local pda_object = nil
+function on_use(obj)
+	pda_object = obj
+	level.start_stop_menu(Pda_UI(get_hud()), true)
+end
+local ini = system_ini()
+-----------------------------------
+class "Pda_UI" (CUIScriptWnd)
+-----------------------------------
+-- Construct
+function Pda_UI:__init() super()
+	self:InitControls()
+	self:InitCallBacks()
+end
+
+-- Destruct
+function Pda_UI:__finalize()
+end
+
+function Pda_UI:InitControls()
+	self:Init(0, 0, 1024, 768)
+	
+	local xml = CScriptXmlInit()
+	xml:ParseFile("pda.xml")
+	
+	self.background_static = xml:InitStatic("background_static", self)
+	
+	self.description = xml:InitStatic("background_static:description",	self.background_static)
+	self.description:SetTextST(ini:r_string(pda_object:section(), "text_for_pda"))
+end
+
+function Pda_UI:on_quit()
+    self:GetHolder():start_stop_menu(self, true)
+end
+
+function Pda_UI:InitCallBacks()
+	self:AddCallback("btn_quit", ui_events.BUTTON_CLICKED, self.on_quit, self)
+end
+
+function Pda_UI:OnKeyboard(dik, keyboard_action)
+	CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_ESCAPE then
+			self:on_quit()
+		end
+	end
+	return true
+end

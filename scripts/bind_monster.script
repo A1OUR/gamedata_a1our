@@ -43,14 +43,14 @@ end
 
 function generic_object_binder:update(delta)
 	object_binder.update(self, delta)
-	if self.first_update == false then
+	--[[if self.first_update == false then
 		local anomaly_detector = self.object:get_custom_monster()
 		if anomaly_detector ~= nil then
 			anomaly_detector:anomaly_detector():deactivate(true)
 			get_console():execute(self.object:name().."_anomal")
 			self.first_update = true
 		end
-    end
+    end]]
 --	printf("_bp: generic_object_binder: UPDATE [name='%s' time=%d]",
 --		self.object:name(), time_global())
 

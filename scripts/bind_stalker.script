@@ -276,6 +276,7 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:use_obj(obj)
 	repair_script.repair(obj)
+	utility_script.use(obj)
 	artefact_merger.on_use(obj)
 end
 function actor_binder:task_callback(_task, _objective, _state)

@@ -129,3 +129,42 @@ inv_grid_height		= 1
 inv_grid_x			= 9
 inv_grid_y			= 27
 cost				= 0
+
+[pda_stalk_leader]:identity_immunities
+GroupControlSection	= spawn_group
+discovery_dependency =
+$spawn 			= "pda_stalk_leader"
+$prefetch 		= 32
+class			= II_ANTIR
+cform				= skeleton
+visual				= equipments\item_pda.ogf
+radius				= 1
+;script_binding		= stalker.object_init
+quest_item			= true
+infop_on_use		= escape_stalker_give, garbage_meetstalker_start
+description			= item_pda_desc
+
+inv_name			= item_pda_stalk_leader_name
+inv_name_short		= item_pda_stalk_leader_name
+inv_weight			= 0
+
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 6
+inv_grid_y			= 13
+cost				= 0
+
+; eatable item
+eat_health = 0
+eat_satiety = 0
+eat_power = 0
+eat_radiation = 0
+wounds_heal_perc = 0
+eat_portions_num = 1
+eat_infinite = true
+
+; food item
+animation_slot		= 4
+
+;hud item
+hud = wpn_vodka_hud
