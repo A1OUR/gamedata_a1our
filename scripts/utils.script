@@ -336,7 +336,7 @@ function path_parse_waypoints(pathname)
 		return nil
 	end
 
-	dbglog("_bp: path_parse_waypoints: pathname='%s'", pathname)
+	--dbglog("_bp: path_parse_waypoints: pathname='%s'", pathname)
 	local ptr = patrol(pathname)
 	
 	local cnt = ptr:count()

@@ -719,19 +719,19 @@ end
 --Распределение текущих врагов по группировкам:
 --function fighting_ecolog(actor, npc)
 --    local enemy = db.storage[npc:id()].enemy
---	dbglog("Имя: " .. npc:name() .. " Враг: " .. enemy:name() .. " Группировка: " .. enemy:character_community())
+--	--dbglog("Имя: " .. npc:name() .. " Враг: " .. enemy:name() .. " Группировка: " .. enemy:character_community())
 --    return enemy and enemy:character_community() == "ecolog"
 --end
 
 --function fighting_freedom(actor, npc)
 --    local enemy = db.storage[npc:id()].enemy
---	dbglog("Имя: " .. npc:name() .. " Враг: " .. enemy:name() .. " Группировка: " .. enemy:character_community())
+--	--dbglog("Имя: " .. npc:name() .. " Враг: " .. enemy:name() .. " Группировка: " .. enemy:character_community())
 --    return enemy and enemy:character_community() == "freedom"
 --end
 
 --function fighting_dolg(actor, npc)
 --    local enemy = db.storage[npc:id()].enemy
---	dbglog("Имя: " .. npc:name() .. " Враг: " .. enemy:name() .. " Группировка: " .. enemy:character_community())
+--	--dbglog("Имя: " .. npc:name() .. " Враг: " .. enemy:name() .. " Группировка: " .. enemy:character_community())
 --    return enemy and enemy:character_community() == "dolg"
 --end
 

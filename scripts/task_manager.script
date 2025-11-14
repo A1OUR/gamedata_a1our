@@ -100,7 +100,7 @@ function CRandomTask:__init()
 		if self.task_ini:line_exist(id, "target_community") then
 			curr_task_info.target_community = parse_comms(self.task_ini:r_string(id, "target_community"))
 			for k ,v in pairs(curr_task_info.target_community) do
-				dbglog(k..tostring(v))
+				--dbglog(k..tostring(v))
 			end
 		end
 		curr_task_info.min_comed				= utils.cfg_get_number(self.task_ini, id, "min_comed", nil, false)
@@ -639,7 +639,7 @@ function CRandomTask:check_task_props(task_id)
 		for k,v in pairs(self.task_info[task_id].all_targets) do
 			self.task_info[task_id].good_target = true
 			local obj = alife():object(v)
-			dbglog("COMED: "..obj:name()..":"..obj.gulag:get_population_comed())
+			--dbglog("COMED: "..obj:name()..":"..obj.gulag:get_population_comed())
 			local gulag = obj.gulag
 			if gulag:get_population_comed() == 0 then
 				self.task_info[task_id].good_target = false
@@ -648,7 +648,7 @@ function CRandomTask:check_task_props(task_id)
 				self.task_info[task_id].found_community = false
 				for obj_id, npc_info in pairs( obj.npc_info ) do
 					if  self.task_info[task_id].target_community[tostring(obj:get_obj_community(alife():object(obj_id)))] == true then
-						dbglog((alife():object(obj_id)):name().." is in one of accepted comms")
+						--dbglog((alife():object(obj_id)):name().." is in one of accepted comms")
 						self.task_info[task_id].found_community = true
 						break
 					end
@@ -933,8 +933,8 @@ function CRandomTask:register_target(obj)
 
 	elseif obj:clsid() == clsid.smart_terrain then
 		if obj.gulag:get_population_comed() > 4 then
-			dbglog(alife():level_name(game_graph():vertex(obj.m_game_vertex_id ):level_id() ))
-			dbglog(obj:name().." comed "..obj.gulag:get_population_comed())
+			--dbglog(alife():level_name(game_graph():vertex(obj.m_game_vertex_id ):level_id() ))
+			--dbglog(obj:name().." comed "..obj.gulag:get_population_comed())
 		end
 		--' Возможно регистрируется цель для квеста "вынести лагерь"
 		for k,v in pairs(self.task_id_by_type["eliminate_lager"]) do

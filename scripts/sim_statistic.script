@@ -22,7 +22,7 @@ function getNpcType(npc)
 			abort("Statistic ERROR: cannot find monstr class for clsid[%s]", get_clsid(npc))
 		end
 		local rank = ini:r_string(npc:section_name(), "spec_rank")
-		dbglog(community..rank.." just checked")
+		--dbglog(community..rank.." just checked")
 		return community, rank
 	end
 end

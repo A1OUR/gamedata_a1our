@@ -2589,7 +2589,7 @@ end
 -- ќтладка логики (пишет в лог переданный параметр)
 function dbg_logic(actor, npc, p)
 	for i = 1, #p, 1 do
-		dbglog("p[" .. i .. "] = " .. p[i])
+		--dbglog("p[" .. i .. "] = " .. p[i])
 	end
 end
 

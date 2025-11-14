@@ -1215,7 +1215,7 @@ function pstor_store(obj, varname, val)
 	end
 	local tv = type(val)
 	if not pstor_is_registered_type(tv) then
-		dbglog("xr_logic: pstor_store: not registered type encountered - write in pstor_store cancelled")
+		--dbglog("xr_logic: pstor_store: not registered type encountered - write in pstor_store cancelled")
 		-- abort убран, так как один хрен не работает. Пусть тогда хотя бы в лог что-то валится.
 	else
 		db.storage[npc_id].pstor[varname] = val
@@ -1334,14 +1334,14 @@ function pstor_load_all(obj, reader)
 end
 
 function save_obj(obj, packet)
-	dbglog("save_obj: obj:name()='%s'", obj:name())
+	--dbglog("save_obj: obj:name()='%s'", obj:name())
 
 	local npc_id = obj:id()
 	local st = db.storage[npc_id]
 
 	printf("save_obj: ini_filename='%s'", utils.to_str(st.ini_filename))
-	dbglog("save_obj: section_logic='%s'", utils.to_str(st.section_logic))
-	dbglog("save_obj: active_section='%s'", utils.to_str(st.active_section))
+	--dbglog("save_obj: section_logic='%s'", utils.to_str(st.section_logic))
+	--dbglog("save_obj: active_section='%s'", utils.to_str(st.active_section))
 	printf("save_obj: gulag_name='%s'", utils.to_str(st.gulag_name))
 
 	if st.ini_filename then
@@ -1386,7 +1386,7 @@ function save_obj(obj, packet)
 end
 
 function load_obj(obj, reader)
-	dbglog("load_obj: obj:name()='%s'", obj:name())
+	--dbglog("load_obj: obj:name()='%s'", obj:name())
 	local npc_id = obj:id()
 	local st = db.storage[npc_id]
 
@@ -1426,9 +1426,9 @@ function load_obj(obj, reader)
 	--st.loaded_stype = stype
 
 	printf("load_obj: ini_filename='%s'", utils.to_str(st.loaded_ini_filename))
-	dbglog("load_obj: section_logic='%s'", utils.to_str(st.loaded_section_logic))
-	dbglog("load_obj: active_section='%s'", utils.to_str(st.loaded_active_section))
-	dbglog("load_obj: active_scheme='%s'", utils.to_str(st.loaded_active_scheme))
+	--dbglog("load_obj: section_logic='%s'", utils.to_str(st.loaded_section_logic))
+	--dbglog("load_obj: active_section='%s'", utils.to_str(st.loaded_active_section))
+	--dbglog("load_obj: active_scheme='%s'", utils.to_str(st.loaded_active_scheme))
 	printf("load_obj: gulag_name='%s'", utils.to_str(st.loaded_gulag_name))
 
 	load_logic(obj, reader)

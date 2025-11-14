@@ -1255,7 +1255,7 @@ function getGulagPopulation( name_or_sid )
 	local gulag = get_gulag( name_or_sid )
 	
 	--[[if gulag == nil then
-		dbglog("__getGulagPopulation():__Гулаг:_" .. name_or_sid .. " = nil")
+		--dbglog("__getGulagPopulation():__Гулаг:_" .. name_or_sid .. " = nil")
 	end]]
 
 --'	return ( gulag and gulag:get_population() ) or 0
@@ -1267,7 +1267,7 @@ function getGulagPopulationComed( name_or_sid )
 	local gulag = get_gulag( name_or_sid )
 
 	--[[if gulag == nil then
-		dbglog("__getGulagPopulationComed():__Гулаг:_" .. name_or_sid .. " = nil")
+		--dbglog("__getGulagPopulationComed():__Гулаг:_" .. name_or_sid .. " = nil")
 	end]]
 	
 	return ( gulag and gulag:get_population_comed() ) or 0
@@ -1278,7 +1278,7 @@ function setGulagRelation( name_or_sid, relation, target_obj )
 	local gulag = get_gulag( name_or_sid )
 	
 	--[[if gulag == nil then
-		dbglog("__setGulagRelation():__Гулаг:_" .. name_or_sid .. " = nil")
+		--dbglog("__setGulagRelation():__Гулаг:_" .. name_or_sid .. " = nil")
 	end]]
 
 	if gulag then

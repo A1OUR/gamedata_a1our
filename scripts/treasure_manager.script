@@ -284,7 +284,7 @@ function get_treasure_manager_new(zerno)
 		then
 			table.insert(avail, {k = k, prob = treasure_prob, items = v.items})
 			tr_sum = tr_sum + treasure_prob
-			dbglog(tostring(k).." sum "..tostring(tr_sum).." prob "..tostring(treasure_prob))
+			--dbglog(tostring(k).." sum "..tostring(tr_sum).." prob "..tostring(treasure_prob))
 		end
 	end
 
@@ -293,12 +293,12 @@ function get_treasure_manager_new(zerno)
 	end
 
 	local tr_w = zerno*tr_sum/6000
-	dbglog(" sum "..tostring(tr_sum))
-	dbglog(" zerno "..tostring(zerno))
-	dbglog(" one "..tostring(tr_sum/6000))
-	dbglog(tostring(tr_w))
+	--dbglog(" sum "..tostring(tr_sum))
+	--dbglog(" zerno "..tostring(zerno))
+	--dbglog(" one "..tostring(tr_sum/6000))
+	--dbglog(tostring(tr_w))
 	for k,v in pairs(avail) do
-		--dbglog(tostring(v.k).." v.k "..tostring(v.prob).." v.prob ")
+		----dbglog(tostring(v.k).." v.k "..tostring(v.prob).." v.prob ")
 		tr_w = tr_w - v.prob
 		if tr_w <= 0 then
 			--' Выдать тайник

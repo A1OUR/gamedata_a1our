@@ -363,7 +363,7 @@ function se_smart_terrain:read_params()
 
 		for i, v in ipairs( t ) do
 			self.accepted_communities[v] = true
-			dbglog(self:name().."_accepts_"..v)
+			--dbglog(self:name().."_accepts_"..v)
 		end
 	end
 	
@@ -376,7 +376,7 @@ function se_smart_terrain:read_params()
 
 		for i, v in ipairs( t ) do
 			self.exclusive_sections[v] = true
-			dbglog(self:name().."_accepts_"..v)
+			--dbglog(self:name().."_accepts_"..v)
 		end
 	end
 	
@@ -643,7 +643,7 @@ function se_smart_terrain:suitable( obj )
 		end
 	end]]
 	v = v + math.random(1,1000)* (1 + self.gulag:get_population() / self.gulag.capacity)
-	--dbglog("WWWWWW"..v)
+	----dbglog("WWWWWW"..v)
 --'	if obj:name() == "esc_wolf" then
 --'		printf( "[smart_terrain %s] obj=%s suitable=%d was_in_smart_terrain=%s",
 --'		        self:name(),
@@ -763,7 +763,7 @@ function se_smart_terrain:unregister_npc( obj )
 --'		level.map_change_spot_hint(obj.id, spot, str)		
 --'	end
 
-	dbglog( "[smart_terrain %s] removed %s from gulag type=%s, strn_id=%s", self:name(), obj:name() or "<<<nil>>>", self.gparams.type, obj:smart_terrain_id())
+	--dbglog( "[smart_terrain %s] removed %s from gulag type=%s, strn_id=%s", self:name(), obj:name() or "<<<nil>>>", self.gparams.type, obj:smart_terrain_id())
 end
 
 -- изменть ранг сталкера при регистрации в смарт
@@ -1171,12 +1171,12 @@ function se_smart_terrain:update()
 	end
 
 	if self.marked == false and task_manager.isloaded() == true then
-		--dbglog("trying to mARK")
+		----dbglog("trying to mARK")
 		local mark_them = task_manager.get_random_task():is_target(self.id)
 		if mark_them == true then
 			self.marked = true
 			for id, npc_info in pairs( self.npc_info ) do
-				dbglog("adding mapspot")
+				--dbglog("adding mapspot")
 				level.map_add_object_spot(id, "red_location", npc_info.name)
 			end
 		end
@@ -1187,7 +1187,7 @@ function se_smart_terrain:update()
 		if mark_them == false then
 			self.marked = false
 			for id, npc_info in pairs( self.npc_info ) do
-					dbglog("removin mapspot")
+					--dbglog("removin mapspot")
 					level.map_remove_object_spot(id, "red_location", npc_info.name)
 			end
 		end
@@ -1203,7 +1203,7 @@ function se_smart_terrain:update()
 				for id, npc_info in pairs( self.npc_info ) do
 					if (npc_info.cond and xr_logic.pick_section_from_condlist( db.actor_proxy, npc_info.se_obj, npc_info.cond ) == nil)
 					then
-						--dbglog("[smart_terrain %s] leaving %s", self:name(), npc_info.name)
+						----dbglog("[smart_terrain %s] leaving %s", self:name(), npc_info.name)
 						self:unregister_npc( npc_info.se_obj )
 					end
 					leave_by_timeout = false
@@ -1232,7 +1232,7 @@ function se_smart_terrain:update()
 					
 					if leave_by_timeout
 					then
-							dbglog("[smart_terrain %s] leaving %s by timeout", self:name(), npc_info.name)
+							--dbglog("[smart_terrain %s] leaving %s by timeout", self:name(), npc_info.name)
 							self:unregister_npc( npc_info.se_obj )
 					end
 				end
@@ -1332,12 +1332,12 @@ function read_smart_terrain_conditions( self )
 		end
 	end
 	if self.ini  then
-	dbglog("npc: %s self.ini is here", self:name())
+	--dbglog("npc: %s self.ini is here", self:name())
 	end
 	if self.ini:section_exist( smart_section )  then
-	dbglog("npc: %s self.ini:section_exist( smart_section ) is here", self:name())
+	--dbglog("npc: %s self.ini:section_exist( smart_section ) is here", self:name())
 	end
-	dbglog("npc: %s terrain not assgned", self:name())
+	--dbglog("npc: %s terrain not assgned", self:name())
 	return nil
 end
 
