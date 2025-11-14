@@ -1497,9 +1497,14 @@ path_walk = walker_5_walk
 ;path_look = walker_5_look
 
 [logic@krot_1]
-active = walker@hold
+active = remark@zat
 combat_ignore = combat_ignore
 on_death = death@krot
+
+[remark@zat]
+path_walk = walker_4_walk
+path_look = walker_4_look
+on_info = {+agr_find_gunslinger_cache_start} walker@krot_lager_walker_4, walker@hold
 
 [walker@hold]
 path_walk = hold_fake_walk

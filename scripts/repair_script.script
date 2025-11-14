@@ -131,8 +131,8 @@ if obj_sect == "enable_rep" then
 	--task_manager.get_random_task():print_task_targets()
 	--amk.teleport_to_way("gar_angar_seryi_look")
 	--level.add_pp_effector("radar_stop.ppe", 100, false)
-	--db.actor:give_info_portion("agr_installation_can_disable")
-	alife():set_switch_distance(1)
+	db.actor:give_info_portion("agr_krot_secret_info")
+	--alife():set_switch_distance(1)
 end
 if obj_sect == "enable_rep1" then
 	--actor = db.actor

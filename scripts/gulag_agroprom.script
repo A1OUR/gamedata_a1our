@@ -511,6 +511,14 @@ function load_job( sj, gname, type, squad, groups )
 			            	return obj_info.profile_name == "agr_krot"
 			            end
 		}
+		--[[t = { section = "logic@krot_lager_kamp",
+			idle = 0,
+			prior = 20, state = {0},
+			in_rest = "", out_rest = "",
+			predicate = function(obj_info)
+			            	return obj_info.profile_name == "agr_krot"
+			            end
+		}]]
 		table.insert(sj, t)
 		t = { section = "logic@krot_lager_walker_5",
 			idle = 0,
@@ -518,70 +526,6 @@ function load_job( sj, gname, type, squad, groups )
 			in_rest = "", out_rest = ""
 		}
 		table.insert(sj, t)
-		
-		t = { section = "logic@krot_lager_kamp1",
-			idle = 0,
-			prior = 5, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_kamp1",
-			idle = 0,
-			prior = 5, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_kamp1",
-			idle = 0,
-			prior = 5, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_kamp1",
-			idle = 0,
-			prior = 5, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_kamp1",
-			idle = 0,
-			prior = 5, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_walker_11",
-			idle = 0,
-			prior = 11, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_walker_21",
-			idle = 0,
-			prior = 10, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_walker_31",
-			idle = 0,
-			prior = 15, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_11",
-			idle = 0,
-			prior = 20, state = {1},
-			in_rest = "", out_rest = "",
-			predicate = function(obj_info)
-			            	return obj_info.profile_name == "agr_krot"
-			            end
-		}
-		table.insert(sj, t)
-		t = { section = "logic@krot_lager_walker_51",
-			idle = 0,
-			prior = 1, state = {1},
-			in_rest = "", out_rest = ""
-		}
-		table.insert(sj, t)		
 	end
 
 end
@@ -757,11 +701,7 @@ function load_states( gname, type )
 	
 	if type == "krot_lager" then
 		return function( gulag )
-			if has_alife_info("agr_find_gunslinger_cache_start") then
-				return 1 -- побег
-			else
-				return 0 --
-			end		
+			return 0	
 		end
 	end
 	
