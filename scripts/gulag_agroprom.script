@@ -503,27 +503,31 @@ function load_job( sj, gname, type, squad, groups )
 			in_rest = "", out_rest = ""
 		}
 		table.insert(sj, t)
-		t = { section = "logic@krot_1",
+		t = { section = "logic@krot_lager_walker_4",
 			idle = 0,
-			prior = 20, state = {0},
+			prior = 50, state = {0},
 			in_rest = "", out_rest = "",
 			predicate = function(obj_info)
 			            	return obj_info.profile_name == "agr_krot"
 			            end
 		}
-		--[[t = { section = "logic@krot_lager_kamp",
-			idle = 0,
-			prior = 20, state = {0},
-			in_rest = "", out_rest = "",
-			predicate = function(obj_info)
-			            	return obj_info.profile_name == "agr_krot"
-			            end
-		}]]
 		table.insert(sj, t)
 		t = { section = "logic@krot_lager_walker_5",
 			idle = 0,
 			prior = 1, state = {0},
 			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+	end
+	
+	if type == "krot_lager1" then
+		t = { section = "logic@krot_1",
+			idle = 0,
+			prior = 50, state = {0},
+			in_rest = "", out_rest = "",
+			predicate = function(obj_info)
+			            	return obj_info.profile_name == "agr_krot"
+			            end
 		}
 		table.insert(sj, t)
 	end
@@ -701,7 +705,13 @@ function load_states( gname, type )
 	
 	if type == "krot_lager" then
 		return function( gulag )
-			return 0	
+			return 0
+		end
+	end
+	
+	if type == "krot_lager1" then
+		return function( gulag )
+			return 0
 		end
 	end
 	
@@ -829,6 +839,10 @@ function checkStalker( npc_community, gulag_type )
 	end
 	
 	if gulag_type == "krot_lager" then
+		return npc_community == "stalker"
+	end
+	
+	if gulag_type == "krot_lager1" then
 		return npc_community == "stalker"
 	end
 	
