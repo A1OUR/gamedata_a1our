@@ -2,13 +2,24 @@ local actor = db.actor
 local ini = system_ini()
 function use(obj)
 	local obj_sect = obj:section()
-	if obj_sect == "pda_stalk_leader" then
-		--pda_ui.on_use(obj)
+	if utils.cfg_get_bool(ini, obj_sect, "pda_item", nil, false, false) then
 		local sss = se_respawn.parse_names(ini:r_string(obj_sect, "infop_on_use"))
+		local notif = false
 		for _,v in pairs(sss) do
+			if not notif and actor:dont_has_info(v) then
+				news_manager.send_tip(actor, "saved_data", nil, "stalker", nil, 4000)
+				notif = true
+			end
 			actor:give_info_portion(v)
 		end
-		news_manager.send_tip(actor, "saved_data", nil, "stalker", nil, 4000)
-		alife():create(obj_sect, db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+		alife():create(obj_sect.."_read", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+	end
+	if utils.cfg_get_bool(ini, obj_sect, "treasure_pda_item", nil, false, false) then
+		local rand_str = obj:name():match("rand(%d+)")
+		if rand_str then
+			news_manager.send_tip(actor, rand_str, nil, "stalker", nil, 4000)
+			treasure_manager.get_treasure_manager_new(tonumber(rand_str))
+		end
+		alife():create("amk_pda", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
 	end
 end

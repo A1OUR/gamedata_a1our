@@ -263,7 +263,7 @@ function motivator_binder:use_callback(obj, who)
 		end
 	else
 
-	treasure_manager.get_treasure_manager_new(obj)
+	--treasure_manager.get_treasure_manager_new(obj)
 	end
 end
 

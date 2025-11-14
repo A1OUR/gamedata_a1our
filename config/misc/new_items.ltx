@@ -67,7 +67,7 @@ cform				= skeleton
 visual				= equipments\item_pda.ogf
 radius				= 1
 ;script_binding		= stalker.object_init
-quest_item			= false
+quest_item			= true
 
 description			= enc_equipment_devic_device-pda1
 
@@ -80,7 +80,6 @@ inv_grid_height		= 1
 inv_grid_x			= 6
 inv_grid_y			= 13
 cost				= 0
-always_ungroupable      = true
 
 [lockpick]:identity_immunities
 GroupControlSection	= spawn_group
@@ -141,7 +140,8 @@ visual				= equipments\item_pda.ogf
 radius				= 1
 ;script_binding		= stalker.object_init
 quest_item			= true
-infop_on_use		= escape_stalker_give, garbage_meetstalker_start
+pda_item = true
+infop_on_use		= escape_lager_volk_document_dead
 description			= item_pda_desc
 
 inv_name			= item_pda_stalk_leader_name
@@ -168,3 +168,43 @@ animation_slot		= 4
 
 ;hud item
 hud = wpn_vodka_hud
+icon_group = 1
+
+[pda_stalk_leader_read]:amk_pda
+$spawn 			= "pda_stalk_leader_read"
+inv_name			= item_pda_stalk_leader_name
+inv_name_short		= item_pda_stalk_leader_name
+
+[pda_fox]:pda_stalk_leader
+$spawn 			= "pda_fox"
+infop_on_use		= escape_stalker_give, garbage_meetstalker_start
+inv_name			= item_pda_fox_name
+inv_name_short		= item_pda_fox_name
+
+[pda_fox_read]:amk_pda
+$spawn 			= "pda_fox_read"
+inv_name			= item_pda_fox_name
+inv_name_short		= item_pda_fox_name
+
+[pda_tolik]:pda_stalk_leader
+$spawn 			= "pda_tolik"
+infop_on_use		= tutorial_wounded_give_info
+inv_name			= item_pda_tolik_name
+inv_name_short		= item_pda_tolik_name
+
+[pda_tolik_read]:amk_pda
+$spawn 			= "pda_tolik_read"
+inv_name			= item_pda_tolik_name
+inv_name_short		= item_pda_tolik_name
+
+[treasure_pda_bandit_novice]:pda_stalk_leader
+$spawn 			= "treasure_pda_bandit_novice"
+pda_item 		= false
+inv_name			= item_pda_name
+inv_name_short		= item_pda_name
+description			= item_pda_desc
+always_ungroupable      = true
+treasure_pda_item = true
+m_needs_random_name = true
+community = bandit
+rank = novice

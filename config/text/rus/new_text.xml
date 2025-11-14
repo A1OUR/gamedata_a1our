@@ -300,6 +300,12 @@
 	<string id="tex_escape_lager_volk_document_3">
 		<text>Принести документ Волку</text>
 	</string>
+	<string id="tex_escape_lager_volk_document_dead_text">
+		<text>Кварц: \n \nПривет Волк, мне таки удалось узнать, что ты просил. Извиняй, пишу на чём попалось, но я думаю, тебе без разницы. Скоро буду на Кордоне. \n \nВолк: \n \nОтлично, жду \n \nКварц: \n \nHELP! \nПомоги, я попал в аномалию в тоннеле на Кордоне, сейчас около АТП, сам до лагеря не доберусь. Документ бросил в тоннеле, пошли туда одного из своих, пока его кто не свистнул.\n \nВолк: \n \nЖди подмогу, послал к тебе новичка.</text>
+	</string>
+	<string id="tex_escape_lager_volk_document_dead">
+		<text>КПК Волка</text>
+	</string>
 	<string id="tutorial_wounded_talk_1">
 		<text>Ну, допустим.</text>
 	</string>

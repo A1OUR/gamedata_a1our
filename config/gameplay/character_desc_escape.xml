@@ -59,6 +59,7 @@
 			ammo_5.45x39_fmj \n
 			device_torch \n
 			hand_radio \n
+			pda_stalk_leader \n
 		</supplies>
 		
 #include "gameplay\character_criticals_4.xml"
@@ -133,6 +134,7 @@
 			ammo_12x70_buck \n
 			device_torch \n
 			esc_wounded_flash \n
+			pda_fox \n
 		</supplies>
 				
 #include "gameplay\character_criticals_4.xml"
@@ -165,6 +167,7 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_fmj = 1 \n
+			pda_tolik \n
 		</supplies>
 
 #include "gameplay\character_criticals_5.xml"

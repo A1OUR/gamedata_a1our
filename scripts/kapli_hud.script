@@ -20,7 +20,7 @@ function on_item_to_slot()
 end
 
 function check_drop(obj)
-	db.actor:give_game_news(tostring(obj:name()), "ui\\ui_iconsTotal", Frect():set(0,94,83,47), 1000, 5000)
+	db.actor:give_game_news("Item recieved: "..tostring(obj:name()), "ui\\ui_iconsTotal", Frect():set(0,94,83,47), 1000, 5000)
 	if obj:is_outfit() then
 	local outfit = db.actor:item_in_slot(6)
 	if not outfit then

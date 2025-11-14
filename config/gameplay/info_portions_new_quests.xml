@@ -67,6 +67,9 @@
 	<info_portion id="heli_raid_desant"></info_portion>
 	<info_portion id="escape_lager_volk_document_have"></info_portion>
 	<info_portion id="escape_lager_volk_document_done"></info_portion>
+	<info_portion id="escape_lager_volk_document_dead">
+        <article>tex_escape_lager_volk_document_dead</article>
+    </info_portion>
 	<info_portion id="esc_tolik_contract_start">
         <task>esc_tolik_contract</task>
     </info_portion>
@@ -97,4 +100,8 @@
 	</info_portion>
 	<info_portion id="mar_sci_hands_done"></info_portion>
 	<info_portion id="mar_sci_dead"></info_portion>
+	<info_portion id="esc_stash_1"></info_portion>
+	<info_portion id="esc_stash_2"></info_portion>
+	<info_portion id="esc_stash_3"></info_portion>
+	<info_portion id="esc_stash_4"></info_portion>
 </game_information_portions>

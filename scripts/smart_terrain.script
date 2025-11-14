@@ -643,7 +643,7 @@ function se_smart_terrain:suitable( obj )
 		end
 	end]]
 	v = v + math.random(1,1000)* (1 + self.gulag:get_population() / self.gulag.capacity)
-	dbglog("WWWWWW"..v)
+	--dbglog("WWWWWW"..v)
 --'	if obj:name() == "esc_wolf" then
 --'		printf( "[smart_terrain %s] obj=%s suitable=%d was_in_smart_terrain=%s",
 --'		        self:name(),

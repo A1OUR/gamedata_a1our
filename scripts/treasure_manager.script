@@ -218,34 +218,34 @@ for i=0,n-1 do
 	
 	treasure_info[id] = {}
 	treasure_info[id].probability		= utils.cfg_get_number(ini, id, "probability", nil, true)
-	treasure_info[id].target		= utils.cfg_get_string(ini, id, "target", nil, true, "")
+	--[[treasure_info[id].target		= utils.cfg_get_string(ini, id, "target", nil, true, "")
 	treasure_info[id].name			= utils.cfg_get_string(ini, id, "name", nil, true, "")
 	treasure_info[id].description	= utils.cfg_get_string(ini, id, "description", nil, true, "")
-	treasure_info[id].level	= utils.cfg_get_string(ini, id, "level", nil, true, "")
+	treasure_info[id].level	= utils.cfg_get_string(ini, id, "level", nil, true, "")]]
 	treasure_info[id].items		= parse_spawns(utils.cfg_get_string(ini, id, "items", nil, true, ""))
 
-	local community	= parse_names(utils.cfg_get_string(ini, id, "community", nil, false, "", "stalker, bandit, dolg, freedom"))
+	--[[local community	= parse_names(utils.cfg_get_string(ini, id, "community", nil, false, "", "stalker, bandit, dolg, freedom"))
 	treasure_info[id].community = {}
 	for k,v in pairs(community) do
 		treasure_info[id].community[v] = true
-	end
+	end]]
 
 
 	if treasure_info[id].items == nil then
 		abort("cant find 'items' in %s", id)
 	end
 
-	treasure_info[id].rank = utils.cfg_get_string(ini, id, "rank", nil, true, "")
-	treasure_info[id].level = utils.cfg_get_string(ini, id, "level", nil, true, "")
+	--[[treasure_info[id].rank = utils.cfg_get_string(ini, id, "rank", nil, true, "")
+	treasure_info[id].level = utils.cfg_get_string(ini, id, "level", nil, true, "")]]
 	--' Отметим тайник как новый
 	--print_table(self.treasure_info)
 end
 
 --' Вспомогательные таблицы для облегчения поиска
-local treasure_by_target = {}
+--[[local treasure_by_target = {}
 for k,v in pairs(treasure_info) do
 	treasure_by_target[v.target] = k	
-end
+end]]
 
 
 function get_treasure_manager()
@@ -269,17 +269,43 @@ function clear_treasure_manager()
 	treasure_manager = nil
 end
 
-function get_treasure_manager_new(obj)
+function get_treasure_manager_new(zerno)
 --	db.actor:give_game_news("Тайники не работают!!!!!!!!! Доделать!!!!!!!!!!!!!!!!!!", "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
 --	return false
 --end
 --function get_treasure_manager_new_dodelatb(obj)
+	--' Нужно рандомно выбрать один из тайников.
+	local avail = {}
+	local tr_sum = 0
 	for k,v in pairs(treasure_info) do
-		if obj:has_info(v.target) then
-			if db.actor:dont_has_info(v.target) then
-				db.actor:give_info_portion(v.target)
-				news_manager.send_treasure(v.name)
-				p = patrol(v.target)
+		local treasure_prob = v.probability
+
+		if tonumber(treasure_prob) >= 0
+		then
+			table.insert(avail, {k = k, prob = treasure_prob, items = v.items})
+			tr_sum = tr_sum + treasure_prob
+			dbglog(tostring(k).." sum "..tostring(tr_sum).." prob "..tostring(treasure_prob))
+		end
+	end
+
+	if tr_sum == 0 then
+		return
+	end
+
+	local tr_w = zerno*tr_sum/6000
+	dbglog(" sum "..tostring(tr_sum))
+	dbglog(" zerno "..tostring(zerno))
+	dbglog(" one "..tostring(tr_sum/6000))
+	dbglog(tostring(tr_w))
+	for k,v in pairs(avail) do
+		--dbglog(tostring(v.k).." v.k "..tostring(v.prob).." v.prob ")
+		tr_w = tr_w - v.prob
+		if tr_w <= 0 then
+			--' Выдать тайник
+			if db.actor:dont_has_info(v.k) then
+				db.actor:give_info_portion(v.k)
+				news_manager.send_treasure("treasure")
+				p = patrol(v.k)
 				sobj = alife():create("rukzak", (p:point(index)),  p:level_vertex_id(index), p:game_vertex_id(index))
 				alife():use_ai_locations(sobj, false)
 				for kk,vv in pairs(v.items) do
@@ -300,27 +326,12 @@ function get_treasure_manager_new(obj)
 						end
 					end
 				end
-				level.map_add_object_spot_ser( sobj.id, "treasure", game.translate_string(v.name))
+				level.map_add_object_spot_ser( sobj.id, "treasure", "treasure")
 			end
+			break
 		end
 	end
-	--[[if obj:has_info("test_stash1") then
-		if db.actor:dont_has_info("test_stash1") then 
-			db.actor:give_info_portion("test_stash1")
-			db.actor:give_game_news("ty nashol toyneek", "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
-			sobj = alife():create("inventory_box", patrol("attic"):point(5), 14274, 161)
-			alife():create_ammo("ammo_9x18_fmj",
-		sobj.position,
-		sobj.m_level_vertex_id,
-		sobj.m_game_vertex_id,
-		sobj.id,
-		20)
-			alife():create("af_medusa", sobj.position,
-		14274, 161,
-		sobj.id)
-			level.map_add_object_spot_ser( sobj.id, "treasure", "Backpack with the loot" )
-		end
-	end]]
+	
 end
 
 function take_item_from_box_n(box)

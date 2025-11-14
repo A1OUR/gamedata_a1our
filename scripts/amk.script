@@ -4,7 +4,7 @@ local actor = db.actor
 if actor ~= nil and actor:object("esc_wolf_map") ~= nil and actor:dont_has_info("escape_lager_volk_document_have") then
 actor:give_info_portion("escape_lager_volk_document_have")
 end
-if actor ~= nil and actor:object("amk_af_night_star") ~= nil and actor:dont_has_info("test_quest_art_vziat") then
+if actor ~= nil and actor:object("af_svetlyak") ~= nil and actor:dont_has_info("test_quest_art_vziat") then
 actor:give_info_portion("test_quest_art_vziat")
 end
 if actor ~= nil and actor:object("outfit_bandit_m1") ~= nil and actor:dont_has_info("nimble_kurtka_found") and actor:has_info("toynik_info")	then

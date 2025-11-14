@@ -104,6 +104,10 @@
         <text>tex_escape_lager_volk_document</text>
     </article>
 	
+	<article id="tex_escape_lager_volk_document_dead" name="tex_escape_lager_volk_document_dead" article_type="journal" group="Found_PDA">
+        <text>tex_escape_lager_volk_document_dead_text</text>
+    </article>
+	
 	<article id="tex_esc_tolik_contract" name="tex_esc_tolik_contract" article_type="task">
 		<texture x="450" y="50" width="50" height="50">ui\ui_icon_equipment</texture>
         <text>tex_esc_tolik_contract</text>

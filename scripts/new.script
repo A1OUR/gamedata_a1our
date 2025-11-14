@@ -3,5 +3,5 @@
 --'*******************************************************************************
 
 function spawn_star()
-	amk.spawn_at_way("amk_af_night_star","svetlyak_wp",math.random(0,2))
+	amk.spawn_at_way("af_svetlyak","svetlyak_wp",math.random(0,2))
 end

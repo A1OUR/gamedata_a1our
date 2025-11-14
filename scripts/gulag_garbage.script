@@ -1441,14 +1441,14 @@ function load_states(gname, type)
 			if actor ~= nil then
 				if has_alife_info("gar_alarm") then
 					if has_alife_info("gar_bandits_killed") then
-						db.actor:give_game_news("killed", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
+						--db.actor:give_game_news("killed", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
 						return 1
 					else
-						db.actor:give_game_news("noy_killed", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
+						--db.actor:give_game_news("noy_killed", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
 						return 2
 					end
 				else
-					db.actor:give_game_news("no alarm", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
+					--db.actor:give_game_news("no alarm", "ui\\ui_iconsTotal", Frect():set(x,y,83,47), 0, 1000)
 					return 0
 				end
 			else
