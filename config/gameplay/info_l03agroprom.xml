@@ -100,7 +100,7 @@
 	<info_portion id="agr_krot_met">
 	</info_portion>
 	<info_portion id="agr_krot_pda">
-		<article>storyline_krot_PDA</article>
+	<!-- 	<article>storyline_krot_PDA</article> -->
 	</info_portion>
 
 	<info_portion id="agr_gunslinger_flash">
@@ -149,7 +149,7 @@
 	</info_portion>
 	
 	<info_portion id="agr_nii_security_plan_flash_have">
-		<article>agr_nii_security_plan</article>
+		<!-- <article>agr_nii_security_plan</article> -->
 	</info_portion>
 	
 	<info_portion id="agr_nii_fab_mil_task">
@@ -199,8 +199,31 @@
 		<task>cit_doctor_meet</task>
 	</info_portion>
 	<info_portion id="agr_cit_doctor_meet_done"></info_portion>
-	<info_portion id="agr_installation_need_to_disable"></info_portion>
+	<info_portion id="agr_installation_need_to_disable">
+		<task>agr_disable_installation</task>
+	</info_portion>
 	<info_portion id="agr_installation_disabled"></info_portion>
 	<info_portion id="agr_installation_can_disable"></info_portion>
-	
+	<info_portion id="pda_dead_agr_soldier">
+		<article>storyline_dead_agr_soldier_PDA</article>
+	</info_portion>
+	<info_portion id="pda_dead_agr_soldier_task">
+		<task>find_pda_boss_agr_soldier</task>
+	</info_portion>
+	<info_portion id="pda_boss_agr_soldier">
+		<article>storyline_boss_agr_soldier_PDA</article>
+	</info_portion>
+	<info_portion id="pda_boss_agr_soldier_task">
+		<task>find_agr_journal</task>
+	</info_portion>
+	<info_portion id="agr_journal">
+		<article>storyline_agr_journal</article>
+	</info_portion>
+	<info_portion id="agr_journal_task">
+		<task>find_mar_sci_leader</task>
+	</info_portion>
+	<info_portion id="mar_sci_leader_meet"></info_portion>
+	<info_portion id="find_manual_task">
+		<task>find_installation_manual</task>
+	</info_portion>
 		 

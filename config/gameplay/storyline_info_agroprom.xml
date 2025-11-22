@@ -53,6 +53,15 @@
 	<article id="storyline_krot_PDA" name="Krot's_PDA" article_type="journal" group="Found_PDA">
         <text>storyline_krot_PDA_txt</text>
     </article>
+	<article id="storyline_dead_agr_soldier_PDA" name="item_pda_dead_agr_soldier_name" article_type="journal" group="Found_PDA">
+        <text>storyline_dead_agr_soldier_PDA_txt</text>
+    </article>
+	<article id="storyline_boss_agr_soldier_PDA" name="item_pda_boss_agr_soldier_name" article_type="journal" group="Found_PDA">
+        <text>storyline_boss_agr_soldier_PDA_txt</text>
+    </article>
+	<article id="storyline_agr_journal" name="item_agr_journal_name" article_type="journal" group="Found_PDA">
+        <text>storyline_agr_journal_txt</text>
+    </article>
 	<article id="agr_cit_doctor_meet_descr" name="cit_doctor_meet" article_type="task" group="cit_doctor_meet/0">
 		<text>agr_cit_doctor_meet_descr_txt</text>
 	</article>

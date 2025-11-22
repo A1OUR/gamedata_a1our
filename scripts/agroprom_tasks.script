@@ -10,7 +10,7 @@ function proceed()
 	-- gunslinger's flash
     elseif actor:object("gunslinger_flash") then 
         actor:give_info_portion("agr_find_ghost_start")
-        return true
+        --return true
 
 	end
 	
@@ -23,18 +23,58 @@ function proceed()
 		actor:give_info_portion("agr_ratcatcher2_spawn")
 	end
 	
+	if has_alife_info("bar_kill_deserter_done") and not has_alife_info("agr_ratcatcher2_spawn") and not xr_conditions.is_day (actor, npc) then
+		actor:give_info_portion("agr_ratcatcher2_spawn")
+	end
+	
 end
 
 function process_info_portion(info_id)
 	if info_id == "agr_krot_secret_info" and
 	   not has_alife_info("agr_find_gunslinger_cache_start")
 	then
-
 		db.actor:give_info_portion("agr_find_gunslinger_cache_start")
         db.actor:give_info_portion("agr_krot_task_complete")
         db.actor:give_info_portion("agr_factory_spawn_spetsnaz")
-
 	end
+	
+	if info_id == "agr_installation_need_to_disable" then
+		if has_alife_info("pda_dead_agr_soldier") then
+			db.actor:give_info_portion("pda_dead_agr_soldier_task")
+		end
+		if has_alife_info("pda_boss_agr_soldier") then
+			db.actor:give_info_portion("pda_boss_agr_soldier_task")
+		end
+		if has_alife_info("agr_journal") then
+			db.actor:give_info_portion("agr_journal_task")
+			if has_alife_info("mar_sci_leader_meet") then
+				db.actor:give_info_portion("find_manual_task")
+			end
+		end
+		return true
+	end
+
+	if has_alife_info("agr_installation_need_to_disable") then
+		if info_id == "pda_dead_agr_soldier" then
+			db.actor:give_info_portion("pda_dead_agr_soldier_task")
+			return true
+		elseif info_id == "pda_boss_agr_soldier" then
+			db.actor:give_info_portion("pda_boss_agr_soldier_task")
+			return true
+		elseif info_id == "agr_journal" then
+			db.actor:give_info_portion("agr_journal_task")
+			if has_alife_info("mar_sci_leader_meet") then
+				db.actor:give_info_portion("find_manual_task")
+			end
+			return true
+		elseif info_id == "mar_sci_leader_meet" then
+			if has_alife_info("agr_journal") then
+				db.actor:give_info_portion("find_manual_task")
+			end
+			return true
+		end
+	end
+	
 	if info_id == "agr_sold_about_ratcatcher" then
 		level_tasks.add_location(304, "crlc_mdl", "agr_swamp_hint")
 		return true

@@ -25,6 +25,7 @@
 			ammo_5.45x39_fmj \n
 			device_torch \n
 			medkit = 1 \n
+			pda_seryi = 1 \n
 		</supplies>
 		
 #include "gameplay\character_criticals_4.xml"
@@ -33,7 +34,7 @@
 		<start_dialog>dm_hello_dialog</start_dialog>
 		<actor_dialog>dm_cool_info_dialog</actor_dialog>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
-		<actor_dialog>gar_seriy_about_garbage</actor_dialog>
+		<!-- <actor_dialog>gar_seriy_about_garbage</actor_dialog> -->
 	</specific_character>	
 	
 	<specific_character id="gar_dram_novice" team_default = "1">

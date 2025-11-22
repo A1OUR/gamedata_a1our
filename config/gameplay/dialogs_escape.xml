@@ -2951,7 +2951,6 @@
 			<phrase id="2">
                 <text>artmod_861_dialog_2</text>
 				<give_info>escape_lager_volk_document_start</give_info>
-				<action>sak_dialog.spawn_map</action>
             </phrase>
 			<phrase id="3">
                 <text>artmod_861_dialog_3</text>

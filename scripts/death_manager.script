@@ -158,6 +158,7 @@ end
 
 --' Функция вызывается для каждого предмета, если вернет false то предмет удалится.
 function keep_item(npc, item)
+	-- hack for kuz
     local section = item:section()
 	if section == "wpn_ak74u" or section == "wpn_fort_m1" then
 		if npc:section() == 'stalker_voen_trader' then

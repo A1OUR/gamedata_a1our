@@ -161,3 +161,73 @@
 		<object_story_id>Mil_Exit_to_DeadCity</object_story_id>
 	</objective>
 </game_task>
+<game_task id="agr_disable_installation">
+	<title>agr_disable_installation</title>
+	<objective>
+		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<infoportion_complete>agr_installation_disabled</infoportion_complete>
+		<!-- <article>agr_find_ghost_descr</article> -->
+	</objective>
+	<objective>
+		<text>agr_disable_installation_1</text>
+		<infoportion_complete>agr_installation_can_disable</infoportion_complete>
+	</objective>
+	<objective>
+		<text>agr_disable_installation_2</text>
+		<infoportion_complete>agr_installation_disabled</infoportion_complete>
+	</objective>
+</game_task>
+
+<game_task id="find_pda_boss_agr_soldier">
+	<title>find_pda_boss_agr_soldier</title>
+	<objective>
+		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<infoportion_complete>pda_boss_agr_soldier</infoportion_complete>
+		<!-- <article>agr_find_ghost_descr</article> -->
+	</objective>
+	<objective>
+		<text>find_pda_boss_agr_soldier_1</text>
+		<infoportion_complete>pda_boss_agr_soldier</infoportion_complete>
+	</objective>
+</game_task>
+
+<game_task id="find_agr_journal">
+	<title>find_agr_journal</title>
+	<objective>
+		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<infoportion_complete>agr_journal</infoportion_complete>
+		<!-- <article>agr_find_ghost_descr</article> -->
+	</objective>
+	<objective>
+		<text>find_agr_journal_1</text>
+		<infoportion_complete>agr_journal</infoportion_complete>
+	</objective>
+</game_task>
+
+<game_task id="find_mar_sci_leader">
+	<title>find_mar_sci_leader</title>
+	<objective>
+		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<infoportion_complete>mar_sci_leader_meet</infoportion_complete>
+		<!-- <article>agr_find_ghost_descr</article> -->
+	</objective>
+	<objective>
+		<text>find_mar_sci_leader_1</text>
+		<infoportion_complete>mar_sci_leader_meet</infoportion_complete>
+	</objective>
+</game_task>
+
+<game_task id="find_installation_manual">
+	<title>find_installation_manual</title>
+	<objective>
+		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<infoportion_complete>agr_installation_can_disable</infoportion_complete>
+		<!-- <article>agr_find_ghost_descr</article> -->
+	</objective>
+	<objective>
+		<text>find_installation_manual_1</text>
+		<infoportion_complete>agr_installation_can_disable</infoportion_complete>
+		<map_location_type hint="agr_disable_installation_5">green_location</map_location_type>
+		<object_story_id>mar_sci_leader</object_story_id>
+	</objective>
+</game_task>

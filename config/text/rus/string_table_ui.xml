@@ -30,6 +30,9 @@
 	<string id="game_not_saved_hs">
 		<text>Слишком опасно, чтобы сохранить игру</text>
 	</string>
+	<string id="st_lc_blocked_default">
+		<text>Неизвестный путь</text>
+	</string>
 	<string id="tip_car_locked">
 		<text>Заблокировано</text>
 	</string>

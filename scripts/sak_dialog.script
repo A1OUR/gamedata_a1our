@@ -36,10 +36,6 @@ function has_tolik_money(actor, npc)
 	end
 end
 
-function spawn_map()
-	amk.spawn_at_way("esc_wolf_map","map_way")
-end
-
 function give_10vodka()
 	sak.out_item_namber("vodka",10)
 end
@@ -63,6 +59,12 @@ end
 function mar_sci_hands_have()
 	return sak.have_item_namber("mutant_pitch_zombie_hand",10) ~= false
 end
+
 function give_mar_sci_hands(first_speaker, second_speaker)
 	sak.out_item_namber("mutant_pitch_zombie_hand",10)
 end
+
+function give_installation_manual(first_speaker, second_speaker)
+	dialogs.relocate_item_section(first_speaker, "installation_manual", "in")
+end
+

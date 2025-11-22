@@ -103,5 +103,9 @@
  <text font="letterica18"  r="240" g="217" b="182" a="255" align="l"/>
 </cs_debug>
 
+	<lc_blocked  x="100" y="730" width="800" height="30">
+		<text font="graffiti22"  r="240" g="217" b="182" a="255" align="c"/>
+	</lc_blocked>
+
 
 </header>

@@ -21,6 +21,37 @@ inv_grid_width    = 2
 inv_grid_height   = 1
 inv_grid_x      = 6
 inv_grid_y      = 19
+
+on_take_item = true
+infop_on_take = nimble_zapis_found
+
+[dilo_pda]:identity_immunities
+GroupControlSection	= spawn_group
+discovery_dependency = 
+$spawn 				= "devices\quest_items\dilo_pda"
+;$prefetch 			= 32
+class				= II_ATTCH
+cform				= skeleton
+visual				= equipments\item_pda.ogf
+radius				= 1
+;script_binding		= stalker.object_init
+quest_item			= true
+
+description			= item_pda_dilo_desc
+
+inv_name			= item_pda_dilo_name
+inv_name_short		= item_pda_dilo_name
+inv_weight			= 0
+
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 6
+inv_grid_y			= 13
+cost				= 0
+
+on_take_item = true
+infop_on_take = kurtka_pogovoril, poluchen_pda_dilo
+
 [maslaev_head]:identity_immunities
 GroupControlSection	= spawn_group
 discovery_dependency = 
@@ -125,9 +156,11 @@ inv_weight			= 0.0
 
 inv_grid_width		= 2
 inv_grid_height		= 1
-inv_grid_x			= 9
-inv_grid_y			= 27
+inv_grid_x			= 6
+inv_grid_y			= 19
 cost				= 0
+on_take_item = true
+infop_on_take		= escape_lager_volk_document_have
 
 [pda_stalk_leader]:identity_immunities
 GroupControlSection	= spawn_group
@@ -196,6 +229,73 @@ inv_name_short		= item_pda_tolik_name
 $spawn 			= "pda_tolik_read"
 inv_name			= item_pda_tolik_name
 inv_name_short		= item_pda_tolik_name
+
+[pda_seryi]:pda_stalk_leader
+$spawn 			= "pda_seryi"
+infop_on_use		= agr_can_ask_krot_about_gunslinger, gar_actor_found_seryi_pda
+inv_name			= item_pda_seryi_name
+inv_name_short		= item_pda_seryi_name
+
+[pda_seryi_read]:amk_pda
+$spawn 			= "pda_seryi_read"
+inv_name			= item_pda_seryi_name
+inv_name_short		= item_pda_seryi_name
+
+[photo_krot]:esc_wolf_map
+$spawn 			= "photo_krot"
+infop_on_take		= agr_krot_secret_info, agr_krot_pda
+visual				= amk\item_zapiska1.ogf
+inv_name			= item_photo_krot_name
+inv_name_short		= item_photo_krot_name
+description			= item_photo_krot_desc
+
+[pda_dead_esc_novice]:pda_stalk_leader
+$spawn 			= "pda_dead_esc_novice"
+infop_on_use		= esc_tutorial_dead_novice, esc_find_railroad_passage_find_stalker 
+inv_name			= item_pda_dead_esc_novice_name
+inv_name_short		= item_pda_dead_esc_novice_name
+
+[pda_dead_esc_novice_read]:amk_pda
+$spawn 			= "pda_dead_esc_novice_read"
+inv_name			= item_pda_dead_esc_novice_name
+inv_name_short		= item_pda_dead_esc_novice_name
+
+[pda_dead_agr_soldier]:pda_stalk_leader
+$spawn 			= "pda_dead_agr_soldier"
+infop_on_use		= pda_dead_agr_soldier
+inv_name			= item_pda_dead_agr_soldier_name
+inv_name_short		= item_pda_dead_agr_soldier_name
+
+[pda_dead_agr_soldier_read]:amk_pda
+$spawn 			= "pda_dead_agr_soldier_read"
+inv_name			= item_pda_dead_agr_soldier_name
+inv_name_short		= item_pda_dead_agr_soldier_name
+
+[pda_boss_agr_soldier]:pda_stalk_leader
+$spawn 			= "pda_boss_agr_soldier"
+infop_on_use		= pda_boss_agr_soldier
+inv_name			= item_pda_boss_agr_soldier_name
+inv_name_short		= item_pda_boss_agr_soldier_name
+
+[pda_boss_agr_soldier_read]:amk_pda
+$spawn 			= "pda_boss_agr_soldier_read"
+inv_name			= item_pda_boss_agr_soldier_name
+inv_name_short		= item_pda_boss_agr_soldier_name
+
+[installation_manual]:esc_wolf_map
+$spawn 			= "installation_manual"
+infop_on_take		= agr_installation_can_disable
+inv_name			= item_installation_manual_name
+inv_name_short		= item_installation_manual_name
+description			= item_installation_manual_desc
+
+[agr_journal]:esc_wolf_map
+$spawn 			= "agr_journal"
+infop_on_take		= agr_journal
+visual				= equipments\item_document_01.ogf
+inv_name			= item_agr_journal_name
+inv_name_short		= item_agr_journal_name
+description			= item_agr_journal_desc;storyline_agr_journal_txt
 
 [treasure_pda_bandit_novice]:pda_stalk_leader
 $spawn 			= "treasure_pda_bandit_novice"

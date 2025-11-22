@@ -9,7 +9,8 @@ local level_scripts = {
 	deadcity_tasks,
 	radar_tasks,
 	pripyat_tasks,
-	warlab_tasks
+	warlab_tasks,
+	marsh_tasks
 }
 
 
@@ -128,6 +129,16 @@ function add_lchanger_location()
 		local obj = sim:story_object(91)
 		if obj then
 			level.map_add_object_spot(obj.id, "level_changer", "to_garbage")
+		end
+		local obj = sim:story_object(96)
+		if obj then
+			level.map_add_object_spot(obj.id, "level_changer", "to_marsh")
+		end
+		
+		--marsh
+		local obj = sim:story_object(1701)
+		if obj then
+			level.map_add_object_spot(obj.id, "level_changer", "to_escape")
 		end
 
 		-- garbage

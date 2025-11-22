@@ -260,7 +260,7 @@ function actor_binder:on_item_take (obj)
 	-- added by xStream for AMK miniSDK
 	amk.on_item_take(obj)
 	-- end of addition
-
+    utility_script.take(obj)
 	arc_main.get_item(obj)
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -432,6 +432,7 @@ function actor_binder:update(delta)
 		if not has_alife_info("storyline_actor_start") and
 		   (level.name() == "l01_escape")
 		then
+			utility_script.on_start()
 			self.object:give_info_portion("storyline_actor_start")
 			_G.g_start_avi = true
 			printf("*AVI* RUN START AVI")
@@ -453,6 +454,7 @@ function actor_binder:update(delta)
 
 		self.bCheckStart = false
 	end
+	
 	if rx_ai then rx_ai.actor_update() end
 	ogsm_funcs.on_actor_update()
 	-- added by xStream for AMK miniSDK

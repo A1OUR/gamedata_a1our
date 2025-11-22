@@ -1,5 +1,6 @@
 local actor = db.actor
 local ini = system_ini()
+
 function use(obj)
 	local obj_sect = obj:section()
 	if utils.cfg_get_bool(ini, obj_sect, "pda_item", nil, false, false) then
@@ -23,3 +24,23 @@ function use(obj)
 		alife():create("amk_pda", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
 	end
 end
+
+function take(obj)
+local obj_sect = obj:section()
+	if utils.cfg_get_bool(ini, obj_sect, "on_take_item", nil, false, false) then
+		local sss = se_respawn.parse_names(ini:r_string(obj_sect, "infop_on_take"))
+		local notif = false
+		for _,v in pairs(sss) do
+			if not notif and actor:dont_has_info(v) then
+				news_manager.send_tip(actor, "found_data", nil, "stalker", nil, 4000)
+				notif = true
+			end
+			actor:give_info_portion(v)
+		end
+	end
+end
+
+function on_start()
+	amk.spawn_at_way("esc_wolf_map","map_way")
+end
+

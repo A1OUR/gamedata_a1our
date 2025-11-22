@@ -20,7 +20,7 @@ function printf(fmt,...)
 	log(string.format(fmt,...))
 end
 
-function --dbglog(fmt,...)
+function dbglog(fmt,...)
 	local msg = string.format(fmt, ...)
 	local msg_no_ws = string.gsub(msg, "%s", "_")
 	get_console():execute("dbg:" .. msg_no_ws)
