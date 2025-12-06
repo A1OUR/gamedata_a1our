@@ -12,6 +12,8 @@ lasthealth = 0
 lastime = nil
 
 ----------------------------------------------------------------------------------------------------------------------
+local ini = system_ini()
+
 class "motivator_binder" (object_binder)
 
 function motivator_binder:__init (obj) super(obj)
@@ -192,7 +194,7 @@ function motivator_binder:hit_callback(obj, amount, local_direction, who, bone_i
 		xr_wounded.hit_callback(self.object:id())
 	end
 	if rx_ai then rx_ai.npc_hit(obj,amount,local_direction,who,bone_index,self.object) end
-	if who:section() == "zombie_pitch" then
+	if utility_script.r_string_if_exists(who:section(), "spec_rank") == "pitch" then
 		local h = hit() 
 		h.impulse = 0 
 		h.draftsman = who

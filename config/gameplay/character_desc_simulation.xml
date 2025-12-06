@@ -10768,14 +10768,16 @@ ammo_7.62x54_7h14 \n
 		<visual>actors\neytral\stalker_neytral_exoskeleton</visual>
 		<supplies>
 			[spawn] \n
-			wpn_usp \n
-			ammo_11.43x23_hydro = 1 \n
-			wpn_g36 = 1 \n
-			ammo_5.56x45_ap = 1 \n
-			device_torch \n
-#include "gameplay\character_items.xml"\n
-#include "gameplay\character_food.xml" \n
-#include "gameplay\character_drugs.xml"
+			group1:100 \n
+			30:wpn_abakan_m2,ammo_5.45x39_ap \n
+			30:wpn_ak74,ammo_5.45x39_fmj \n
+			40:wpn_groza,ammo_9x39_sp5 \n
+			group2:100 \n
+			30:wpn_walther,ammo_9x19_fmj \n
+			30:wpn_pm,ammo_9x18_fmj \n
+			40:wpn_usp,ammo_11.43x23_hydro \n
+			#include "gameplay\character_items.xml" 
+			#include "gameplay\character_food.xml"
 		</supplies>
 		
 #include "gameplay\character_criticals_2.xml"

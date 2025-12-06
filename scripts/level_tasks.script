@@ -140,6 +140,12 @@ function add_lchanger_location()
 		if obj then
 			level.map_add_object_spot(obj.id, "level_changer", "to_escape")
 		end
+		if has_alife_info("mar_to_agr_discovered") then
+			obj = sim:story_object(1703)
+			if obj then
+				level.map_add_object_spot(obj.id, "level_changer", "to_agroprom")
+			end
+		end
 
 		-- garbage
 		obj = sim:story_object(191)
@@ -175,6 +181,10 @@ function add_lchanger_location()
 		obj = sim:story_object(392)
 		if obj then
 			level.map_add_object_spot(obj.id, "level_changer", "to_garbage")
+		end
+		obj = sim:story_object(352)
+		if obj then
+			level.map_add_object_spot(obj.id, "level_changer", "to_marsh")
 		end
 
 		-- darkvalley

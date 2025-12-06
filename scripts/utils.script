@@ -114,6 +114,7 @@ function cfg_get_string(char_ini, section, field, object, mandatory, gulag_name,
 		if gulag_name and gulag_name ~= "" then
 			return gulag_name .. "_" .. char_ini:r_string(section, field)
 		else
+			--dbglog(section.." "..field)
 			return char_ini:r_string(section, field)
 		end
 	end

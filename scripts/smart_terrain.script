@@ -6,7 +6,7 @@ Smart Terrain (механизм, организовывающий всех сталкеров и некоторых монстров в 
 
 --function printf()
 --end
-
+local ini = system_ini()
 local check_period
 
 if not editor() then
@@ -21,7 +21,7 @@ local monster_classes
 
 local disagreed, agreed, agreed_exclusive = 0, 1, 2
 local exclusive_sections = {
-zombie_pitch = true
+pitch = true
 }
 local smart_section = "smart_terrains"
 
@@ -484,8 +484,11 @@ function se_smart_terrain:smart_terrain_accepts_obj( obj, obj_agreement )
 			return false
 		end
 		
-		if (exclusive_sections[obj:section_name()] and self.exclusive_sections and not self.exclusive_sections[obj:section_name()]) or (not exclusive_sections[obj:section_name()] and self.exclusive_sections) or (exclusive_sections[obj:section_name()] and not self.exclusive_sections) then
-			return false
+		local spec_rank = utility_script.r_string_if_exists(obj:section_name(), "spec_rank")
+		if spec_rank ~= "" then
+			if (exclusive_sections[spec_rank] and self.exclusive_sections and not self.exclusive_sections[spec_rank]) or (not exclusive_sections[spec_rank] and self.exclusive_sections) or (exclusive_sections[spec_rank] and not self.exclusive_sections) then
+				return false
+			end
 		end
 		
 --'		if obj:name() == "esc_wolf" then
@@ -634,6 +637,7 @@ function se_smart_terrain:suitable( obj )
 	--' Повысить подходящесть эксклюзивного смарттеррейна
 	if self:obj_accepts_smart_terrain(obj) == agreed_exclusive then
 		v = 100000 --'Так чтобы все эксклюзивные были заведомо лучше
+		return v
 	end
 
 	--[[for id, strn in pairs( smart_terrains[self:get_level_name()] ) do
@@ -642,7 +646,16 @@ function se_smart_terrain:suitable( obj )
 			v = v + (strn.gulag.capacity - strn.gulag:get_population())*math.random(1,100)
 		end
 	end]]
-	v = v + math.random(1,1000)* (1 + self.gulag:get_population() / self.gulag.capacity)
+	
+	local k_pop = self.gulag:get_population() / self.gulag.capacity
+	if k_pop <= 0.3 then
+		v = math.random(1,1000) + 300
+	else
+		v = math.random(1,1000) * (1+k_pop)
+	end	
+		
+		
+		
 	----dbglog("WWWWWW"..v)
 --'	if obj:name() == "esc_wolf" then
 --'		printf( "[smart_terrain %s] obj=%s suitable=%d was_in_smart_terrain=%s",
@@ -753,6 +766,7 @@ function se_smart_terrain:unregister_npc( obj )
 
 	sim_statistic.remove( obj )
 	level.map_remove_object_spot(obj.id, "red_location")
+	self.marked = false
 --'	if sim_statistic.show_stalker_spot == true and obj:alive() then
 --'		local community, rank = sim_statistic.getNpcType(obj)
 --'		local spot = "alife_presentation_monstr"
@@ -1169,26 +1183,38 @@ function se_smart_terrain:update()
 	if not self.gulag_working then
 		return
 	end
-
-	if self.marked == false and task_manager.isloaded() == true then
-		----dbglog("trying to mARK")
-		local mark_them = task_manager.get_random_task():is_target(self.id)
-		if mark_them == true then
-			self.marked = true
+	
+	self.debug_mapspots = true
+	
+	if self.debug_mapspots == true then
+		if self.marked == false then
 			for id, npc_info in pairs( self.npc_info ) do
 				--dbglog("adding mapspot")
 				level.map_add_object_spot(id, "red_location", npc_info.name)
 			end
+			self.marked = true
 		end
-	end
-	
-	if self.marked == true then
-		local mark_them = task_manager.get_random_task():is_target(self.id)
-		if mark_them == false then
-			self.marked = false
-			for id, npc_info in pairs( self.npc_info ) do
-					--dbglog("removin mapspot")
-					level.map_remove_object_spot(id, "red_location", npc_info.name)
+	else
+		if self.marked == false and task_manager.isloaded() == true then
+			----dbglog("trying to mARK")
+			local mark_them = task_manager.get_random_task():is_target(self.id)
+			if mark_them == true then
+				self.marked = true
+				for id, npc_info in pairs( self.npc_info ) do
+					--dbglog("adding mapspot")
+					level.map_add_object_spot(id, "red_location", npc_info.name)
+				end
+			end
+		end
+		
+		if self.marked == true then
+			local mark_them = task_manager.get_random_task():is_target(self.id)
+			if mark_them == false then
+				self.marked = false
+				for id, npc_info in pairs( self.npc_info ) do
+						--dbglog("removin mapspot")
+						level.map_remove_object_spot(id, "red_location", npc_info.name)
+				end
 			end
 		end
 	end

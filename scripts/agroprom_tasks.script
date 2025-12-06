@@ -29,6 +29,15 @@ function proceed()
 	
 end
 
+function can_give_boss()
+	return (has_alife_info("agr_journal") or has_alife_info("mar_sci_leader_meet") or has_alife_info("agr_installation_disabled"))
+end
+
+function can_give_dead()
+	return not can_give_boss and not has_alife_info("pda_boss_agr_soldier_task")
+end
+
+
 function process_info_portion(info_id)
 	if info_id == "agr_krot_secret_info" and
 	   not has_alife_info("agr_find_gunslinger_cache_start")
@@ -39,11 +48,11 @@ function process_info_portion(info_id)
 	end
 	
 	if info_id == "agr_installation_need_to_disable" then
-		if has_alife_info("pda_dead_agr_soldier") then
-			db.actor:give_info_portion("pda_dead_agr_soldier_task")
-		end
-		if has_alife_info("pda_boss_agr_soldier") then
+		if has_alife_info("pda_boss_agr_soldier") and not can_give_boss then
 			db.actor:give_info_portion("pda_boss_agr_soldier_task")
+		end
+		if has_alife_info("pda_dead_agr_soldier") and can_give_dead then
+			db.actor:give_info_portion("pda_dead_agr_soldier_task")
 		end
 		if has_alife_info("agr_journal") then
 			db.actor:give_info_portion("agr_journal_task")
@@ -55,11 +64,15 @@ function process_info_portion(info_id)
 	end
 
 	if has_alife_info("agr_installation_need_to_disable") then
-		if info_id == "pda_dead_agr_soldier" then
-			db.actor:give_info_portion("pda_dead_agr_soldier_task")
+		if info_id == "pda_boss_agr_soldier" then
+			if not (has_alife_info("agr_journal") or has_alife_info("mar_sci_leader_meet") or has_alife_info("agr_installation_disabled")) then
+				db.actor:give_info_portion("pda_boss_agr_soldier_task")
+			end
 			return true
-		elseif info_id == "pda_boss_agr_soldier" then
-			db.actor:give_info_portion("pda_boss_agr_soldier_task")
+		elseif info_id == "pda_dead_agr_soldier" then
+			if not (has_alife_info("agr_journal") or has_alife_info("mar_sci_leader_meet") or has_alife_info("agr_installation_disabled") or has_alife_info("pda_boss_agr_soldier_task")) then
+				db.actor:give_info_portion("pda_dead_agr_soldier_task")
+			end
 			return true
 		elseif info_id == "agr_journal" then
 			db.actor:give_info_portion("agr_journal_task")
@@ -74,7 +87,8 @@ function process_info_portion(info_id)
 			return true
 		end
 	end
-	
+
+
 	if info_id == "agr_sold_about_ratcatcher" then
 		level_tasks.add_location(304, "crlc_mdl", "agr_swamp_hint")
 		return true

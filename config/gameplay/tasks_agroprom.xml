@@ -164,9 +164,9 @@
 <game_task id="agr_disable_installation">
 	<title>agr_disable_installation</title>
 	<objective>
-		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<icon>ui_iconsTotal_bar_radar_deactivate</icon>
 		<infoportion_complete>agr_installation_disabled</infoportion_complete>
-		<!-- <article>agr_find_ghost_descr</article> -->
+		<article>agr_disable_installation_descr</article>
 	</objective>
 	<objective>
 		<text>agr_disable_installation_1</text>
@@ -181,12 +181,13 @@
 <game_task id="find_pda_boss_agr_soldier">
 	<title>find_pda_boss_agr_soldier</title>
 	<objective>
-		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<icon>ui_iconsNpc_soldier_beret</icon>
 		<infoportion_complete>pda_boss_agr_soldier</infoportion_complete>
-		<!-- <article>agr_find_ghost_descr</article> -->
+		<function_complete>agroprom_tasks.can_give_boss</function_complete>
+		<article>find_pda_boss_agr_soldier_descr</article>
 	</objective>
 	<objective>
-		<text>find_pda_boss_agr_soldier_1</text>
+		<text>find_pda_boss_agr_soldier</text>
 		<infoportion_complete>pda_boss_agr_soldier</infoportion_complete>
 	</objective>
 </game_task>
@@ -194,12 +195,12 @@
 <game_task id="find_agr_journal">
 	<title>find_agr_journal</title>
 	<objective>
-		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<icon>ui_iconsTotal_find_item</icon>
 		<infoportion_complete>agr_journal</infoportion_complete>
-		<!-- <article>agr_find_ghost_descr</article> -->
+		<article>find_agr_journal_descr</article>
 	</objective>
 	<objective>
-		<text>find_agr_journal_1</text>
+		<text>find_agr_journal</text>
 		<infoportion_complete>agr_journal</infoportion_complete>
 	</objective>
 </game_task>
@@ -207,12 +208,12 @@
 <game_task id="find_mar_sci_leader">
 	<title>find_mar_sci_leader</title>
 	<objective>
-		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<icon>ui_iconsTotal_yan_scientist_job</icon>
 		<infoportion_complete>mar_sci_leader_meet</infoportion_complete>
-		<!-- <article>agr_find_ghost_descr</article> -->
+		<article>find_mar_sci_leader_descr</article>
 	</objective>
 	<objective>
-		<text>find_mar_sci_leader_1</text>
+		<text>find_mar_sci_leader</text>
 		<infoportion_complete>mar_sci_leader_meet</infoportion_complete>
 	</objective>
 </game_task>
@@ -220,14 +221,14 @@
 <game_task id="find_installation_manual">
 	<title>find_installation_manual</title>
 	<objective>
-		<icon>ui_iconsTotal_yan_find_scientist</icon>
+		<icon>ui_iconsTotal_bar_darklab_documents</icon>
 		<infoportion_complete>agr_installation_can_disable</infoportion_complete>
-		<!-- <article>agr_find_ghost_descr</article> -->
+		<article>find_installation_manual_descr</article>
 	</objective>
 	<objective>
-		<text>find_installation_manual_1</text>
+		<text>find_installation_manual</text>
 		<infoportion_complete>agr_installation_can_disable</infoportion_complete>
-		<map_location_type hint="agr_disable_installation_5">green_location</map_location_type>
+		<map_location_type hint="mar_science_camp_leader_name">green_location</map_location_type>
 		<object_story_id>mar_sci_leader</object_story_id>
 	</objective>
 </game_task>

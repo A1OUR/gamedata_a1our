@@ -226,4 +226,5 @@
 	<info_portion id="find_manual_task">
 		<task>find_installation_manual</task>
 	</info_portion>
-		 
+	<info_portion id="mar_to_agr_discovered"></info_portion>
+	<info_portion id="mar_to_agr_discovered2"></info_portion>

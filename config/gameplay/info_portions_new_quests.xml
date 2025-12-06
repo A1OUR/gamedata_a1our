@@ -98,6 +98,8 @@
 	<info_portion id="mar_sci_hands_start">
 		<task>mar_sci_hands</task>
 	</info_portion>
+	<info_portion id="mar_sci_hands_info"></info_portion>
+	<info_portion id="mar_sci_hands_info_2"></info_portion>
 	<info_portion id="mar_sci_hands_done"></info_portion>
 	<info_portion id="mar_sci_dead"></info_portion>
 	<info_portion id="esc_stash_1"></info_portion>

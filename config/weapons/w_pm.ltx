@@ -168,7 +168,10 @@ silencer_light_var_color	= 0.05
 silencer_light_var_range	= 0.5
 silencer_light_time 		= 0.2
 
- 
+;nearwall_dist_min = 0.5 ;READ_IF_EXISTS(pSettings, r_float, section, "nearwall_dist_min", std::get<0>(CollisionParams)); //Максимальное расстояние, на которое камера ГГ может упереться к стене
+;nearwall_dist_max = 0.70 ;READ_IF_EXISTS(pSettings, r_float, section, "nearwall_dist_max", std::get<1>(CollisionParams)); //Расстояние, ближе которого начинаем поднимать ствол
+;nearwall_target_hud_fov = 0.45;READ_IF_EXISTS(pSettings, r_float, section, "nearwall_target_hud_fov", std::get<4>(CollisionParams));
+;nearwall_target_aim_hud_fov = 0.45;READ_IF_EXISTS(pSettings, r_float, section, "nearwall_target_aim_hud_fov", std::get<5>(CollisionParams));
 [wpn_pm_hud]
 shell_point			= -0.330000,-0.010000,0.050000
 fire_point			= -0.370000,0.000000,0.057000

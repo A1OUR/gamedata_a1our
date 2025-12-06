@@ -6,10 +6,10 @@
 <!---------------------------ECOLOG------------------------>
 
 <specific_character id="mar_science_camp_leader" team_default = "1">
-		<name>yan_semenov_name</name>
+		<name>mar_science_camp_leader_name</name>
 		<icon>ui_npc_u_stalker_ecolog</icon>
 		<map_icon x="0" y="6"></map_icon>
-		<bio>yan_semenov_bio</bio>
+		<bio>mar_science_camp_leader_bio</bio>
 
 		<class>mar_science_camp_leader</class>
 		<community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
@@ -29,8 +29,8 @@
 		</supplies>
 		
 #include "gameplay\character_criticals_3.xml"
-#include "gameplay\character_dialogs.xml"
-	<actor_dialog>mar_sci_hands_dialog_1</actor_dialog>
+	<start_dialog>mar_sci_start_dialog</start_dialog>
+	<!-- <actor_dialog>mar_sci_hands_dialog_1</actor_dialog> -->
 	<actor_dialog>mar_sci_hands_dialog_2</actor_dialog>
 	</specific_character>
 </xml>

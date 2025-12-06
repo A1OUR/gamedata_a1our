@@ -65,5 +65,21 @@
 	<article id="agr_cit_doctor_meet_descr" name="cit_doctor_meet" article_type="task" group="cit_doctor_meet/0">
 		<text>agr_cit_doctor_meet_descr_txt</text>
 	</article>
+	
+	<article id="agr_disable_installation_descr" article_type="task">
+		<text>agr_disable_installation_descr_txt</text>
+	</article>
+	<article id="find_pda_boss_agr_soldier_descr" article_type="task">
+		<text>find_pda_boss_agr_soldier_descr_txt</text>
+	</article>
+	<article id="find_agr_journal_descr" article_type="task">
+		<text>find_agr_journal_descr_txt</text>
+	</article>
+	<article id="find_mar_sci_leader_descr" article_type="task">
+		<text>find_mar_sci_leader_descr_txt</text>
+	</article>
+	<article id="find_installation_manual_descr" article_type="task">
+		<text>find_installation_manual_descr_txt</text>
+	</article>
 
   

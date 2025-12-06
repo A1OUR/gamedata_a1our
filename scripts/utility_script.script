@@ -1,8 +1,8 @@
-local actor = db.actor
 local ini = system_ini()
 
 function use(obj)
 	local obj_sect = obj:section()
+	local actor = db.actor
 	if utils.cfg_get_bool(ini, obj_sect, "pda_item", nil, false, false) then
 		local sss = se_respawn.parse_names(ini:r_string(obj_sect, "infop_on_use"))
 		local notif = false
@@ -27,6 +27,7 @@ end
 
 function take(obj)
 local obj_sect = obj:section()
+	local actor = db.actor
 	if utils.cfg_get_bool(ini, obj_sect, "on_take_item", nil, false, false) then
 		local sss = se_respawn.parse_names(ini:r_string(obj_sect, "infop_on_take"))
 		local notif = false
@@ -42,5 +43,9 @@ end
 
 function on_start()
 	amk.spawn_at_way("esc_wolf_map","map_way")
+end
+
+function r_string_if_exists(section, field)
+	return utils.cfg_get_string(ini, section, field, nil, false, "", "")
 end
 
