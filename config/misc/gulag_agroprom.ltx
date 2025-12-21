@@ -1580,7 +1580,7 @@ use_wpn = false
 
 [remark@thank]
 snd = speech
-on_signal = sound_end | %+agr_krot_go_to_well +agr_factory_spawn_spetsnaz% walker@go_to_well
+on_signal = sound_end | %+agr_krot_go_to_well% walker@go_to_well
 anim = guard
 combat_ignore_cond = {!actor_enemy !fighting_actor}
 target = actor
@@ -1604,7 +1604,8 @@ meet = no_meet
 path_walk = well_walk
 path_look = well_look
 meet = no_meet
-on_actor_dist_le = 5 |{!actor_enemy -agr_find_gunslinger_cache_start} remark@thanks_2 ;%+agr_find_gunslinger_cache_start%
+on_info = %+agr_factory_spawn_spetsnaz%
+on_actor_dist_le = 5 |{!actor_enemy -agr_find_gunslinger_cache_start} remark@thanks_2
 combat_ignore_cond = {!actor_enemy !fighting_actor}
 danger = danger_condition@krot 
 

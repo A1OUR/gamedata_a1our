@@ -245,6 +245,22 @@ function __do_timer_action(select_string,params_string)
 		local news_text = game.translate_string("\\n%c[255,160,160,160]Сообщение от Сидоровича:\\n%c[255,0,255,0]Эй, Меченый, иди сюда, есть для тебя работа.")
 		db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,0,83,47), 1000, 5000)
 	end
+	
+	if select_string=="wake_up" then
+		level.set_time_factor (10)
+		alife():set_switch_distance(150)
+		news_manager.send_tip(db.actor, "Сколько я уже сплю?", nil, "stalker", nil, 4000)
+		utility_script.actor_sleeping = false
+		level.add_pp_effector ("bar_out_jail_2.ppe", 229, false)
+		level.remove_pp_effector(202)
+		level.add_cam_effector("prison_1.anm", 14000, false, "")
+		--level.enable_input()
+	end
+	
+	if select_string=="load_stuff" then
+		alife():set_switch_distance(150)
+		news_manager.send_tip(db.actor, "Попытались загрузить всё", nil, "stalker", nil, 4000)
+	end
 end
 
 -- Записываем переменную

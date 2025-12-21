@@ -63,7 +63,7 @@ function process_info_portion(info_id)
 		return true
 	end
 
-	if has_alife_info("agr_installation_need_to_disable") then
+	if has_alife_info("agr_installation_need_to_disable") and not has_alife_info("agr_installation_disabled") and not has_alife_info("agr_installation_can_disable") then
 		if info_id == "pda_boss_agr_soldier" then
 			if not (has_alife_info("agr_journal") or has_alife_info("mar_sci_leader_meet") or has_alife_info("agr_installation_disabled")) then
 				db.actor:give_info_portion("pda_boss_agr_soldier_task")

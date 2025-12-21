@@ -1,4 +1,5 @@
 local ini = system_ini()
+local actor_sleeping = false
 
 function use(obj)
 	local obj_sect = obj:section()

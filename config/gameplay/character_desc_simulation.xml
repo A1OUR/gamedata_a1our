@@ -25,10 +25,7 @@
         <visual>actors\bandit\stalker_bandit_3</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice_lox.xml" \n	
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -52,10 +49,7 @@
         <visual>actors\bandit\stalker_bandit_4</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -79,10 +73,7 @@
         <visual>actors\bandit\stalker_bandit_5</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice_lox.xml" \n	
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -106,10 +97,7 @@
         <visual>actors\bandit\stalker_bandit_1</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -136,10 +124,7 @@
         <visual>actors\bandit\stalker_bandit_3</visual>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice.xml" \n	
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -163,10 +148,7 @@
         <visual>actors\bandit\stalker_bandit_4</visual>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -190,10 +172,7 @@
         <visual>actors\bandit\stalker_bandit_5</visual>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -217,10 +196,7 @@
         <visual>actors\bandit\stalker_bandit_1</visual>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_bandit_novice.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -568,9 +544,6 @@
         <supplies>
 [spawn] \n
 #include "gameplay\character_stalker_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -596,9 +569,6 @@
         <supplies>
 [spawn] \n
 #include "gameplay\character_stalker_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -624,9 +594,6 @@
         <supplies>
 [spawn] \n
 #include "gameplay\character_stalker_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -653,9 +620,6 @@
         <supplies>
 [spawn] \n
 #include "gameplay\character_stalker_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -680,9 +644,6 @@
         <supplies>
 [spawn] \n
 #include "gameplay\character_stalker_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -707,9 +668,6 @@
         <supplies>
 [spawn] \n
 #include "gameplay\character_stalker_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -737,10 +695,7 @@
         <visual>actors\novice\green_stalker_2</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -765,10 +720,7 @@
         <visual>actors\novice\green_stalker_3</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -793,10 +745,7 @@
         <visual>actors\novice\green_stalker_4</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -822,10 +771,7 @@
         <visual>actors\novice\green_stalker_5</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -849,10 +795,7 @@
         <crouch_type>1</crouch_type>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -876,10 +819,7 @@
         <visual>actors\novice\green_stalker_10</visual>
         <supplies>
 [spawn] \n
-#include "gameplay\character_novice_lox.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_novice_lox.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -906,14 +846,11 @@
         <crouch_type>-1</crouch_type>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
         </supplies>
 
-    #include "gameplay\character_criticals_4.xml"
-    #include "gameplay\character_dialogs.xml"
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
     </specific_character>
 
 
@@ -934,10 +871,7 @@
         <crouch_type>-1</crouch_type>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_4.xml"
@@ -961,10 +895,7 @@
         <crouch_type>-1</crouch_type>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_4.xml"
@@ -988,10 +919,7 @@
         <crouch_type>-1</crouch_type>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_4.xml"
@@ -1015,10 +943,8 @@
         <crouch_type>-1</crouch_type>
 		<supplies>
 [spawn] \n
-#include "gameplay\character_novice.xml" \n
-#include "gameplay\character_items.xml" \n
-#include "gameplay\character_drugs.xml" \n
-#include "gameplay\character_food.xml"			
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
         </supplies>
 
 #include "gameplay\character_criticals_4.xml"
@@ -1472,6 +1398,79 @@
 
 
 <!--------------------------- DOLG ------------------------------->
+
+<!---------------------------DOLG NOVICE----------------------->
+	<specific_character id="sim_dolg_novice_default1" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_stalker_do_mask</icon>
+		<map_icon x="4" y="0"></map_icon>
+		<bio>sim_dolg_regular_bio</bio>
+
+		<class>sim_Dolg_novice</class>
+		<community>dolg</community> <terrain_sect>stalker_dolg_terrain</terrain_sect>
+		
+		<rank>34</rank>
+		<reputation>55</reputation>
+		<money min="600" max="2100" infinitive="0"/>
+		<visual>actors\dolg\stalker_do_mask</visual>
+		<snd_config>characters_voice\human_01\dolg\</snd_config>
+		<crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_dolg_novice.xml" \n	
+        </supplies>
+
+#include "gameplay\character_criticals_6.xml"
+#include "gameplay\character_dialogs.xml"
+	</specific_character>
+
+	<specific_character id="sim_dolg_novice_default2" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_stalker_do_balon_8</icon>
+		<map_icon x="4" y="0"></map_icon>
+		<bio>sim_dolg_regular_bio</bio>
+
+		<class>sim_Dolg_novice</class>
+		<community>dolg</community> <terrain_sect>stalker_dolg_terrain</terrain_sect>
+		
+		<rank>109</rank>
+		<reputation>65</reputation>
+		<money min="600" max="2100" infinitive="0"/>
+		<visual>actors\dolg\stalker_do_balon_8</visual>
+		<snd_config>characters_voice\human_01\dolg\</snd_config>
+		<crouch_type>0</crouch_type>
+		<supplies>
+[spawn] \n
+#include "gameplay\character_dolg_novice.xml" \n
+		</supplies>
+
+#include "gameplay\character_criticals_6.xml"
+#include "gameplay\character_dialogs.xml"		
+	</specific_character>
+
+	<specific_character id="sim_dolg_novice_default3" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_stalker_do_mask_1</icon>
+		<map_icon x="4" y="0"></map_icon>
+		<bio>sim_dolg_regular_bio</bio>
+		
+		<class>sim_Dolg_novice</class>
+		<community>dolg</community> <terrain_sect>stalker_dolg_terrain</terrain_sect>
+		
+		<rank>80</rank>
+		<reputation>73</reputation>
+		<money min="600" max="2100" infinitive="0"/>
+		<visual>actors\dolg\stalker_do_mask_1</visual>
+		<snd_config>characters_voice\human_03\dolg\</snd_config>
+		<crouch_type>0</crouch_type>
+		<supplies>
+[spawn] \n
+#include "gameplay\character_dolg_novice.xml" \n
+		</supplies>
+
+#include "gameplay\character_criticals_6.xml"
+#include "gameplay\character_dialogs.xml"
+	</specific_character>	
 
 <!---------------------------DOLG REGULAR----------------------->
 	<specific_character id="sim_dolg_regular_default1" team_default = "1">
@@ -2977,7 +2976,7 @@
 
 <!---------------------------SOLDIER STALKERS------------------------>
 
-<!---------------------------SOLDIER REGULAR----------------------->
+<!---------------------------SOLDIER NOVICE----------------------->
 
     <specific_character id="sim_soldier_novice_default000" team_default = "1">
         <name>GENERATE_NAME_private</name>
@@ -2996,12 +2995,7 @@
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_novice.xml" \n
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3027,12 +3021,7 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_novice.xml" \n
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3058,12 +3047,7 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_novice.xml" \n	
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3089,12 +3073,7 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_novice.xml" \n
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3120,12 +3099,7 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_novice.xml" \n
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3151,13 +3125,8 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>		
 
 #include "gameplay\character_criticals_5.xml"
 
@@ -3182,12 +3151,7 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_novice.xml" \n
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3213,259 +3177,7 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    <specific_character id="sim_soldier_novice_default010" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_default110" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_1</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_1</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_default210" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_2</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_2</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_default310" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_3</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_3</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_default410" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_4</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_4</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_default510" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_5</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_5</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_default610" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_6</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_6</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character> 
-
-    <specific_character id="sim_soldier_novice_default710" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_obichniy</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_obichniy</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_ak74u \n
-ammo_5.45x39_fmj \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_novice.xml" \n
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3494,12 +3206,7 @@ ammo_5.45x39_fmj \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3525,12 +3232,7 @@ ammo_7.62x54_7h14 \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3556,12 +3258,7 @@ ammo_7.62x54_7h14 \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3587,12 +3284,7 @@ ammo_7.62x54_7h14 \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3618,12 +3310,7 @@ ammo_7.62x54_7h14 \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3649,12 +3336,7 @@ ammo_7.62x54_7h14 \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3680,12 +3362,7 @@ ammo_7.62x54_7h14 \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3711,259 +3388,7 @@ ammo_7.62x54_7h14 \n
         <crouch_type>0</crouch_type>
         <supplies>
 [spawn] \n
-wpn_pm \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    <specific_character id="sim_soldier_novice_sniper010" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_sniper110" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_1</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_1</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_sniper210" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_2</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_2</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_sniper310" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_3</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_3</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_sniper410" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_4</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_4</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_sniper510" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_5</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_5</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character>
-    
-    <specific_character id="sim_soldier_novice_sniper610" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_bandana_6</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_bandana_6</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-        </supplies>	
-
-#include "gameplay\character_criticals_5.xml"
-
-        <start_dialog>hello_dialog</start_dialog>
-
-    </specific_character> 
-
-    <specific_character id="sim_soldier_novice_sniper710" team_default = "1">
-        <name>GENERATE_NAME_private</name>
-        <icon>ui_npc_u_soldier_obichniy</icon>
-        <map_icon x="1" y="2"></map_icon>
-        <bio>sim_soldier_regular_bio</bio>
-
-        <class>sim_soldier_novice_sniper</class>
-        <community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-
-        <rank>56</rank>
-        <reputation>5</reputation>
-
-        <visual>actors\soldier\soldier_obichniy</visual>
-        <snd_config>characters_voice\human_01\military\</snd_config>
-        <crouch_type>0</crouch_type>
-        <supplies>
-[spawn] \n
-wpn_pb \n
-ammo_9x18_fmj \n
-wpn_mosin \n
-ammo_7.62x54_7h14 \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
+#include "gameplay\character_soldier_sniper_novice.xml"
         </supplies>	
 
 #include "gameplay\character_criticals_5.xml"
@@ -3990,54 +3415,15 @@ ammo_7.62x54_7h14 \n
 		<visual>actors\soldier\soldier_mask</visual>
 		<snd_config>characters_voice\human_02\military\</snd_config>
 		<crouch_type>0</crouch_type>
-		<supplies>
-			[spawn] \n
-			wpn_pm \n
-			ammo_9x18_fmj \n
-            wpn_ak74u_m1 \n
-            ammo_5.45x39_ap = 1 \n
-			device_torch \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-		</supplies>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_specnaz_novice.xml"
+        </supplies>	
 		
 #include "gameplay\character_criticals_6.xml"
 					
 		<start_dialog>hello_dialog</start_dialog>
 		
-	</specific_character>
-
-	<specific_character id="sim_soldier_novice_specnaz_default2" team_default = "1">
-		<name>GENERATE_NAME_lieutenant</name>
-		<icon>ui_npc_u_soldier_mask</icon>
-		<map_icon x="1" y="2"></map_icon>
-		<bio>sim_soldier_specnaz_bio</bio>
-
-		<class>sim_soldier_novice_specnaz</class>
-		<community>military</community> <terrain_sect>stalker_military_terrain</terrain_sect>
-		
-		<rank>112</rank>
-		<reputation>19</reputation>
-		
-		<critical_wound_weights>75,25,25</critical_wound_weights>
-
-		<visual>actors\soldier\soldier_mask</visual>
-		<snd_config>characters_voice\human_02\military\</snd_config>
-		<crouch_type>0</crouch_type>
-		<supplies>
-			[spawn] \n
-			wpn_pb \n
-			ammo_9x18_fmj \n
-            wpn_ak74u_m1 \n
-            ammo_5.45x39_ap = 1 \n
-			device_torch \n
-#include "gameplay\character_drugs.xml"
-#include "gameplay\character_food.xml"
-		</supplies>
-		
-#include "gameplay\character_criticals_6.xml"
-		
-		<start_dialog>hello_dialog</start_dialog>		
 	</specific_character>
 
 	<!--------------------------- SOLDIER COMMANDERS ----------------------->
@@ -4760,14 +4146,11 @@ ammo_7.62x54_7h14 \n
 		<visual>actors\neytral\stalker_neytral_exoskeleton</visual>
 		<supplies>
 			[spawn] \n
-			group1:100 \n
+			group1:60 \n
 			30:wpn_abakan_m2,ammo_5.45x39_ap \n
 			30:wpn_ak74,ammo_5.45x39_fmj \n
-			40:wpn_groza,ammo_9x39_sp5 \n
 			group2:100 \n
-			30:wpn_walther,ammo_9x19_fmj \n
-			30:wpn_pm,ammo_9x18_fmj \n
-			40:wpn_usp,ammo_11.43x23_hydro \n
+			100:wpn_spas12_m1,ammo_12x76_zhekan \n
 			#include "gameplay\character_items.xml" 
 			#include "gameplay\character_food.xml"
 		</supplies>

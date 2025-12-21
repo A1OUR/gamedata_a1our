@@ -503,6 +503,7 @@
                 <text>gar_seriy_start_221</text>
 				<has_info>garbage_meetstalker_start</has_info>
                 <give_info>garbage_meetstalker_done</give_info>
+                <give_info>gar_seryi_change_st</give_info>
                 <next>2211</next>
 				<next>2223</next>
             </phrase>
@@ -510,6 +511,7 @@
                 <text>gar_seriy_start_222</text>
                 <dont_has_info>garbage_meetstalker_start</dont_has_info>
                 <give_info>garbage_meetstalker_done</give_info>
+                <give_info>gar_seryi_change_st</give_info>
                 <next>2221</next>
 				<next>2223</next>
             </phrase>

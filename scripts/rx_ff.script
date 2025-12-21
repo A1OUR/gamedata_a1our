@@ -173,8 +173,8 @@ local function get_weapon_dispersion(npc)
 	--end
 	local k_disp
 	k_disp = wpn:get_current_ammo_disp()
-	local news_text = k_disp
-	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	--local news_text = k_disp
+	--db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
 	--if as then
 	--	local k_disp = sini:r_float(as,"k_disp")
 	--else

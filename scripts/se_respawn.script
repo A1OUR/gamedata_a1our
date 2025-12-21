@@ -13,12 +13,12 @@ local i,k,v = 0,0,0
 --[[local simMaxCount = {
 	stalker_novice = 40, stalker_experienced = 40, stalker_veteran = 5, stalker_master = 5,
 	monolith_novice = 0, monolith_experienced = 30, monolith_veteran = 35, monolith_master = 30,
-	military_novice = 0, military_experienced = 23, military_veteran = 13, military_master = 5,
+	military_novice = 40, military_experienced = 23, military_veteran = 13, military_master = 5,
 	killer_novice = 0, killer_experienced = 18, killer_veteran = 17, killer_master = 10,
 	ecolog_novice = 1, ecolog_experienced = 1, ecolog_veteran = 1, ecolog_master = 1,
 	dolg_novice = 0, dolg_experienced = 5, dolg_veteran = 5, dolg_master = 5,
 	freedom_novice = 50, freedom_experienced = 20, freedom_veteran = 26, freedom_master = 21,
-	bandit_novice = 100, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
+	bandit_novice = 40, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
 	zombied_novice = 20, zombied_experienced = 15, zombied_veteran = 10, zombied_master = 10,
 	
 	rat_weak = 0,	
@@ -38,25 +38,25 @@ local i,k,v = 0,0,0
 }]]
 
 local simMaxCount = {
-	stalker_novice = 20, stalker_experienced = 25, stalker_veteran = 5, stalker_master = 5,
+	stalker_novice = 10, stalker_experienced = 25, stalker_veteran = 5, stalker_master = 5,
 	monolith_novice = 0, monolith_experienced = 30, monolith_veteran = 35, monolith_master = 30,
-	military_novice = 0, military_experienced = 20, military_veteran = 13, military_master = 5,
+	military_novice = 70, military_experienced = 20, military_veteran = 13, military_master = 5,
 	killer_novice = 0, killer_experienced = 18, killer_veteran = 17, killer_master = 10,
 	ecolog_novice = 1, ecolog_experienced = 1, ecolog_veteran = 1, ecolog_master = 1,
-	dolg_novice = 0, dolg_experienced = 5, dolg_veteran = 5, dolg_master = 5,
+	dolg_novice = 6, dolg_experienced = 5, dolg_veteran = 5, dolg_master = 5,
 	freedom_novice = 50, freedom_experienced = 20, freedom_veteran = 26, freedom_master = 21,
-	bandit_novice = 100, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
+	bandit_novice = 70, bandit_experienced = 10, bandit_veteran = 18, bandit_master = 10,
 	zombied_novice = 20, zombied_experienced = 15, zombied_veteran = 10, zombied_master = 10,
 	
 	rat_weak = 0,
-	zombie_pitch = 40,
-	tushkano_weak = 5,tushkano_normal = 0,
-	flesh_weak = 50, flesh_normal = 0, flesh_strong = 0,
-	boar_weak = 50, boar_normal = 0, boar_strong = 0,
-	dog_weak = 50, dog_normal = 0, dog_strong = 0,
-	pseudodog_weak = 3, pseudodog_normal = 0, pseudodog_strong = 0,
+	zombie_pitch = 0, 
+	tushkano_weak = 70,tushkano_normal = 0,
+	flesh_weak = 200, flesh_normal = 0, flesh_strong = 0,
+	boar_weak = 200, boar_normal = 0, boar_strong = 0,
+	dog_weak = 200, dog_normal = 0, dog_strong = 0,
+	pseudodog_weak = 200, pseudodog_normal = 0, pseudodog_strong = 0,
 	psy_dog_weak = 15, psy_dog_normal = 15, psy_dog_strong = 15,
-	zombie_weak = 5, zombie_normal = 0, zombie_strong = 0,
+	zombie_weak = 200, zombie_normal = 0, zombie_strong = 0,
 	snork_weak = 50, snork_normal = 61, snork_strong = 15,
 	poltergeist_weak = 10,
 	pseudo_gigant_weak = 23,
@@ -66,14 +66,15 @@ local simMaxCount = {
 }
 
 local idle_spawn_preset = {
-	seldom = 60*60,
-	medium = 60*60,
-	often = 60*60
+	seldom = 2,
+	medium = 2,
+	often = 2
 }
 
 -- Список респавнеров, для сбора статистики
 local respawners = {}
 local respawners_by_parent = {}
+local stat_table = {}
 ----------------------------------------------------------------------------------------------------------------------
 -- Разные полезные функции
 ----------------------------------------------------------------------------------------------------------------------
@@ -245,7 +246,7 @@ end
 -- вызывается симулятором.
 function se_respawn:on_register()
   cse_alife_smart_zone.on_register( self )
-  --dbglog("RESPAWN: [%s] se_respawn on_register", tostring(self:name()))
+    dbglog("RESPAWN: [%s] se_respawn on_register", tostring(self:name()))
 	init_respawn_params(self)
 end
 -- Создаем объект
@@ -262,7 +263,8 @@ function se_respawn:create(prob)
   end
   
   if math.random(100) <= tonumber(prob) then
-	local stat_table = sim_statistic.pstats_test()
+	stat_table=sim_statistic.get_stat()
+
     local spawn_section = ""
     local sum = 0
     -- Производим рандомную взвешенную выборку
@@ -289,19 +291,19 @@ function se_respawn:create(prob)
 		end
 		if sim_count < s_count then
 			sum = sum + v.prob
-			--dbglog("for:"..v.section.."with_crank:"..community_rank.."_sim_count:"..tostring(sim_count).."_max_count:"..tostring(s_count).."can_spawn")
-			--dbglog("sum_is:"..tostring(sum))
+			dbglog("for:"..v.section.."with_crank:"..community_rank.."_sim_count:"..tostring(sim_count).."_max_count:"..tostring(s_count).."can_spawn")
+			dbglog("sum_is:"..tostring(sum))
 		else
-			--dbglog("for:"..v.section.."with_crank:"..community_rank.."_sim_count:"..tostring(sim_count).."_max_count:"..tostring(s_count).."cant_spawn")
+			dbglog("for:"..v.section.."with_crank:"..community_rank.."_sim_count:"..tostring(sim_count).."_max_count:"..tostring(s_count).."cant_spawn")
 		end
     end
 	if sum == 0 then
-		--dbglog(self:name().."cant_spawn_anything")
+		dbglog(self:name().."cant_spawn_anything")
 		return false
 	end
-	--dbglog("for:"..self:name().."_sum_is:"..tostring(sum))
+	dbglog("for:"..self:name().."_sum_is:"..tostring(sum))
     sum = math.random(0, sum)
-	--dbglog("for:"..self:name().."_random_sum_is:"..tostring(sum))
+	dbglog("for:"..self:name().."_random_sum_is:"..tostring(sum))
     for k,v in pairs(self.respawn_section) do
 		local tt = self.sectSpawnProps[v.section]
 	    local community_rank = tt.community.."_"..tt.rank
@@ -327,7 +329,7 @@ function se_respawn:create(prob)
 			end
 		end
     end
-	--dbglog(self:name().."_spawns:"..spawn_section)
+	dbglog(self:name().."_spawns:"..spawn_section)
     if spawn_section == "" then
 --      printf("SPAWNING [%s], CANT SPAWN, SIMULATION POPULATION EXCEED", tostring(self:name()))
       --sak.--dbglog("SPAWNING [%s], CANT SPAWN, SIMULATION POPULATION EXCEED", tostring(self:name()))
@@ -350,7 +352,8 @@ function se_respawn:create(prob)
             self.position,
             self.m_level_vertex_id, 
             self.m_game_vertex_id)
-		--level.map_add_object_spot(obj.id, "red_location", spawn_section.."_"..tostring(obj.id))
+		
+		sim_statistic.add_t(obj)
     else
       obj = alife():create(spawn_section, 
             self.position,
@@ -468,30 +471,24 @@ function se_respawn:execute()
 --  printf("RESPAWN: [%s] se_respawn execute", tostring(self:name()))
 	if self.already_once_spawned==true then return end
   --' Выходим, если у нас установлен событийный спавн.
-  if self.idle_spawn_min == -1 then
-    return
-  end
-  
-  if self.respawn_time < game.get_game_time() then
---    if not self.proxy_initialized then
---      db.actor_proxy:init()
---      self.proxy_initialized = true
---    end
-    local idle_time = game.CTime()
-    local now = game.get_game_time()
+	if self.idle_spawn_min == -1 then
+		return
+	end
 
-   -- idle_time:setHMSms( 0, 0, 0, math.random(self.idle_spawn_min, self.idle_spawn_max)*1000)
-	idle_time:setHMSms( math.random(12, 24), 0, 0, math.random(self.idle_spawn_min, self.idle_spawn_max)*1000)
-    self.respawn_time = now + idle_time
-    
-    --sak.--dbglog("RESPAWN: [%s] se_respawn execute %s %s", tostring(self:name()), now:dateToString(0), now:timeToString(1))
-    --sak.--dbglog("next respawn %s %s", self.respawn_time:dateToString(0), self.respawn_time:timeToString(1))
-    -- Производим попытку заспаунить объекты    
-    self:spawn()
-		
-    
---    printf("spawn_count = %s", table.getn(self.spawned_obj))
-  end
+	if sim_statistic.get_stat() == nil then
+		return
+	end
+	
+	if self.respawn_time < game.get_game_time() then
+		local idle_time = game.CTime()
+		local now = game.get_game_time()
+		idle_time:setHMSms( math.random(12, 24), 0, 0, math.random(self.idle_spawn_min, self.idle_spawn_max)*1000)
+		self.respawn_time = now + idle_time
+
+		--sak.--dbglog("RESPAWN: [%s] se_respawn execute %s %s", tostring(self:name()), now:dateToString(0), now:timeToString(1))
+		--sak.--dbglog("next respawn %s %s", self.respawn_time:dateToString(0), self.respawn_time:timeToString(1))
+		self:spawn()
+	end
 end
 -- Обновление в офлайне
 function se_respawn:update()
@@ -509,7 +506,7 @@ function se_respawn:update_online()
 		sim_statistic.respawn_enabled(self, false)
 		return
 	end
-	if db.actor:position():distance_to (self.position) >= self.respawn_radius then
+	if (db.actor:position():distance_to (self.position) >= self.respawn_radius) or utility_script.actor_sleeping then
 		self:execute()
 	else
 		sim_statistic.respawn_enabled(self, false)
@@ -720,7 +717,15 @@ function init_respawn_params(obj)
 	
   --' Отметка респавнера мапспотом (для статистики)
   sim_statistic.register_respawn(obj)
-
+	dbglog("Respawner [%s] initialized:", tostring(obj:name()))
+	dbglog("  respawn_section = %s", tostring(obj.respawn_section and "table" or "nil"))
+	dbglog("  min_count = %s", tostring(obj.min_count))
+	dbglog("  max_count = %s", tostring(obj.max_count))
+	dbglog("  max_spawn = %s", tostring(obj.max_spawn))
+	dbglog("  idle_spawn_min = %s, idle_spawn_max = %s", tostring(obj.idle_spawn_min), tostring(obj.idle_spawn_max))
+	dbglog("  conditions = %s", tostring(obj.str_conditions))
+	dbglog("  spawn_once = %s", tostring(obj.spawn_once))
+	dbglog("  item_spawn = %s", tostring(obj.item_spawn))
 end
 
 function reinit_spawner_params(name)

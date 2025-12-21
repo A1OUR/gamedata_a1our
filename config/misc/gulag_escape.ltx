@@ -1221,36 +1221,42 @@ combat_ignore_cond = {=check_fighting(088) -esc_bandits_kill_prisoner}
 ;-----------------------------------
 ;----- Soldiers on the bridge ------
 ;-----------------------------------
+[danger@esc_bridge]
+ignore_distance = 10
+
 
 [logic@esc_bridge_post1]
-active = walker@esc_bridge_post1
+active = camper@esc_bridge_post1
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier
 
-[walker@esc_bridge_post1]
+[camper@esc_bridge_post1]
 path_walk = post1_walk
 path_look = post1_look
+danger = danger@esc_bridge
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 
 [logic@esc_bridge_post2]
-active = walker@esc_bridge_post2
+active = camper@esc_bridge_post2
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier_kuzn
 trade = misc\trade_kuz.ltx
 inv_max_weight = 10000
 
-[walker@esc_bridge_post2]
+[camper@esc_bridge_post2]
 path_walk = post2_walk
 path_look = post2_look
+danger = danger@esc_bridge
 meet = meet@sold_zoneguard
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 on_actor_dist_le_nvis = 35 | remark@esc_bridge_post2_1
 on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post2
 
 [remark@esc_bridge_post2_1]
+danger = danger@esc_bridge
 anim = guard
 target = actor
 on_actor_dist_le_nvis = 20 | {-esc_bridge_pass_on -esc_bridge_free} remark@esc_bridge_post2, walker2@esc_bridge_post2
@@ -1258,6 +1264,7 @@ combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post2
 
 [remark@esc_bridge_post2]
+danger = danger@esc_bridge
 anim = guard
 target = actor
 snd = esc_bridge_soldiers
@@ -1265,41 +1272,46 @@ on_signal = sound_end| walker2@esc_bridge_post2
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 [walker2@esc_bridge_post2]
+danger = danger@esc_bridge
 path_walk = post2_walk
 path_look = post2_look
 meet = meet@sold_zoneguard
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 [walker3@esc_bridge_post2]
+danger = danger@esc_bridge
 path_walk = post2_walk
 path_look = post2_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 
 [logic@esc_bridge_post3]
-active = walker@esc_bridge_post3
+active = camper@esc_bridge_post3
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier
 
-[walker@esc_bridge_post3]
+[camper@esc_bridge_post3]
+danger = danger@esc_bridge
 path_walk = post3_walk
 path_look = post3_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
-on_info = {+esc_bridge_pass_fire} walker@esc_bridge_post3_fire %=bar_arena_hit%
+on_info = {+esc_bridge_pass_fire} camper@esc_bridge_post3_fire %=bar_arena_hit%
 
-[walker@esc_bridge_post3_fire]
+[camper@esc_bridge_post3_fire]
+danger = danger@esc_bridge
 path_walk = post3_walk
 path_look = post3_look
-on_info = {-esc_bridge_pass_fire} walker@esc_bridge_post3
+on_info = {-esc_bridge_pass_fire} camper@esc_bridge_post3
 
 [logic@esc_bridge_post4]
-active = walker@esc_bridge_post4
+active = camper@esc_bridge_post4
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier
 
-[walker@esc_bridge_post4]
+[camper@esc_bridge_post4]
+danger = danger@esc_bridge
 path_walk = post4_walk
 path_look = post4_look
 meet = meet@sold_zoneguard
@@ -1307,30 +1319,33 @@ combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 on_info = {+esc_bridge_pass_fire} walker2@esc_bridge_post4 %=bar_arena_hit%
 
 [walker2@esc_bridge_post4]
+danger = danger@esc_bridge
 path_walk = post4_walk
 path_look = post4_look
-on_info = {-esc_bridge_pass_fire} walker@esc_bridge_post4
+on_info = {-esc_bridge_pass_fire} camper@esc_bridge_post4
 
 
 [logic@esc_bridge_post5]
-active = walker@esc_bridge_post5
+active = camper@esc_bridge_post5
 on_hit = hit@soldier
 on_death = death@soldier
 combat_ignore = combat_ignore@esc_bridge
 
-[walker@esc_bridge_post5]
+[camper@esc_bridge_post5]
+danger = danger@esc_bridge
 path_walk = post5_walk
 path_look = post5_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 
 [logic@esc_bridge_post6]
-active = walker@esc_bridge_post6
+active = camper@esc_bridge_post6
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier
 
-[walker@esc_bridge_post6]
+[camper@esc_bridge_post6]
+danger = danger@esc_bridge
 path_walk = post6_walk
 path_look = post6_look
 meet = meet@sold_zoneguard
@@ -1339,6 +1354,7 @@ on_actor_dist_le = 25| {-esc_bridge_pass_on -esc_bridge_free} remark@esc_bridge_
 on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post6
 
 [remark@esc_bridge_post6]
+danger = danger@esc_bridge
 anim = guard
 target = actor
 snd = esc_bridge_soldiers
@@ -1346,45 +1362,50 @@ on_signal = sound_end| walker2@esc_bridge_post6
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 [walker2@esc_bridge_post6]
+danger = danger@esc_bridge
 path_walk = post6_walk
 path_look = post6_look
 meet = meet@sold_zoneguard
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 [walker3@esc_bridge_post6]
+danger = danger@esc_bridge
 path_walk = post6_walk
 path_look = post6_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 [logic@esc_bridge_post7]
-active = walker@esc_bridge_post7
+active = camper@esc_bridge_post7
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier
 
-[walker@esc_bridge_post7]
+[camper@esc_bridge_post7]
+danger = danger@esc_bridge
 path_walk = post7_walk
 path_look = post7_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 [logic@esc_bridge_post8]
-active = walker@esc_bridge_post8
+active = camper@esc_bridge_post8
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier
 
-[walker@esc_bridge_post8]
+[camper@esc_bridge_post8]
+danger = danger@esc_bridge
 path_walk = post8_walk
 path_look = post8_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 [logic@esc_bridge_post9]
-active = walker@esc_bridge_post9
+active = camper@esc_bridge_post9
 combat_ignore = combat_ignore@esc_bridge
 on_hit = hit@soldier
 on_death = death@soldier
 
-[walker@esc_bridge_post9]
+[camper@esc_bridge_post9]
+danger = danger@esc_bridge
 path_walk = post9_walk
 path_look = post9_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
@@ -1394,6 +1415,7 @@ active = kamp@esc_bridge_post1
 combat_ignore = combat_ignore@esc_bridge
 
 [kamp@esc_bridge_post1]
+danger = danger@esc_bridge
 center_point = kamp_point
 path_walk = kamp_point_task
 soundgroup = esc_bridge_soldiers
@@ -1401,10 +1423,12 @@ combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 
 [logic@esc_bridge_kamp3]
+danger = danger@esc_bridge
 active = kamp@esc_bridge_post3
 combat_ignore = combat_ignore@esc_bridge
 
 [kamp@esc_bridge_post3]
+danger = danger@esc_bridge
 center_point = kamp_point
 path_walk = kamp_point_task
 soundgroup = esc_bridge_soldiers
@@ -1416,6 +1440,7 @@ active = kamp@esc_bridge_post4
 combat_ignore = combat_ignore@esc_bridge
 
 [kamp@esc_bridge_post4]
+danger = danger@esc_bridge
 center_point = kamp_point
 path_walk = kamp_point_task
 soundgroup = esc_bridge_soldiers
@@ -1427,6 +1452,7 @@ active = walker@esc_bridge_patrol
 combat_ignore = combat_ignore@esc_bridge
 
 [walker@esc_bridge_patrol]
+danger = danger@esc_bridge
 path_walk = patrol_walk
 path_look = patrol_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}

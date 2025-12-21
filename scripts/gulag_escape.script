@@ -625,13 +625,13 @@ if type == "esc_specnaz" then
 		t = { section = "logic@esc_bridge_post1",
 			idle = 0,
 			prior = 7, state = {0},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_post2",
 			idle = 0,
 			prior = 15, state = {0,1},
-			in_rest = "", out_rest = "escape_bridge_zone",
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone",
 			predicate = function(obj_info)
 			            	return obj_info.profile_name == "esc_soldier_commander"
 			            end
@@ -640,67 +640,67 @@ if type == "esc_specnaz" then
 		t = { section = "logic@esc_bridge_post3",
 			idle = 0,
 			prior = 5, state = {0},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_post4",
 			idle = 0,
 			prior = 10, state = {0},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_post5",
 			idle = 0,
 			prior = 11, state = {0},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_post6",
 			idle = 0,
 			prior = 14, state = {0,1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_post7",
 			idle = 0,
 			prior = 12, state = {0,1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_post8",
 			idle = 0,
 			prior = 13, state = {0,1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_post9",
 			idle = 0,
 			prior = 9, state = {0,1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_kamp1",
 			idle = 0,
 			prior = 2, state = {1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_kamp3",
 			idle = 0,
 			prior = 2, state = {1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_kamp4",
 			idle = 0,
 			prior = 2, state = {1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 		t = { section = "logic@esc_bridge_patrol",
 			idle = 0,
 			prior = 5, state = {1},
-			in_rest = "", out_rest = "escape_bridge_zone"
+			in_rest = "", out_rest = "esc_space_restrictor_bridge_zone"
 		}
 		table.insert(sj, t)
 	end

@@ -1,7 +1,6 @@
 -- —бор информации о том, какие сталкеры и в каком количестве обитают в симул€ции
 local ini = system_ini()
 
-
 function dbglog(fmt,...)
    local msg = string.format(fmt, ...)
    local msg_no_ws = string.gsub(msg, "%s", "_")
@@ -31,6 +30,15 @@ end
 -- Ѕыла ли произведена реинициализаци€ после лоада.
 local reinit_complete = false
 local simulator = nil
+local smart_section = "smart_terrains"
+
+function is_counted_in_stat(npc)
+	if npc.ini and npc.ini:section_exist( smart_section ) then
+		return false
+	end
+	return true
+end
+
 
 class "simulation_statistic"
 function simulation_statistic:__init()
@@ -56,6 +64,13 @@ function simulation_statistic:add_t(npc)
 	if npc:clsid() ~= clsid.script_stalker and xr_statistic.monster_classes[npc:clsid()] == nil then
 		return
 	end
+	if not is_counted_in_stat(npc) then
+		dbglog(npc:name().." has a terrain assigned")
+		if utility_script.r_string_if_exists(npc:section_name(), "include_in_stat") ~= "true" then
+			dbglog(npc:name().." not being added as they have a terrain assigned")
+			return
+		end
+	end
 	if  not npc:alive() then
 		return
 	end
@@ -66,14 +81,25 @@ function simulation_statistic:add_t(npc)
 	if self.objs[community][rank] == nil then
 		self.objs[community][rank] = 0
 	end
+	dbglog("adding "..npc:name().." "..community.." "..rank.." from statistic")
+	dbglog("before "..tostring(self.objs[community][rank]))
 	self.objs[community][rank] = self.objs[community][rank] + 1
+	dbglog("after "..tostring(self.objs[community][rank]))
 end
 function simulation_statistic:remove(npc)
-	if self.objects[npc.id] ~= nil then
-		local community, rank = self.objects[npc.id].community, self.objects[npc.id].rank
-		self.allocation[community][rank] = self.allocation[community][rank] - 1
-		self.objects[npc.id] = nil
+	npc = alife():object(npc:id())
+	if not is_counted_in_stat(npc) then
+		dbglog(npc:name().." has a terrain assigned")
+		if utility_script.r_string_if_exists(npc:section_name(), "include_in_stat") ~= "true" then
+			dbglog(npc:name().." not being removed as they have a terrain assigned")
+			return
+		end
 	end
+	local community, rank = getNpcType(npc)
+	dbglog("removing "..npc:name().." "..community.." "..rank.." from statistic")
+	dbglog("before "..tostring(self.objs[community][rank]))
+	self.objs[community][rank] = self.objs[community][rank] - 1
+	dbglog("after "..tostring(self.objs[community][rank]))
 end
 function simulation_statistic:simNpcCount(community, rank)
 	if self.allocation[community] == nil then
@@ -104,7 +130,7 @@ function simulation_statistic:pstats_test()
 		add_t( obj )
 
 	end
-	return self.objs
+	--return self.objs
 end
 
 function simulation_statistic:get_stat()
@@ -169,7 +195,7 @@ function pstats_test()
 	if simulator == nil then
 		simulator = simulation_statistic()
 	end
-	return simulator:pstats_test()
+	simulator:pstats_test()
 end
 
 

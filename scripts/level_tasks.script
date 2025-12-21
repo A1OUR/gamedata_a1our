@@ -134,9 +134,17 @@ function add_lchanger_location()
 		if obj then
 			level.map_add_object_spot(obj.id, "level_changer", "to_marsh")
 		end
+		local obj = sim:story_object(97)
+		if obj then
+			level.map_add_object_spot(obj.id, "level_changer", "to_marsh")
+		end
 		
 		--marsh
 		local obj = sim:story_object(1701)
+		if obj then
+			level.map_add_object_spot(obj.id, "level_changer", "to_escape")
+		end
+		local obj = sim:story_object(1702)
 		if obj then
 			level.map_add_object_spot(obj.id, "level_changer", "to_escape")
 		end

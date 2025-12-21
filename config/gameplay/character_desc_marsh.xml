@@ -31,6 +31,6 @@
 #include "gameplay\character_criticals_3.xml"
 	<start_dialog>mar_sci_start_dialog</start_dialog>
 	<!-- <actor_dialog>mar_sci_hands_dialog_1</actor_dialog> -->
-	<actor_dialog>mar_sci_hands_dialog_2</actor_dialog>
+	<!-- <actor_dialog>mar_sci_hands_dialog_2</actor_dialog> -->
 	</specific_character>
 </xml>

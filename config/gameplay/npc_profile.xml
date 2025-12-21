@@ -52,14 +52,6 @@
 		<class>esc_killer_master</class>
 	</character>
 	
-	<character id="esc_bandit_novice">
-		<class>esc_bandit_novice</class>
-	</character>
-	
-	<character id="esc_stalker_novice">
-		<class>esc_stalker_novice</class>
-	</character>
-	
 	<character id="esc_soldier_commander">
 		<class>esc_soldier_commander</class>
 	</character>
@@ -1202,6 +1194,9 @@
 	</character>
 
    <!--Dolg-->
+	<character id="sim_dolg_novice">
+		<class>sim_Dolg_novice</class>
+	</character>
 	<character id="sim_dolg_regular">
 		<class>sim_Dolg_regular</class>
 	</character>

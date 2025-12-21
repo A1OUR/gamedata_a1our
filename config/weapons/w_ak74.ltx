@@ -1,5 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [wpn_ak74]:identity_immunities
+always_ungroupable      = true
 GroupControlSection		= spawn_group
 discovery_dependency	= 
 $spawn              	= "weapons\ak-74"	; name and section in level editor
@@ -264,3 +265,18 @@ grenade_zoom_offset			= -0.039600,-0.433100,0.000000
 grenade_zoom_rotate_x		= -0.538700
 grenade_zoom_rotate_y		= -0.033800
 
+
+[wpn_ak74_upgrade_0]
+cost					= 1000
+inv_weight			= 0.5
+rpm                      	= 850
+
+[wpn_ak74_upgrade_1]
+cost					= 1000
+inv_weight			= 0.5
+cam_max_angle_horz  = 20.0
+cam_max_angle		= 10.0
+
+[wpn_ak74_upgrade_2]
+cost					= 1000
+inv_weight			= -2.5

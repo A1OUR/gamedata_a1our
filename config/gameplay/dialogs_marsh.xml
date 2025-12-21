@@ -1,55 +1,5 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
-	<dialog id="mar_sci_hands_dialog_1">
-		<dont_has_info>mar_sci_hands_start</dont_has_info>
-		<phrase_list>
-			<phrase id="0">
-                <text>mar_sci_hands_dialog_1_0</text>
-                <next>1</next>
-            </phrase>
-			<phrase id="1">
-                <text>mar_sci_hands_dialog_1_1</text>
-				<give_info>mar_sci_leader_meet</give_info>
-				<next>2</next>
-				<next>3</next>
-            </phrase>
-			<phrase id="2">
-                <text>mar_sci_hands_dialog_1_2</text>
-				<give_info>mar_sci_hands_start</give_info>
-            </phrase>
-			<phrase id="3">
-                <text>mar_sci_hands_dialog_1_3</text>
-            </phrase>
-        </phrase_list>
-    </dialog>
-
-
-	<dialog id="mar_sci_hands_dialog_2">
-		<precondition>sak_dialog.mar_sci_hands_have</precondition>
-		<has_info>mar_sci_hands_start</has_info>
-		<dont_has_info>mar_sci_hands_done</dont_has_info>
-		<phrase_list>
-			<phrase id="0">
-                <text>mar_sci_hands_dialog_2_0</text>
-                <next>1</next>
-            </phrase>
-			<phrase id="1">
-                <text>mar_sci_hands_dialog_2_1</text>
-				<next>2</next>
-            </phrase>
-			<phrase id="2">
-                <text>mar_sci_hands_dialog_2_2</text>
-				<give_info>mar_sci_hands_done</give_info>
-				<action>sak_dialog.give_mar_sci_hands</action>
-				<next>3</next>
-            </phrase>
-			<phrase id="3">
-                <text>mar_sci_hands_dialog_2_3</text>
-				<action>sak_dialog.give_installation_manual</action>
-            </phrase>
-        </phrase_list>
-    </dialog>
-	
 	<dialog id="mar_sci_start_dialog">
 		<phrase_list>
 			<phrase id="0">
@@ -82,6 +32,9 @@
             </phrase>
 			<phrase id="11121">
 				<text>mar_sci_start_dialog_11121</text>
+				<next>4</next>
+				<next>5</next>
+				<next>6</next>
             </phrase>
 			<phrase id="1111">
 				<dont_has_info>mar_sci_hands_info_2</dont_has_info>
@@ -105,6 +58,9 @@
 			<phrase id="1111111">
 				<text>mar_sci_start_dialog_1111111</text>
 				<give_info>mar_sci_hands_start</give_info>
+				<next>4</next>
+				<next>5</next>
+				<next>6</next>
             </phrase>
 			<phrase id="02">
 				<next>2</next>
@@ -134,6 +90,91 @@
             </phrase>
 			<phrase id="3">
 				<text>mar_sci_start_dialog_3</text>
+				<next>4</next>
+				<next>5</next>
+				<next>6</next>
+				<next>7</next>
+            </phrase>
+			<phrase id="4">
+				<has_info>agr_journal_task</has_info>
+				<dont_has_info>mar_sci_leader_meet</dont_has_info>
+				<text>mar_sci_start_dialog_4</text>
+				<next>41</next>
+            </phrase>
+			<phrase id="41">
+				<text>mar_sci_start_dialog_41</text>
+				<next>411</next>
+            </phrase>
+			<phrase id="411">
+				<text>mar_sci_start_dialog_411</text>
+				<give_info>mar_sci_leader_meet</give_info>
+				<next>4111</next>
+				<next>4112</next>
+				<next>4113</next>
+            </phrase>
+			<phrase id="4111">
+				<dont_has_info>mar_sci_hands_start</dont_has_info>
+				<text>mar_sci_start_dialog_4111</text>
+				<next>1111</next>
+				<next>1112</next>
+				<next>21</next>
+				<next>22</next>
+            </phrase>
+			<phrase id="4112">
+				<has_info>mar_sci_hands_start</has_info>
+				<dont_has_info>mar_sci_hands_done</dont_has_info>
+				<text>mar_sci_start_dialog_4112</text>
+            </phrase>
+			<phrase id="4113">
+				<has_info>mar_sci_hands_done</has_info>
+				<dont_has_info>agr_installation_can_disable</dont_has_info>
+				<action>sak_dialog.give_installation_manual</action>
+				<text>mar_sci_start_dialog_4113</text>
+            </phrase>
+			<phrase id="5">
+            </phrase>
+			<phrase id="6">
+				<precondition>sak_dialog.mar_sci_hands_have</precondition>
+				<has_info>mar_sci_hands_start</has_info>
+				<dont_has_info>mar_sci_hands_done</dont_has_info>
+                <text>mar_sci_hands_dialog_6</text>
+                <next>61</next>
+            </phrase>
+			<phrase id="61">
+                <text>mar_sci_hands_dialog_61</text>
+				<next>611</next>
+            </phrase>
+			<phrase id="611">
+                <text>mar_sci_hands_dialog_611</text>
+				<action>sak_dialog.give_mar_sci_hands</action>
+				<next>6111</next>
+				<next>6112</next>
+            </phrase>
+			<phrase id="6111">
+                <text>mar_sci_hands_dialog_6111</text>
+				<has_info>mar_sci_leader_meet</has_info>
+				<action>sak_dialog.give_installation_manual</action>
+				<action>sak_dialog.mar_sci_pay_money</action>
+				<give_info>mar_sci_hands_done</give_info>
+            </phrase>
+			<phrase id="6112">
+                <text>mar_sci_hands_dialog_6112</text>
+				<dont_has_info>mar_sci_leader_meet</dont_has_info>
+				<action>sak_dialog.mar_sci_pay_money</action>
+				<give_info>mar_sci_hands_done</give_info>
+            </phrase>
+			<phrase id="7">
+				<precondition>sak_dialog.mar_sci_1hand_have</precondition>
+				<has_info>mar_sci_hands_done</has_info>
+				<dont_has_info>mar_sci_hands_info_3</dont_has_info>
+                <text>mar_sci_hands_dialog_7</text>
+                <next>71</next>
+            </phrase>
+			<phrase id="71">
+				<give_info>mar_sci_hands_info_3</give_info>
+                <text>mar_sci_hands_dialog_71</text>
+                <next>4</next>
+				<next>5</next>
             </phrase>
         </phrase_list>
     </dialog>

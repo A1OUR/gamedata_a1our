@@ -16,8 +16,7 @@ local mgr_combat_actions = {
 [stalker_ids.action_anomaly_planner] = true,
 }
 local mgr_alife_actions = {
-[xr_actions_id.alife] = true,
-[stalker_ids.action_gather_items] = not xr_corpse_detection,
+[xr_actions_id.alife] = true
 }
 
 --' Эвалуатор, который синхронизирует менеджер.
