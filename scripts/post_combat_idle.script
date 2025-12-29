@@ -41,6 +41,7 @@ function evaluator_post_combat_idle:evaluate()
 		else
 			st.timer = time_global() + math.random(def_min_post_combat_time,def_max_post_combat_time)
 		end
+		--st.timer = time_global() + 100
 	end
 
 	if best_enemy ~= nil then

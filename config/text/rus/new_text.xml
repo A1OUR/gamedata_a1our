@@ -670,4 +670,13 @@
 	<string id="mar_sci_hands_3">
 		<text>Принести образцы Лихачёву</text>
 	</string>
+	
+	
+	<string id="hit_power_koef">
+		<text>Урон:</text>
+	</string>
+	
+	<string id="actual_rpm">
+		<text>Выстр. в мин:</text>
+	</string>
 </string_table>

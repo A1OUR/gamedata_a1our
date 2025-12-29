@@ -1,5 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [wpn_ak74]:identity_immunities
+show_wpn_properties = false
+hit_absorbation_sect			= sect_bandit_outfit_immunities
+af_actor_properties			= on
 always_ungroupable      = true
 GroupControlSection		= spawn_group
 discovery_dependency	= 
@@ -103,7 +106,7 @@ PDM_crouch	 				= 1.0
 PDM_crouch_no_acc 			= 1.0
 
 ; ttc
-hit_power                	= 200;0.35, 0.39, 0.42, 0.45		; size of damage by bullet
+hit_power                	= 0.45;0.35, 0.39, 0.42, 0.45		; size of damage by bullet
 hit_impulse		 			= 140		; size of physic impulse by bullet	
 hit_type 					= fire_wound 	; [] type of the wound
 fire_distance            	= 1000		; maximum fire distance that bullet can fly
@@ -274,8 +277,9 @@ rpm                      	= 850
 [wpn_ak74_upgrade_1]
 cost					= 1000
 inv_weight			= 0.5
-cam_max_angle_horz  = 20.0
-cam_max_angle		= 10.0
+;cam_max_angle_horz  = 20.0
+;cam_max_angle		= 9.0
+ammo_mag_size        = 999
 
 [wpn_ak74_upgrade_2]
 cost					= 1000

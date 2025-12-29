@@ -1,0 +1,4 @@
+function ui_item_info_callback(uidesc, obj)
+	--dbglog(tostring(obj:name()))
+	--xml:ParseFile		("ui_game_over.xml")
+end

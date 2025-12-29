@@ -1,5 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [wpn_sig550]:identity_immunities
+show_wpn_properties = false
+hidden_bones = joint2
+hit_absorbation_sect			= sect_bandit_outfit_immunities
+af_actor_properties			= on
+;actor_properties			= on
 GroupControlSection		= spawn_group
 discovery_dependency	= 
 $spawn              	= "weapons\sig550"		; option for Level Editor
@@ -55,7 +60,7 @@ kill_msg_height		= 24
 
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base		= 0.13	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.01	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor		= 1.4f
 
 ;отдача
@@ -93,7 +98,7 @@ PDM_crouch	 		= 1.0
 PDM_crouch_no_acc 		= 1.0
 
 ; ttc
-hit_power        	= 0.48, 0.52, 0.55, 0.58
+hit_power        	= 0.48
 hit_impulse		 	= 140
 hit_type 			= fire_wound
 

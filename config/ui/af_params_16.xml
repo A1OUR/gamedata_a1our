@@ -61,4 +61,12 @@
 			<texture>ui_inv_icon_fire_wound_immunity</texture>
 			<text font="letterica16" x="13" y="0"/>
 		</static_fire_wound_immunity>
+		<static_hit_power_koef width="194" height="20" complex_mode="1">
+			<texture>ui_inv_icon_fire_wound_immunity</texture>
+			<text font="letterica16" x="13" y="0"/>
+		</static_hit_power_koef>
+		<static_actual_rpm width="194" height="20" complex_mode="1">
+			<texture>ui_inv_icon_fire_wound_immunity</texture>
+			<text font="letterica16" x="13" y="0"/>
+		</static_actual_rpm>
 	</af_params>
