@@ -229,6 +229,12 @@ character_profile	= sim_soldier_novice_sniper
 spec_rank = novice
 community = military
 
+[sim_killer_novice_respawn]:stalker
+$spawn				=  "respawn\sim_killer_novice_respawn"
+character_profile	= sim_killer_novice
+spec_rank = novice
+community = killer
+
 ;-----------DARKSCAPE
 ;-----------stalker
 [ds_stalker_respawn_1]:stalker
@@ -667,7 +673,8 @@ custom_data = scripts\bar_arena_savage_respawn.ltx
 
 [test_stalker_respawn_1]:stalker
 $spawn 				= "respawn\test_stalker_respawn_1"
-character_profile	= sim_stalker_master_polkan
+character_profile	= mar_soldier_regular
+custom_data = scripts\test_stalker.ltx
 
 [zombie_pitch_ostrov]:zombie_pitch
 $spawn				= "monsters\zombies\zombie_pitch_ostrov"

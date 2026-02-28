@@ -6,6 +6,39 @@ path_walk = walk_1
 path_look = look_1
 def_state_standing = choose
 
+[logic@mar_science_camp_walk_2]
+active = walker@mar_science_camp_walk_2
+
+[walker@mar_science_camp_walk_2]
+path_walk = walk_2
+path_look = look_2
+
+[logic@mar_science_camp_walk_3]
+active = walker@mar_science_camp_walk_3
+
+[walker@mar_science_camp_walk_3]
+path_walk = walk_3
+path_look = look_3
+
+[logic@mar_science_camp_walk_4]
+active = walker@mar_science_camp_walk_4
+
+[walker@mar_science_camp_walk_4]
+path_walk = walk_4
+path_look = look_4
+
+[logic@mar_science_camp_walk_5]
+active = walker@mar_science_camp_walk_5
+
+[walker@mar_science_camp_walk_5]
+path_walk = walk_5
+
+[logic@mar_science_camp_walk_6]
+active = walker@mar_science_camp_walk_6
+
+[walker@mar_science_camp_walk_6]
+path_walk = walk_6
+
 [logic@mar_bandits_1]
 active = walker@mar_bandits_1
 
@@ -40,3 +73,75 @@ active = kamp@mar_bandits_kamp
 [kamp@mar_bandits_kamp]
 center_point = kamp_point
 path_walk = kamp_point_task
+
+[logic@mar_bandits_leader]
+active = walker@mar_bandits_leader
+;combat_ignore = combat_ignore
+
+[walker@mar_bandits_leader]
+path_walk = walk_leader
+path_look = look_leader
+;combat_ignore_cond = always
+;combat_ignore_keep_when_attacked = true
+
+[logic@mar_bandits_bg_1]
+active = walker@mar_bandits_bg_1
+
+[walker@mar_bandits_bg_1]
+path_walk = walk_bg_1
+path_look = look_bg_1
+
+[logic@mar_bandits_bg_2]
+active = walker@mar_bandits_bg_2
+
+[walker@mar_bandits_bg_2]
+path_walk = walk_bg_2
+path_look = look_bg_2
+
+[logic@mar_bandits_bg_3]
+active = walker@mar_bandits_bg_3
+
+[walker@mar_bandits_bg_3]
+path_walk = walk_bg_3
+path_look = look_bg_3
+
+[logic@mar_hunters_leader]
+active = walker@mar_hunters_leader
+
+[walker@mar_hunters_leader]
+path_walk = walk_leader
+path_look = look_leader
+def_state_standing = ward
+
+[logic@mar_hunters_trader]
+active = walker@mar_hunters_trader
+trade = misc\trade_hunter.ltx
+inv_max_weight = 10000
+
+[walker@mar_hunters_trader]
+path_walk = walk_trader
+path_look = look_trader
+def_state_standing = ward
+
+[logic@mar_hunters_kamp]
+active = kamp@mar_hunters_kamp
+
+[kamp@mar_hunters_kamp]
+path_walk = kamp_point_task
+center_point = kamp_point
+
+[logic@mar_hunters_walk_1]
+active = walker@mar_hunters_walk_1
+
+[walker@mar_hunters_walk_1]
+path_walk = walk_1
+path_look = look_1
+;def_state_standing = ward
+
+[logic@mar_hunters_walk_2]
+active = walker@mar_hunters_walk_2
+
+[walker@mar_hunters_walk_2]
+path_walk = walk_2
+;path_look = look_1
+;def_state_standing = ward

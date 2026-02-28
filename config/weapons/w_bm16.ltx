@@ -81,11 +81,11 @@ smoke_particles		   		= weapons\generic_shoot_00
 rpm_empty_click 	   		= 200
 
 ; ttc
-hit_power        	= 0.75, 0.79, 0.85, 0.90
+hit_power        	= 0.75
 hit_impulse      	= 240
 hit_type 			= fire_wound
 
-fire_distance       = 50 ;1000
+fire_distance       = 1000
 bullet_speed		= 340	;начальная скорость пули
 rpm                 = 500
 ; end ttc
@@ -143,36 +143,43 @@ snd_shoot_1					= weapons\tm_toz34_shot
 snd_reload_1				= weapons\bm16_reload_one		;reload left
  
 [wpn_bm16_hud]
-shell_point		 			= 0.0, 0.0, 0.0
-fire_point               	= -0.276400,0.000000,0.040000
-fire_point2              	= -0.276400,0.000000,0.040000
-fire_bone                	= wpn_barrel_0
-orientation              	= 0, 0, 0
-position                 	= 0, 0, 0
-visual                   	= weapons\bm_16\wpn_bm-16_hud.ogf
+shell_point		 			= 0.050000,0.000000,-0.300000
 
-anim_idle					= idle
-anim_reload					= reload ;reload both
-anim_draw					= draw
-anim_holster				= holster
-anim_shoot					= shoot_left ;shot left
-anim_shoot_both 			= shoot
-anim_idle_aim				= idle_aim
-anim_idle_sprint			= idle_sprint
+fire_point				    = 0.003000,0.102301,0.194602
+fire_point2				    = 0.003000,0.102301,0.194602
+fire_bone                	= wpn_body
 
-anim_reload_1				= reload_left ;reload left
-anim_shoot_1				= shoot_right ;shot right
+position				    = 0.081000,-0.055000,0.000000
+orientation				    = 1.809724,1.790777,0.009505
 
-anim_idle_1					= idle_cock
-anim_idle_2					= idle_cocks
+visual                   	= weapons_new\izh43\wpn_izh43_hud_new.ogf
 
-anim_zoomed_idle_1			= idle_cock_aim
-anim_zoomedidle_2			= idle_cocks_aim
+anim_idle				    = izh43_idle
+anim_reload				    = izh43_reload_lr
+anim_draw				    = izh43_draw
+anim_holster				= izh43_holster
+anim_shoot				    = izh43_shoot
+anim_shoot_both 			= izh43_shoot
+anim_idle_aim				= izh43_aim
+anim_idle_sprint			= izh43_sprint
+anim_idle_sprint_1			= izh43_sprint
+anim_idle_sprint_2			= izh43_sprint
 
-;смещения HUD для режима приближения
-zoom_offset			= -0.167900,0.066560,0.000000
-zoom_rotate_x		= -0.028000
-zoom_rotate_y		= -0.003900
+anim_reload_1				= izh43_reload_l
+anim_shoot_1				= izh43_shoot
+
+anim_idle_1				    = izh43_idle
+anim_idle_2				    = izh43_idle
+
+anim_zoomed_idle_1			= izh43_aim
+anim_zoomed_idle_2			= izh43_aim
+
+zoom_offset				    = -0.083700,0.058500,-0.046100
+zoom_rotate_x				= 0.032600
+zoom_rotate_y				= 0.031900
+
+zoom_rotate_time			= 0.2
+rotate_time					= 0.2
 
 [wpn_bm16f]:wpn_bm16
 $spawn                   	= "weapons\bm16f"					; option for Level Editor

@@ -33,4 +33,304 @@
 	<!-- <actor_dialog>mar_sci_hands_dialog_1</actor_dialog> -->
 	<!-- <actor_dialog>mar_sci_hands_dialog_2</actor_dialog> -->
 	</specific_character>
+	
+	
+	<specific_character id="sim_stalker_master_chuchelo" team_default = "1">
+		<name>sim_stalker_master_chuchelo_name</name>
+		<icon>ui_npc_u_stalker_neytral_exoskeleton</icon>
+		<map_icon x="1" y="0"></map_icon>
+		<bio>sim_stalker_master_chuchelo_bio</bio>
+
+		<class>sim_stalker_master_chuchelo</class>
+		<community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+				
+		<rank>450</rank>
+		<reputation>145</reputation>
+
+		<snd_config>characters_voice\human_03\stalker\</snd_config>
+		<crouch_type>-1</crouch_type>
+		<visual>actors\neytral\stalker_neytral_exoskeleton</visual>
+		<supplies>
+			[spawn] \n
+			wpn_walther \n
+			ammo_9x19_fmj \n
+			wpn_l85 \n
+			ammo_5.56x45_ss190 \n
+			device_torch \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		
+#include "gameplay\character_criticals_2.xml"
+#include "gameplay\character_dialogs.xml"
+		<actor_dialog>tutorial_wounded_task_sidor</actor_dialog>
+	</specific_character>
+	
+	<specific_character id="mar_hunter_trader" team_default = "1">
+        <name>mar_hunter_trader</name>
+        <icon>ui_npc_u_green_stalker_6</icon>
+        <map_icon x="0" y="0"></map_icon>
+        <bio>mar_hunter_trader_bio</bio>
+
+        <class>mar_hunter_trader</class>
+        <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect> <terrain_sect>stalker_terrain</terrain_sect>
+
+        <rank>0</rank>
+        <reputation>0</reputation>
+        <money min="100000" max="100000" infinitive="1" barter_mode="1"/> 
+        <visual>actors\novice\green_stalker_6</visual>
+        <snd_config>characters_voice\human_02\stalker\</snd_config>
+        <crouch_type>1</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_stalker_novice.xml" \n
+        </supplies>
+
+#include "gameplay\character_criticals_3.xml"
+#include "gameplay\character_dialogs.xml"
+		<actor_dialog>teleport_dialog</actor_dialog>
+    </specific_character>
+	
+	
+	<!-------------------------------------soldier_regular----------------------------------------------------->	
+	
+    <specific_character id="mar_soldier_regular_default000" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_bandana</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_bandana</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character>
+    
+    <specific_character id="mar_soldier_regular_default100" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_bandana_1</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_bandana_1</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character>
+    
+    <specific_character id="mar_soldier_regular_default200" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_bandana_2</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_bandana_2</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character>
+    
+    <specific_character id="mar_soldier_regular_default300" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_bandana_3</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_bandana_3</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character>
+    
+    <specific_character id="mar_soldier_regular_default400" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_bandana_4</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_bandana_4</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character>
+    
+    <specific_character id="mar_soldier_regular_default500" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_bandana_5</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_bandana_5</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character>
+    
+    <specific_character id="mar_soldier_regular_default600" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_bandana_6</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_bandana_6</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character> 
+
+    <specific_character id="mar_soldier_regular_default700" team_default = "1">
+        <name>GENERATE_NAME_private</name>
+        <icon>ui_npc_u_soldier_obichniy</icon>
+        <map_icon x="1" y="2"></map_icon>
+        <bio>sim_soldier_regular_bio</bio>
+
+        <class>mar_soldier_regular</class>
+        <community>ecolog</community> <terrain_sect>stalker_ecolog_terrain</terrain_sect>
+
+        <rank>56</rank>
+        <reputation>5</reputation>
+
+        <visual>actors\soldier\soldier_obichniy</visual>
+        <snd_config>characters_voice\human_01\military\</snd_config>
+        <crouch_type>0</crouch_type>
+        <supplies>
+[spawn] \n
+#include "gameplay\character_soldier_novice.xml" \n
+        </supplies>	
+
+#include "gameplay\character_criticals_5.xml"
+
+        <start_dialog>hello_dialog</start_dialog>
+
+    </specific_character>
+	
+	
+	<specific_character id="bityi" team_default = "1">
+		<name>bityi</name>
+		<icon>ui_npc_u_stalker_bandit_master</icon>
+		<map_icon x="3" y="2"></map_icon>
+		<bio>bityi_bio</bio>
+		
+		<class>bityi</class>
+		<community>bandit</community> <terrain_sect>stalker_bandit_terrain</terrain_sect>
+		
+		<rank>670</rank>
+		<reputation>-112</reputation>
+
+		<visual>actors\bandit\stalker_bandit_master</visual>
+		<snd_config>characters_voice\human_02\bandit\</snd_config>
+		<crouch_type>1</crouch_type>
+		<supplies>
+			[spawn] \n
+			wpn_walther \n
+			ammo_9x19_fmj \n
+			wpn_ak74u \n
+			ammo_5.45x39_fmj = 1 \n
+			device_torch \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		
+#include "gameplay\character_criticals_4.xml"
+	</specific_character>
 </xml>

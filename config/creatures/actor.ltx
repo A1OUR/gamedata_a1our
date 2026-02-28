@@ -62,7 +62,7 @@ hit_probability_gd_veteran		= 1
 hit_probability_gd_master		= 1
 hit_sounds					= actor_hit_snds
 
-falloff_k                       = 0.25 ; уменьшение полезности артефактов с каждым новым артефактом
+falloff_k                       = 0.8 ; уменьшение полезности артефактов с каждым новым артефактом
 lookout_angle                   = 8
 ;actor condition
 
@@ -159,9 +159,11 @@ radiation_immunity 			= 1.0
 telepatic_immunity 			= 1.0
 chemical_burn_immunity 		= 1.0
 explosion_immunity 			= 1.0
-fire_wound_immunity  		= 1.0
+fire_wound_immunity  		= 0.33
 
 [actor_condition]
+hit_power_koef = 1.0
+actual_rpm = 1.0
 satiety_v					= 0.000015				;скорость уменьшения сытости со временем
 radiation_v					= 0.0001				;скорость уменьшения радиации
 satiety_power_v				= 0.000055				;увеличение силы при уменьшении сытости 
@@ -225,7 +227,6 @@ cant_sprint_power_end   =	0.30	;порог силы больше которого актер сможет бежать в
 
 can_sleep_callback			= dream.can_sleep_callback
 sleep_video_name_callback	= dream.sleep_video_name_callback
-
 [actor_damage]
 ;bone_name		 = <hit_scale>,<fwd_damage_anim_index>,<wound_scale>
 ;<hit_scale> - коэфф. изменения хита (уменьшения здоровья) 
@@ -238,39 +239,39 @@ bip01_spine 		 		= 1.0, 10, 1.5
 bip01_spine1 		 		= 1.0, 0, 1.5
 bip01_spine2 		 		= 1.0, 0, 1.5
 bip01_neck 			 		= 1.0, 0, 1.5
-bip01_head 			 		= 0.2, 0, 1.5
-eyelid_1 			 		= 0.0, 0, 0.0
-eye_left 			 		= 0.0, 0, 0.0
-eye_right 			 		= 0.0, 0, 0.0
-jaw_1 		 		 		= 0.0, 0, 0.0
+bip01_head 			 		= 1.0, 0, 1.5
+eyelid_1 			 		= 1.0, 0, 0.0
+eye_left 			 		= 1.0, 0, 0.0
+eye_right 			 		= 1.0, 0, 0.0
+jaw_1 		 		 		= 1.0, 0, 0.0
 
 bip01_l_clavicle	 		= 1.0, 4, 1.5
 bip01_l_upperarm	 		= 1.0, 4, 1.5
 bip01_l_forearm	 	 		= 1.0, 4, 1.5
 bip01_l_hand	 	 		= 1.0, 4, 0.5
-bip01_l_finger0	 	 		= 0.0, 4, 0.0
-bip01_l_finger01	 		= 0.0, 4, 0.0
-bip01_l_finger02	 		= 0.0, 4, 0.0
-bip01_l_finger1	 	 		= 0.0, 4, 0.0
-bip01_l_finger11	 		= 0.0, 4, 0.0
-bip01_l_finger12	 		= 0.0, 4, 0.0
-bip01_l_finger2	 	 		= 0.0, 4, 0.0
-bip01_l_finger21	 		= 0.0, 4, 0.0
-bip01_l_finger22	 		= 0.0, 4, 0.0
+bip01_l_finger0	 	 		= 1.0, 4, 0.0
+bip01_l_finger01	 		= 1.0, 4, 0.0
+bip01_l_finger02	 		= 1.0, 4, 0.0
+bip01_l_finger1	 	 		= 1.0, 4, 0.0
+bip01_l_finger11	 		= 1.0, 4, 0.0
+bip01_l_finger12	 		= 1.0, 4, 0.0
+bip01_l_finger2	 	 		= 1.0, 4, 0.0
+bip01_l_finger21	 		= 1.0, 4, 0.0
+bip01_l_finger22	 		= 1.0, 4, 0.0
 
 bip01_r_clavicle	 		= 1.0, 2, 1.5
 bip01_r_upperarm	 		= 1.0, 2, 1.5
 bip01_r_forearm	 	 		= 1.0, 2, 1.5
 bip01_r_hand	 	 		= 1.0, 2, 0.0
-bip01_r_finger0	 	 		= 0.0, 2, 0.0
-bip01_r_finger01	 		= 0.0, 2, 0.0
-bip01_r_finger02	 		= 0.0, 2, 0.0
-bip01_r_finger1	 	 		= 0.0, 2, 0.0
-bip01_r_finger11	 		= 0.0, 2, 0.0
-bip01_r_finger12	 		= 0.0, 2, 0.0
-bip01_r_finger2	 	 		= 0.0, 2, 0.0
-bip01_r_finger21	 		= 0.0, 2, 0.0
-bip01_r_finger22	 		= 0.0, 2, 0.0
+bip01_r_finger0	 	 		= 1.0, 2, 0.0
+bip01_r_finger01	 		= 1.0, 2, 0.0
+bip01_r_finger02	 		= 1.0, 2, 0.0
+bip01_r_finger1	 	 		= 1.0, 2, 0.0
+bip01_r_finger11	 		= 1.0, 2, 0.0
+bip01_r_finger12	 		= 1.0, 2, 0.0
+bip01_r_finger2	 	 		= 1.0, 2, 0.0
+bip01_r_finger21	 		= 1.0, 2, 0.0
+bip01_r_finger22	 		= 1.0, 2, 0.0
 
 bip01_l_thigh	 	 		= 1.0, 8, 1.5
 bip01_l_calf	 	 		= 1.0, 8, 1.5

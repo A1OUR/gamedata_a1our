@@ -5,6 +5,39 @@ function load_job(sj, gname, type, squad, groups)
 		t = { section = "logic@mar_science_camp_leader",
 			idle = 0,
 			prior = 20, state = {0},
+			in_rest = "", out_rest = "",
+		predicate = function(obj_info)
+		            	return obj_info.name == "mar_science_camp_leader"
+		            end
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_science_camp_walk_2",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_science_camp_walk_3",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_science_camp_walk_4",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_science_camp_walk_5",
+			idle = 0,
+			prior = 3, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_science_camp_walk_6",
+			idle = 0,
+			prior = 3, state = {0},
 			in_rest = "", out_rest = ""
 		}
 		table.insert(sj, t)
@@ -36,20 +69,97 @@ function load_job(sj, gname, type, squad, groups)
 		table.insert(sj, t)
 		t = { section = "logic@mar_bandits_kamp",
 			idle = 0,
-			prior = 3, state = {0},
+			prior = 1, state = {0},
 			in_rest = "", out_rest = ""
 		}
 		table.insert(sj, t)
 		t = { section = "logic@mar_bandits_kamp",
 			idle = 0,
-			prior = 3, state = {0},
+			prior = 1, state = {0},
 			in_rest = "", out_rest = ""
 		}
 		table.insert(sj, t)
 		t = { section = "logic@mar_bandits_kamp",
 			idle = 0,
-			prior = 3, state = {0},
+			prior = 1, state = {0},
 			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_leader",
+			idle = 0,
+			prior = 20, state = {0},
+			in_rest = "", out_rest = "",
+		predicate = function(obj_info)
+		            	return obj_info.name == "mar_bandits_leader"
+		            end
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_bg_1",
+			idle = 0,
+			prior = 10, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_bg_2",
+			idle = 0,
+			prior = 10, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_bandits_bg_3",
+			idle = 0,
+			prior = 10, state = {0},
+			in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+	end
+	if type == "mar_hunters" then
+		t = { section = "logic@mar_hunters_leader",
+			idle = 0,
+			prior = 100, state = {0},
+			in_rest = "", out_rest = "",
+		predicate = function(obj_info)
+		            	return obj_info.name == "mar_hunter_leader"
+		            end
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_hunters_trader",
+			idle = 0,
+			prior = 100, state = {0},
+		in_rest = "", out_rest = "",
+		predicate = function(obj_info)
+		            	return obj_info.name == "mar_hunter_trader"
+		            end
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_hunters_kamp",
+		idle = 0,
+		prior = 4, state = {0},
+		in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_hunters_kamp",
+		idle = 0,
+		prior = 4, state = {0},
+		in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_hunters_kamp",
+		idle = 0,
+		prior = 4, state = {0},
+		in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_hunters_walk_1",
+		idle = 0,
+		prior = 13, state = {0},
+		in_rest = "", out_rest = ""
+		}
+		table.insert(sj, t)
+		t = { section = "logic@mar_hunters_walk_2",
+		idle = 0,
+		prior = 13, state = {0},
+		in_rest = "", out_rest = ""
 		}
 		table.insert(sj, t)
 	end
@@ -63,6 +173,11 @@ function load_states(gname, type)
 		end
 	end
 	if type == "mar_bandits" then
+		return function(gulag)
+			return 0
+		end
+	end
+	if type == "mar_hunters" then
 		return function(gulag)
 			return 0
 		end
@@ -84,6 +199,9 @@ function checkStalker(npc_community, gulag_type, npc_rank, se_obj)
 	end
 	if gulag_type == "mar_bandits" then
 		return npc_community == "bandit"
+	end
+	if gulag_type == "mar_hunters" then
+		return npc_community == "stalker"
 	end
 	return false
 end

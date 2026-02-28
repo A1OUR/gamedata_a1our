@@ -75,3 +75,15 @@ end
 function mar_sci_pay_money (first_speaker, second_speaker)
 	dialogs.relocate_money(first_speaker, 10000, "in")
 end
+
+function teleport_marsh_hunters (first_speaker, second_speaker)
+	amk.teleport_to_way("marsh_hunters_fast_travel_point")
+end
+
+function teleport_marsh_sci_camp (first_speaker, second_speaker)
+	amk.teleport_to_way("marsh_sci_camp_fast_travel_point")
+end
+
+function teleport_esc_sid (first_speaker, second_speaker)
+	amk.teleport_to_way("esc_sidor_fast_travel_point")
+end

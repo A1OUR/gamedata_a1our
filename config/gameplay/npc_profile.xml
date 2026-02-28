@@ -1225,6 +1225,9 @@
 	</character>
 
    <!--KILLERS-->
+   <character id="sim_killer_novice">
+		<class>sim_killer_novice</class>
+	</character>
 	<character id="sim_killer_general">
 		<class>sim_killer_general</class>
 	</character>
@@ -1916,5 +1919,17 @@
 	
 	<character id="mar_science_camp_leader">
 		<class>mar_science_camp_leader</class>
+	</character>
+	
+	<character id="mar_hunter_trader">
+		<class>mar_hunter_trader</class>
+	</character>
+	
+	<character id="mar_soldier_regular">
+		<class>mar_soldier_regular</class>
+	</character>	
+	
+	<character id="bityi">
+		<class>bityi</class>
 	</character>
 </xml>

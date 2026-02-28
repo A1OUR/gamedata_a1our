@@ -37,6 +37,10 @@ function can_give_dead()
 	return not can_give_boss and not has_alife_info("pda_boss_agr_soldier_task")
 end
 
+function boss_complete()
+	return has_alife_info("agr_installation_can_disable") or has_alife_info("agr_journal") 
+end
+
 
 function process_info_portion(info_id)
 	if info_id == "agr_krot_secret_info" and

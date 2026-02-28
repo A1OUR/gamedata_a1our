@@ -140,8 +140,8 @@
 		</objective>
 		<objective>
 			<text>esc_tolik_contract_4</text>
-			<map_location_type hint="escape_trader">blue_location</map_location_type>
-            <object_story_id>Escape_Trader</object_story_id>
+			<map_location_type hint="sim_stalker_master_chuchelo_name">blue_location</map_location_type>
+            <object_story_id>mar_hunter_leader</object_story_id>
 			<infoportion_complete>esc_tolik_contract_part_2</infoportion_complete>
 		</objective>
 		<objective>

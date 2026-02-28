@@ -154,6 +154,11 @@ zoom_enabled				= true						; (on,off)zoom mode (right mouse button)
 scope_zoom_factor	    	= 50						; fov for zoom mode
 
 scope_name 					= wpn_addon_scope			; section name for the attachable scope
+scope_names             = wpn_addon_scope, wpn_addon_scope_susat
+
+scope_respawn                                        = wpn_ak74
+scope_respawn_wpn_addon_scope_susat                  = wpn_ak74_scope_susat
+scope_respawn_wpn_addon_scope                        = wpn_ak74_scope
 scope_x 					= 42						; offset in inventory icon
 scope_y 					= 3
 silencer_name  				= wpn_addon_silencer		; section name for the attachable silencer
@@ -284,3 +289,11 @@ ammo_mag_size        = 999
 [wpn_ak74_upgrade_2]
 cost					= 1000
 inv_weight			= -2.5
+
+[wpn_ak74_scope]:wpn_ak74
+$spawn              	= "weapons\wpn_ak74_scope"		; option for Level Editor
+scope_name              = wpn_addon_scope
+
+[wpn_ak74_scope_susat]:wpn_ak74
+$spawn              	= "weapons\wpn_ak74_scope_susat"		; option for Level Editor
+scope_name              = wpn_addon_scope_susat

@@ -183,6 +183,7 @@ if obj_sect == "disable_rep" then
 	if item_s2_se ~= nil then
 		item_s2_se:set_name(item_s2:name().."_upgradefl11101")
 		item_s2:get_weapon():apply_upgrades("1111021")
+		item_s2:get_weapon():rename(item_s2:name().."_upgradefl11101")
 		--item_s2:get_inventory_item():update_icon_group(1)
 	end
 end 

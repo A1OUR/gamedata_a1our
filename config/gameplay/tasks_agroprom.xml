@@ -183,8 +183,7 @@
 	<objective>
 		<icon>ui_iconsNpc_soldier_beret</icon>
 		<infoportion_complete>pda_boss_agr_soldier</infoportion_complete>
-		<infoportion_complete>agr_installation_can_disable</infoportion_complete>
-		<infoportion_complete>agr_journal</infoportion_complete>
+		<function_complete>agroprom_tasks.boss_complete</function_complete>
 		<article>find_pda_boss_agr_soldier_descr</article>
 	</objective>
 	<objective>
@@ -197,8 +196,7 @@
 	<title>find_agr_journal</title>
 	<objective>
 		<icon>ui_iconsTotal_find_item</icon>
-		<infoportion_complete>agr_journal</infoportion_complete>
-		<infoportion_complete>agr_installation_can_disable</infoportion_complete>
+		<function_complete>agroprom_tasks.boss_complete</function_complete>
 		<article>find_agr_journal_descr</article>
 	</objective>
 	<objective>

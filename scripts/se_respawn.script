@@ -49,7 +49,7 @@ local simMaxCount = {
 	zombied_novice = 20, zombied_experienced = 15, zombied_veteran = 10, zombied_master = 10,
 	
 	rat_weak = 0,
-	zombie_pitch = 0, 
+	zombie_pitch = 20, 
 	tushkano_weak = 70,tushkano_normal = 0,
 	flesh_weak = 200, flesh_normal = 0, flesh_strong = 0,
 	boar_weak = 200, boar_normal = 0, boar_strong = 0,

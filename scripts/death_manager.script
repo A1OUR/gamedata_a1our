@@ -160,26 +160,30 @@ end
 function keep_item(npc, item)
 	-- hack for kuz
     local section = item:section()
-	if section == "wpn_ak74u" or section == "wpn_fort_m1" then
+	if section == "bolt" then
+		return false
+    end
+	--[[if section == "wpn_ak74u" or section == "wpn_fort_m1" then
 		if npc:section() == 'stalker_voen_trader' then
 		   item:set_condition(0.069)
 		end
 		return true
-    end
-    if section == "bolt" then
-		return false
-    end
+    end]]
 	
 	if ammo_sections[section] == true then
 	--db.actor:give_game_news("deleted_ammo", "ui\\ui_iconsTotal", Frect():set(x,y,83,47))
         alife():release(alife():object(item:id()), true)
+		return false
     end
 	
 	if section == "device_pda" then
 		alife():release(alife():object(item:id()), true)
+		return false
     end
 	if isWeapon(item) and item:condition()>0.99 then
-		---item:set_condition(0.1)
+		if npc:section() == 'stalker_voen_trader' then
+			item:set_condition(0.067)
+		end
         return true
     end
     if always_keep_item[section] == true then
@@ -199,23 +203,25 @@ function keep_item(npc, item)
        item_in_slot:id() == item_id
     then
     --' “ут надо уменьшить кондишн оружи€
-		---item:set_condition(0.1)
         return true
     end
 	-- сохранить оружие, возвращаемое из €щика
     if wm_slot_1_id == item_id or wm_slot_2_id == item_id then
-		--' “ут надо уменьшить кондишн оружи€
-		---item:set_condition(0.1)
+
         return true
     end
 	-- нельз€ удал€ть активный предмет
 	if item_id == active_item_id then
 		--' “ут надо уменьшить кондишн оружи€
 		if npc:active_slot() ~= 3 then	-- кроме гранат
-			---item:set_condition(0.1)
+
 		end
 		return true
     end
+	if npc:section() == 'stalker_voen_trader' then
+		alife():release(alife():object(item:id()), true)
+		return false
+	end
     --alife():release(alife():object(item:id()), true)
 end
 

@@ -1063,14 +1063,47 @@ fire_wound_immunity			= 0.012
 
 [novice_outfit_low]:novice_outfit
 $spawn 			= "outfit\novice_outfit_low"
+fire_wound_protection  			= 0.1
 
+immunities_sect			= sect_test_outfit_immunities
+hit_absorbation_sect			= sect_test_outfit_immunities
 inv_name			= outfit_novice_low_name
 inv_name_short		= outfit_novice_low_name
 bones_koeff_protection = kurtka_low_damage
 
-[novice_outfit_high]:novice_outfit
+[test_outfit_t1]:novice_outfit_low
 $spawn 			= "outfit\novice_outfit_high"
 
 inv_name			= outfit_novice_high_name
 inv_name_short		= outfit_novice_high_name
-bones_koeff_protection = kurtka_high_damage
+fire_wound_protection  			= 0.3
+
+[test_outfit_t2]:novice_outfit_low
+$spawn 			= "outfit\novice_outfit_t2"
+
+inv_grid_width		= 2
+inv_grid_height		= 3
+inv_grid_x			= 14
+inv_grid_y			= 16
+fire_wound_protection  			= 0.7
+
+[test_outfit_t3]:novice_outfit_low
+$spawn 			= "outfit\novice_outfit_t3"
+
+inv_grid_width		= 2
+inv_grid_height		= 3
+inv_grid_x			= 18
+inv_grid_y			= 17
+fire_wound_protection  			= 0.9
+
+
+[sect_test_outfit_immunities]
+burn_immunity				= 0.035			;коэффициенты иммунитета самого костюма
+strike_immunity				= 0.01
+shock_immunity				= 0.035
+wound_immunity				= 0.02
+radiation_immunity			= 0.00
+telepatic_immunity			= 0.00
+chemical_burn_immunity		= 0.04
+explosion_immunity			= 0.035
+fire_wound_immunity			= 0.00

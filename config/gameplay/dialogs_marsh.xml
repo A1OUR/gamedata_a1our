@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
+	<dialog id="teleport_dialog">
+		<phrase_list>
+			<phrase id="0">
+				<text>i_need_to_go</text>
+                <next>01</next>
+            </phrase>
+			<phrase id="01">
+				<text>where_to_go</text>
+                <next>1</next>
+				<next>2</next>
+				<next>3</next>
+				<next>4</next>
+            </phrase>
+			<phrase id="1">
+				<text>teleport_marsh_hunters</text>
+				<action>sak_dialog.teleport_marsh_hunters</action>
+            </phrase>
+			<phrase id="2">
+				<text>teleport_marsh_sci_camp</text>
+				<action>sak_dialog.teleport_marsh_sci_camp</action>
+            </phrase>
+			<phrase id="3">
+				<text>teleport_esc_sid</text>
+				<action>sak_dialog.teleport_esc_sid</action>
+            </phrase>
+			<phrase id="4">
+				<text>nowhere</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
 	<dialog id="mar_sci_start_dialog">
 		<phrase_list>
 			<phrase id="0">
