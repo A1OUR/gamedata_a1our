@@ -132,14 +132,6 @@ function CUIScriptWnd:Connect(name, event, func, ...)
 	local args = {...}
 	return self:AddCallback( name, event, function() func(unpack(args)) end )
 end
---======================================[FS Extension]==========================================
--- Возвращение метода getFS():file_rename, который вырезан из движка
-function FS:file_rename(src, dest, bOwerwrite)
-	if bOwerwrite then
-		os.remove(dest)
-	end
-	os.rename(src, dest)
-end
 --==============================================================================================
 local tostring_all_tbl = {
     ["table"] 	   = function(table, ind) --Распечатка таблиц
@@ -224,10 +216,37 @@ function printf(fmt,...)
 	log(string.format(fmt,...))
 end
 
+local bufferedmessages={}
+
+function mylog(msg)
+--[[
+  if msg==nil then
+    return 
+  end
+  if db and db.actor then
+    if bufferedmessages then
+      for k,v in ipairs(bufferedmessages) do
+        db.actor:give_game_news(v, "ui\\ui_iconsTotal", Frect():set(0,0,200,200), 0, 15000)
+      end
+      bufferedmessages=nil
+    end
+  db.actor:give_game_news(msg, "ui\\ui_iconsTotal", Frect():set(0,0,200,200), 0, 15000)
+  else
+    if bufferedmessages then
+      table.insert(bufferedmessages,msg)
+    end
+  end
+  if get_console() then
+    get_console():execute("load "..msg)
+    get_console():execute("flush")
+  end
+]] 
+end
+
 function dbglog(fmt,...)
-	local msg = string.format(fmt, ...)
-	local msg_no_ws = string.gsub(msg, "%s", "_")
-	get_console():execute("dbg:" .. msg_no_ws)
+  local msg = string.format(fmt, ...)
+  local msg_no_ws = string.gsub(msg, "%s", "_")
+  get_console():execute("dbg:" .. msg_no_ws)
 end
 
 ----------------------------------------------------------------------

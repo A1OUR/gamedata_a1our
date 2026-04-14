@@ -1250,8 +1250,8 @@ inv_max_weight = 10000
 path_walk = post2_walk
 path_look = post2_look
 danger = danger@esc_bridge
-meet = meet@sold_zoneguard
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+meet = no_meet
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 on_actor_dist_le_nvis = 35 | remark@esc_bridge_post2_1
 on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post2
 
@@ -1259,30 +1259,32 @@ on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post2
 danger = danger@esc_bridge
 anim = guard
 target = actor
+meet = no_meet
 on_actor_dist_le_nvis = 20 | {-esc_bridge_pass_on -esc_bridge_free} remark@esc_bridge_post2, walker2@esc_bridge_post2
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post2
 
 [remark@esc_bridge_post2]
 danger = danger@esc_bridge
 anim = guard
 target = actor
+meet = no_meet
 snd = esc_bridge_soldiers
 on_signal = sound_end| walker2@esc_bridge_post2
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 
 [walker2@esc_bridge_post2]
 danger = danger@esc_bridge
 path_walk = post2_walk
 path_look = post2_look
 meet = meet@sold_zoneguard
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 
 [walker3@esc_bridge_post2]
 danger = danger@esc_bridge
 path_walk = post2_walk
 path_look = post2_look
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 
 
 [logic@esc_bridge_post3]
@@ -1348,8 +1350,8 @@ on_death = death@soldier
 danger = danger@esc_bridge
 path_walk = post6_walk
 path_look = post6_look
-meet = meet@sold_zoneguard
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+meet = no_meet
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 on_actor_dist_le = 25| {-esc_bridge_pass_on -esc_bridge_free} remark@esc_bridge_post6, walker2@esc_bridge_post6
 on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post6
 
@@ -1357,22 +1359,23 @@ on_info = {+esc_bridge_pass_fire} walker3@esc_bridge_post6
 danger = danger@esc_bridge
 anim = guard
 target = actor
+meet = no_meet
 snd = esc_bridge_soldiers
 on_signal = sound_end| walker2@esc_bridge_post6
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 
 [walker2@esc_bridge_post6]
 danger = danger@esc_bridge
 path_walk = post6_walk
 path_look = post6_look
 meet = meet@sold_zoneguard
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 
 [walker3@esc_bridge_post6]
 danger = danger@esc_bridge
 path_walk = post6_walk
 path_look = post6_look
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
+combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}, { =fighting_dist_ge(40)}
 
 [logic@esc_bridge_post7]
 active = camper@esc_bridge_post7
@@ -1458,7 +1461,7 @@ path_look = patrol_look
 combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor =is_alive(032)}
 
 
-[meet@sold_zoneguard]
+[meet@sold_zoneguard_x]
 meet_state 		= 30| {+esc_bridge_pass_on} guard, guard@ {+esc_bridge_pass_on} threat_back, wait
 meet_state_wpn 	= 30| {+esc_bridge_pass_on} backoff, backoff@ {+esc_bridge_pass_on} threat_weap, threat_weap
 victim 			= 30| actor
@@ -1470,11 +1473,16 @@ syndata		= backoff@threat_weap
 meet_dialog		= esc_bridge_soldiers_start
 precond = visibility
 
+[meet@sold_zoneguard]
+use			= true
+use_wpn		= true
+meet_dialog		= esc_bridge_soldiers_start
+
 [combat_ignore@esc_bridge]
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor},{=enemy_gulag(esc_lager:esc_fabrika_bandit:esc_stalker_camp:esc_assault)}
+;combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor},{=enemy_gulag(esc_lager:esc_fabrika_bandit:esc_stalker_camp:esc_assault)}
 
 [combat_ignore@esc_assault]
-combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor},{=enemy_gulag(esc_bridge:esc_blokpost:esc_specnaz)}
+;combat_ignore_cond = {-esc_bridge_pass_fire =fighting_actor},{=enemy_gulag(esc_bridge:esc_blokpost:esc_specnaz)}
 
 [hit@soldier]
 on_info = {=hit_by_actor} %+esc_bridge_pass_fire%
@@ -1712,6 +1720,7 @@ path_look = look2
 [logic@esc_corps_wounded]
 active = camper@wounded_esc_corps_wounded
 on_death = death@esc_corps_wounded
+combat_ignore = combat_ignore
 
 [camper@wounded_esc_corps_wounded]
 path_walk = esc_wounded_walk
@@ -1721,6 +1730,7 @@ on_info = {+tutorial_wounded_help} remark@thanks_esc_corps_wounded
 on_info2 = {+kill_tutorial_wounded} %=kill%
 danger = danger_condition@tolik
 meet = meet@esc_corps_wounded
+combat_ignore_cond = always
 ;on_info2 = {+esc_kill_bandits_quest_kill} %=hit_npc(esc_killers_kamp_wait:bip01_spine1:1000:0)%
 
 [remark@thanks_esc_corps_wounded]
@@ -1733,6 +1743,7 @@ danger = danger_condition@tolik
 ;meet = meet@friend
 meet = no_meet
 abuse = false
+combat_ignore_cond = always
 ;on_info = %=run_tutorial_if_newbie(part_12_relations)%
 
 [remark@wait_esc_corps_wounded]
@@ -1742,6 +1753,7 @@ target = actor
 danger = danger_condition@tolik
 meet = meet@friend
 abuse = false
+combat_ignore_cond = always
 on_actor_dist_ge = 5| walker@to_lager_esc_corps_wounded
 
 [walker@to_lager_esc_corps_wounded]
@@ -1749,7 +1761,7 @@ path_walk = esc_vagon_wounded_to_lager
 path_look = esc_wounded_to_lager_look
 on_signal = thanks| {-esc_wolf_dead} remark@esc_corps_wounded, %+esc_wounded_arrive%
 on_signal2 = actor_with_tolik| {=rostok_dist_to_actor_le(20)} %+esc_act_has_novice_access%
-meet = no_meet
+meet = meet@friend
 ;meet = meet@esc_corps_wounded
 danger = danger_condition@tolik
 abuse = false

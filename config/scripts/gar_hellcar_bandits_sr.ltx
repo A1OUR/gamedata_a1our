@@ -1,0 +1,6 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_actor_inside = %+gar_bandits_raid%
+on_info = {-gar_bandits_killed =gulag_population_active_le(gar_bandit_agr:5)} nil %+gar_bandits_killed% 

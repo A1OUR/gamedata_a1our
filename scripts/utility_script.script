@@ -44,6 +44,11 @@ end
 
 function on_start()
 	amk.spawn_at_way("esc_wolf_map","map_way")
+	level.set_time_factor (5000)
+	alife():set_switch_distance(1)
+	ogsm_funcs.g_start_timer("wake_up",0,24,0)
+	utility_script.actor_sleeping = true
+	level.add_pp_effector ("bar_to_jail.ppe", 202, false)
 end
 
 function r_string_if_exists(section, field)

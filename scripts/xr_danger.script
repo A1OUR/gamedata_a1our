@@ -34,7 +34,7 @@ function evaluator_danger:evaluate()
 	if self.mgr == nil then
 		self.mgr = self.object:motivation_action_manager()
 	end
-
+	
 	local best_danger = self.object:best_danger()
 	local stor = db.storage[self.object:id()]
 	stor.danger_flag = false

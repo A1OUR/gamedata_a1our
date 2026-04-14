@@ -48,111 +48,6 @@ function evaluator_on_position:evaluate()
 	end
 	return false
 end
---added by xStream--
---' Оп-па! Увидели труп поблизости от костра, непорядок...
-class "evaluator_see_deadman" (property_evaluator)
-function evaluator_see_deadman:__init(name, storage) super (nil, name)
-	self.a = storage
-end
-function evaluator_see_deadman:evaluate()
-	local npc = self.object
-	-- Есть дела поважнее, чем трупы складировать...
-	if not xr_logic.is_active(self.object, self.a) then
-		if self.a.choosed_deadman then 
-			deadmansids[self.a.choosed_deadman]=nil
-			self.a.choosed_deadman=nil
-			self.a.reached=nil
-		end
-		return false
-	end
-
-	-- Труп себе уже выбрали, не спускаем с него глаз...
-	if self.a.choosed_deadman then 
-		local obj = level.object_by_id(self.a.choosed_deadman)
-		if obj and obj:position():distance_to(patrol(self.a.center_point):point(0))<20 then
-			return true 
-		end
-		-- если утащен далеко, то ну его нафиг...
-		deadmansids[self.a.choosed_deadman]=nil
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-		return false
-	end
-
-	if (self.a.check_timer or 0) < time_global() then
-		self.a.check_timer = time_global()+math.random(5000,10000)
-
-		local center_pos = patrol(self.a.center_point):point(0)
-		if npc:position():distance_to_sqr(center_pos) > 16*16 then
-			return false
-		end
-
-		for o in npc:memory_visible_objects() do
-			local obj=o:object()
-			--если есть рядом с костром труп сталкера или монстра, его еще никто не прихватил себе и трупец нигде не застрял, то забираем его...
-			if not obj:alive() and (IsStalker(obj) or IsMonster(obj)) then
-				local obj_id = obj:id()
-				local jan = deadmansids[obj_id] and level.object_by_id(deadmansids[obj_id])
-				local init_dist = obj:position():distance_to_sqr(center_pos)+3
-				if not (jan and jan:alive()) and init_dist < 12*12 then
-					if (deadmansidsuses[obj_id] or 0) < 10 and obj:center():distance_to_sqr(level.vertex_position(obj:level_vertex_id())) < 8 then	-- and npc:accessible(obj:level_vertex_id())
-						deadmansidsuses[obj_id] = (deadmansidsuses[obj_id] or 0) +1
-						-- ...заодно сразу прикидываем, куда бы его оттащить от костра, желательно под забор, стену дома и т.п., 
-						-- за неимением таковых - будем тащить куда попало, главное - подальше от костра
-						local max_dist = init_dist
-						local tgt_vertex = nil
-						local base_dir = obj:position():sub(center_pos)
-						local base_point = obj:level_vertex_id()	--level.vertex_in_direction(obj:level_vertex_id(),vector():mul(base_dir,-1),17)
-						for ang = -90,90,20 do
-							local cur_vert = npc:vertex_in_direction(base_point,vector_rotate_y(base_dir,ang),15)
-							if cur_vert ~= 4294967296 then
-								local dist = level.vertex_position(cur_vert):distance_to_sqr(center_pos)
-								if dist>11*11 and dist<16*16 then
-									if dist > max_dist then
-										max_dist = dist
-										tgt_vertex = cur_vert
-									end
-								end
-							end
-						end
-						if tgt_vertex == nil or not npc:accessible(tgt_vertex) then
-							local v = level.vertex_in_direction(base_point,vector_rotate_y(base_dir,math.random()*360),15)
-							if level.vertex_position(v):distance_to_sqr(center_pos) > init_dist then
-								tgt_vertex = v
-							end
-						end
-						if tgt_vertex and npc:accessible(tgt_vertex) then
-							deadmansids[obj_id] = npc:id()
-							self.a.choosed_deadman = obj_id
-							self.a.drop_lvid = tgt_vertex
-							self.a.captures = 0
---							self.a.check_timer = time_global()+31000
-							return true
-						end
-					end
-				end
-			end
-		end
-	end
-
-	return false
-end
-
---' Тащим труп
-class "evaluator_can_move_deadman" (property_evaluator)
-function evaluator_can_move_deadman:__init(name, storage) super (nil, name)
-	self.a = storage
-end
-function evaluator_can_move_deadman:evaluate()
-	if self.a.reached ~= 1 then
-		return false
-	end
-	local npc=self.object
-	local obj = level.object_by_id(self.a.choosed_deadman)
-	--если труп застрял (расстояние увеличилось), то возвращаемся к нему
-  return obj and obj:center():distance_to(npc:position())<2.1
-end
---end--
 ----------------------------------------------------------------------------------------------------------------------
 --Actions
 ----------------------------------------------------------------------------------------------------------------------
@@ -252,222 +147,6 @@ end
 function action_wait:net_destroy(npc)
 	kamps[self.a.center_point]:removeNpc(npc)
 end
-
---added by xStream--
---Идет к бездыханному товарищу
-class "action_go_to_deadman" (action_base)
-function action_go_to_deadman:__init (npc_name,action_name,storage) super (nil,action_name)
-	self.a = storage
-end
-function action_go_to_deadman:initialize()
-	action_base.initialize(self)
-	local npc=self.object
-	npc:set_desired_position()
-	npc:set_desired_direction()
-	npc:set_path_type(game_object.level_path)
-	local gi=level.object_by_id(self.a.choosed_deadman)
-	if gi then
-		--попремся в сторону головы - за шкирятник тащить бум
-		self.a.dest_lvid=gi:level_vertex_id()
-		local bone = body_grab_bones[gi:clsid()] == "bip01_l_calf" and "bip01_l_calf" or "bip01_head"
-		local diff=gi:bone_position(bone):sub(level.vertex_position(self.a.dest_lvid))	--(gi:position())
-		local len=diff:magnitude()*1.4
-		self.a.dest_lvid=npc:vertex_in_direction(self.a.dest_lvid,diff,len)
-		if self.a.dest_lvid == 4294967296 or not npc:accessible(self.a.dest_lvid) then
-			self.a.dest_lvid = npc:accessible_nearest(gi:bone_position(bone),vector())
-		end
-	else
-		self.a.dest_lvid=npc:level_vertex_id()
-	end
-	self.target_id = self.a.choosed_deadman
-	self.a.reached=0
-	self.a.cur_dead_lvid=gi and gi:level_vertex_id()
-	--пойдем не спеша...
-	state_mgr.set_state(self.object, self.a.def_state_moving)
-	--на все гулянки в сторону трупа дается 30 секунд, если не успел, то да ну нафиг заморачиваться :)
-	self.a.go_time_end=time_global()+30000
-	self.a.captures = self.a.captures + 1
-end
-
-function action_go_to_deadman:execute ()
-	action_base.execute (self)
-	if self.target_id ~= self.a.choosed_deadman then
-		self:initialize()
-		return
-	end
-	local npc=self.object
-	local gi=level.object_by_id(self.a.choosed_deadman)
-	-- если уже задолбало дергать труп, а он застрял (дергаем 3 раза), то нафиг его
-	-- так же если какой то мимопроходящий товарищ труп с места сдвинул - то туда ему и дорога (трупу), а нам он больше не интересен
-  if self.a.captures==5 or self.a.go_time_end<time_global() or gi==nil then
-		deadmansids[self.a.choosed_deadman]=nil
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-		self.a.captures=nil
-		self.a.check_timer = time_global()+math.random(20000,60000)
-  else
-	npc:set_dest_level_vertex_id(self.a.dest_lvid)
-	-- долгое путешествие до трупа успешно завершилось, ура, товарищи
-	local dist = npc:position():distance_to(gi:center())
-    if self.a.dest_lvid==npc:level_vertex_id() and dist < 1.7 or dist < 1 then
-		self.a.reached=1
-		npc:set_dest_level_vertex_id(npc:level_vertex_id())
-	elseif npc:path_completed() then
-		deadmansids[self.a.choosed_deadman]=nil
-		deadmansidsuses[self.a.choosed_deadman] = deadmansidsuses[self.a.choosed_deadman]+1
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-		self.a.captures=nil
-		self.a.check_timer = time_global()+4000
-    end
-  end
-end
-
-function action_go_to_deadman:finalize ()
-	action_base.finalize (self)
-end
-
---Тащит трупец
-class "action_moving_deadman" (action_base)
-function action_moving_deadman:__init (npc_name,action_name,storage) super (nil,action_name)
-	self.a = storage
-end
-function action_moving_deadman:initialize()
-	action_base.initialize(self)
-	local npc=self.object
-	state_mgr.lock(npc,true)
-  --если пушка в руках - прячем, а то тащить неудобно
-  if npc:weapon_unstrapped() then
-	npc:set_item(object.idle,nil)
-  end
-	--потащим медленно, осторожно и на карачках
-	npc:set_movement_type(move.walk)
-	npc:set_mental_state(anim.danger)
-	npc:set_body_state(move.crouch)
-
-	--на таскание трупа в грязи даем 30 секунд
-	self.a.time_end=time_global()+30000
-	self.force=vector():set(0,0,0)
-	--на приседание рядом с трупом и разворот лицом дадим секунду
-	self.time_drag=time_global()+1000
-	local gi=level.object_by_id(self.a.choosed_deadman)
-	local ps = gi and gi:get_physics_shell()
-	if not ps then
-		deadmansids[self.a.choosed_deadman]=nil
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-		return
-	end
-	self.last_vid = npc:level_vertex_id()
-	self.last_pos = npc:position()
-	-- смотри мне в глаза!
-	npc:set_sight(gi,false,false,true)
-	-- нужно выбрать косточку для тяги
-	self.bone = body_grab_bones[gi:clsid()] or body_grab_bones.default
-	if not ps:get_element_by_bone_name(self.bone) then
-		self.bone = nil
-	end
-	if not self.bone then
-		deadmansids[self.a.choosed_deadman]=nil
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-	end
-end
-
-function action_moving_deadman:execute ()
-	action_base.execute (self)
-	local npc = self.object
-
-	if not self.a.choosed_deadman then
-		return
-	end
-
-	--хватит таскать труп - время истекло, пусть другие этим занимаются
-	if self.a.time_end<time_global() then
-		deadmansids[self.a.choosed_deadman]=nil
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-		self.a.check_timer = time_global()+math.random(20000,60000)
-		return 
-	end
-
-	if npc:level_vertex_id() ~= self.last_vid then
-		local dir = self.last_pos:sub(npc:position())
-		dir.y = 0
-		npc:set_sight(look.direction,dir,true)
-		self.last_vid = npc:level_vertex_id()
-		self.last_pos = npc:position()
-	end
-
-	if not self.anim and self.time_drag - 700 < time_global() then
-		self.anim = true
-		rx_utils.add_anim(npc,"cr_raciya_0_hide_1",true)
-	end
-
-	if self.time_drag > time_global() then
-		return
-	end
-
-	npc:set_dest_level_vertex_id(self.a.drop_lvid)
-
-	if not self.call then
-		self.call = true
-		npc:set_fastcall(self.move_body,self)
-	end
-
-	-- уф! дотащили... всем спасибо, все свободны...
-	if self.a.drop_lvid and self.a.drop_lvid==npc:level_vertex_id() then
-		deadmansids[self.a.choosed_deadman]=nil
-		deadmansidsuses[self.a.choosed_deadman] = deadmansidsuses[self.a.choosed_deadman]+2
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-	end
-end
-function action_moving_deadman:move_body()
-	if not (self.call and self.a.choosed_deadman) then
-		return true
-	end
-	local gi = level.object_by_id(self.a.choosed_deadman)
-	local ps = gi and gi:get_physics_shell()
-	if not ps then
-		deadmansids[self.a.choosed_deadman]=nil
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-		return true
-	end
-	-- непись сильный - тащит левой рукой за туловище трупа
-	local el = ps:get_element_by_bone_name(self.bone)
-	if not el then
-		deadmansids[self.a.choosed_deadman]=nil
-		self.a.choosed_deadman=nil
-		self.a.reached=nil
-		return true
-	end
-	local dir=self.object:bone_position("bip01_l_hand"):sub(gi:bone_position(self.bone))
-	local d = vector():set(dir)
-	d.y = 0
-	d = (d:magnitude()+0.45)
-	dir:mul(40*gi:mass())
-	dir.y = (dir.y > 0 and dir.y or 0)+8*gi:mass()*d+50
-	self.force:mul(0.5)
-	dir:mul(0.5)
-	self.force:add(dir)
-	el:apply_force(self.force.x,self.force.y,self.force.z)
-	return false
-end
-
-function action_moving_deadman:finalize ()
-	action_base.finalize (self)
-	state_mgr.lock(self.object,false)
-	state_mgr.set_state(self.object, self.a.def_state_moving)
-	self.anim = nil
-	self.call = nil
-	self.bone = nil
-	self.last_vid = nil
-	self.last_pos = nil
-end
---end--
-
 
 class "CKampManager"
 function CKampManager:__init(path)
@@ -1043,30 +722,15 @@ function add_to_binder(object, ini, scheme, section, storage)
 	properties["on_position"]	= xr_evaluators_id.stohe_kamp_base + 2
 	properties["contact"]		= xr_evaluators_id.stohe_meet_base + 1    
 
-	properties["see_deadman"]	= xr_evaluators_id.stohe_kamp_base + 3
-	properties["can_move_deadman"]	= xr_evaluators_id.stohe_kamp_base + 5
-	properties["state_mgr_off"]	= xr_evaluators_id.state_mgr+3
 
 	operators["go_position"]	= xr_actions_id.stohe_kamp_base + 1
 	operators["wait"]		= xr_actions_id.stohe_kamp_base + 3
-	
-	operators["go_to_deadman"]		= xr_actions_id.stohe_kamp_base + 4
-	operators["move_deadman"]		= xr_actions_id.stohe_kamp_base + 5
+
 
 	-- Evaluators                                                                            
 	manager:add_evaluator (properties["kamp_end"], 		this.evaluator_kamp_end		("kamp_end", storage, "kamp_end"))
 	manager:add_evaluator (properties["on_position"],	this.evaluator_on_position	("kamp_on_position", storage, "kamp_on_position"))
-	
-	local zombi=object:character_community()=="zombied" or object:character_community()=="trader" or
-		  object:character_community()=="arena_enemy" or object:name()=="mil_stalker0012" or object:name()=="yantar_ecolog_general"
 
-	if zombi then
-		manager:add_evaluator (properties["see_deadman"], property_evaluator_const(false))
-		manager:add_evaluator (properties["can_move_deadman"], property_evaluator_const(false))
-	else
-		manager:add_evaluator (properties["see_deadman"],	this.evaluator_see_deadman	("see_deadman", storage, "see_deadman"))
-		manager:add_evaluator (properties["can_move_deadman"],	this.evaluator_can_move_deadman	("can_move_deadman", storage, "can_move_deadman"))
-	end
 
 	printf("PRP %s", stalker_ids.property_script)
 
@@ -1076,7 +740,6 @@ function add_to_binder(object, ini, scheme, section, storage)
 	action:add_precondition		(world_property(stalker_ids.property_danger,false))
 	action:add_precondition		(world_property(stalker_ids.property_enemy,	false))
 	action:add_precondition		(world_property(stalker_ids.property_anomaly,false))
-	action:add_precondition 	(world_property(properties["see_deadman"], 	false))
 	xr_motivator.addCommonPrecondition(action)
 	action:add_precondition		(world_property(properties["on_position"], 	true))
 	action:add_effect 		(world_property(properties["kamp_end"], 	true))
@@ -1088,39 +751,10 @@ function add_to_binder(object, ini, scheme, section, storage)
 	action:add_precondition		(world_property(stalker_ids.property_danger,false))
 	action:add_precondition		(world_property(stalker_ids.property_enemy,	false))
 	action:add_precondition		(world_property(stalker_ids.property_anomaly,false))
-	action:add_precondition 	(world_property(properties["see_deadman"], 	false))
 	xr_motivator.addCommonPrecondition(action)
 	action:add_precondition 	(world_property(properties["on_position"], 	false))
 	action:add_effect 		(world_property(properties["on_position"], 	true))
 	manager:add_action (operators["go_position"], action)
-
-	-- видим труп - идем разбираться...
-	action = this.action_go_to_deadman (object:name(),"action_go_to_deadman", storage)
-	action:add_precondition		(world_property(stalker_ids.property_alive, true))
-	action:add_precondition		(world_property(stalker_ids.property_danger,false))
-	action:add_precondition		(world_property(stalker_ids.property_enemy,	false))
-	action:add_precondition		(world_property(stalker_ids.property_anomaly,false))
-	action:add_precondition 	(world_property(properties["see_deadman"], 	true))
-	action:add_precondition 	(world_property(properties["can_move_deadman"], 	false))
-	action:add_precondition		(world_property(properties["kamp_end"],		false))
-	xr_motivator.addCommonPrecondition(action)
-	action:add_effect 		(world_property(properties["can_move_deadman"], 	true))
-	manager:add_action (operators["go_to_deadman"], action)
-
-	--тащим труп подальше от тусовки
-	action = this.action_moving_deadman (object:name(),"action_moving_deadman", storage)
-	action:add_precondition		(world_property(stalker_ids.property_alive, true))
-	action:add_precondition		(world_property(stalker_ids.property_danger,false))
-	action:add_precondition		(world_property(stalker_ids.property_enemy,	false))
-	action:add_precondition		(world_property(stalker_ids.property_anomaly,false))
-	action:add_precondition 	(world_property(properties["see_deadman"], 	true))
-	action:add_precondition 	(world_property(properties["can_move_deadman"], 	true))
-	action:add_precondition 	(world_property(properties["state_mgr_off"], 	true))
-	action:add_precondition		(world_property(properties["kamp_end"],		false))
-	xr_motivator.addCommonPrecondition(action)
-	action:add_effect 		(world_property(properties["see_deadman"], 	false))
-	action:add_effect 		(world_property(properties["can_move_deadman"], 	false))
-	manager:add_action (operators["move_deadman"], action)
 
 	action = manager:action (xr_actions_id.alife)	
 	action:add_precondition		(world_property(properties["kamp_end"],		true))

@@ -114,6 +114,16 @@ function out_hideout()
 end
 function repair(obj)
 local obj_sect = obj:section()
+
+if obj_sect == "sleeping_bag" then
+	level.set_time_factor (5000)
+	alife():set_switch_distance(1)
+	ogsm_funcs.g_start_timer("wake_up",0,24,0)
+	utility_script.actor_sleeping = true
+	level.add_pp_effector ("bar_to_jail.ppe", 202, false)
+	alife():create("sleeping_bag", db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id())
+end
+
 if obj_sect == "enable_rep" then
     --local owpn = db.actor:item_in_slot(2)
 	--if owpn then
@@ -132,7 +142,7 @@ if obj_sect == "enable_rep" then
 	--level.add_pp_effector("radar_stop.ppe", 100, false)
 	--db.actor:give_info_portion("agr_krot_secret_info")
 	--alife():set_switch_distance(1)
-	level.set_time_factor (1000)
+	level.set_time_factor (5000)
 	alife():set_switch_distance(1)
 	ogsm_funcs.g_start_timer("wake_up",0,24,0)
 	utility_script.actor_sleeping = true
@@ -140,6 +150,8 @@ if obj_sect == "enable_rep" then
 	level.add_pp_effector ("bar_to_jail.ppe", 202, false)
 	--level.disable_input()
 end
+
+
 if obj_sect == "enable_rep1" then
 	--actor = db.actor
 	--actor:set_actor_savability(1)

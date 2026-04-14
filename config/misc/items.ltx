@@ -1038,41 +1038,6 @@ animation_slot		= 4
 
 ;hud item
 hud = wpn_vodka_hud
-[enable_rep]:identity_immunities ;это будет мешок, при испольховании которого будет производится спавн вещей нам в инвентарь
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn = "items\enable_rep"
-$prefetch 		= 32
-class			= II_ANTIR	;II_ATTCH
-cform           = skeleton
-visual          = equipments\item_rukzak.ogf
-description		= repair_kit_desc_w
-quest_item			= false
-
-inv_name			= repair_kit_w
-inv_name_short		= 
-inv_weight			= 4.1
-
-inv_grid_width     = 3
-inv_grid_height    = 2
-inv_grid_x         = 37
-inv_grid_y         = 37
-cost				= 5000
-
-; eatable item
-eat_health = 0
-eat_satiety = 0
-eat_power = 0
-eat_radiation = 0
-wounds_heal_perc = 0
-eat_portions_num = 1
-eat_alcohol = 0.3
-
-; food item
-animation_slot		= 4
-
-;hud item
-hud = wpn_vodka_hud
 #include "arc.ltx"
 #include "new_items.ltx"
 [dilo_pda_dec]:identity_immunities ;это будет мешок, при испольховании которого будет производится спавн вещей нам в инвентарь
