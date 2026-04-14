@@ -366,5 +366,5 @@ function npc_hit_danger(npc,who,bone_id,amount)
 			return
 		end
 	end
-	rx_ai.play_animation(npc,{animation = "wounded_2_out",weapon = object.drop,sound_theme = 'npc_hit'})
+	rx_ai.play_animation(npc,{animation = "wounded_2_out",weapon = object.idle,sound_theme = 'npc_hit'})
 end

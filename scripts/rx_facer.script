@@ -243,7 +243,7 @@ function action_facer:execute()
 			elseif cls == clsid.script_stalker and target:animation_count() == 0 and bone == "bip01_head" and npc:position():sub(target:position()):normalize():similar(target:direction(),math.pi*0.25) == 1 then
 				local rnd = math.random()
 				if rnd < 0.2 then
-					rx_ai.play_animation(target,{animation = "wounded_2_out",weapon = object.drop,sound_theme = 'npc_hit'})
+					rx_ai.play_animation(target,{animation = "wounded_2_out",weapon = object.idle,sound_theme = 'npc_hit'})
 				elseif rnd < 0.24 then
 					rx_ai.play_animation(target,{animation = "test",timeout = 380,weapon = object.fire1,callback = {func = test_kill,obj = npc:id()}})
 				elseif rnd < 0.9 and not drop and target:active_item() then

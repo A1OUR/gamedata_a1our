@@ -835,7 +835,7 @@ function action_run_from_grenade:hit_callback(amount,dir,who,bone_id)
 	end
 	local npc = self.object
 	if math.random() < amount+0.1 then
-		rx_ai.play_animation(npc,{animation = "wounded_2_out",weapon = object.drop,sound_theme = 'npc_hit',mental = anim.danger})
+		rx_ai.play_animation(npc,{animation = "wounded_2_out",weapon = object.idle,sound_theme = 'npc_hit',mental = anim.danger})
 		return
 	end
 	npc:set_mental_state(anim.danger)
