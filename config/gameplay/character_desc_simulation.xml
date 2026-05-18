@@ -2023,14 +2023,8 @@
 		<crouch_type>-1</crouch_type>
 		<visual>actors\killer\stalker_ki_head_1</visual>
 		<supplies>
-			[spawn] \n
-			wpn_walther \n
-			ammo_9x19_fmj \n
-			wpn_l85 \n
-			ammo_5.56x45_ss190 \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
+[spawn] \n
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
 		</supplies>
 		
 #include "gameplay\character_criticals_4.xml"
@@ -2054,14 +2048,8 @@
 		<crouch_type>-1</crouch_type>		
 		<visual>actors\killer\stalker_ki_mask</visual>
 		<supplies>
-			[spawn] \n
-			wpn_walther \n
-			ammo_9x19_fmj \n
-			wpn_l85 \n
-			ammo_5.56x45_ss190 \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
+[spawn] \n
+#include "gameplay\character_stalker_sunrise_novice.xml" \n
 		</supplies>
 		
 #include "gameplay\character_criticals_4.xml"

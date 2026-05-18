@@ -115,6 +115,33 @@ end
 function repair(obj)
 local obj_sect = obj:section()
 
+local s_name = obj:section()
+if s_name == "psy_radio" then
+	alife():create(s_name, db.actor:position(), 1, db.actor:game_vertex_id(), db.actor:id()) -- spawn the item back
+	local tracks = {
+	[[psy_music\sidor_music_1]],
+	[[psy_music\sidor_music_2]],
+	[[psy_music\barman_music_1]],
+	[[psy_music\barman_music_2]],
+	[[psy_music\radio_music_1]],
+	}
+	if not db.radio_counter then -- if radio wasn't playing, play it
+		db.radio_counter = 1 
+	end
+	if db.radio_sound and db.radio_sound:playing() then -- if radio is playing, stop playing it
+		db.radio_sound:stop()
+	end
+	if db.radio_counter <= 5 then -- if radio is playing, stop playing it
+		db.radio_sound = sound_object(tracks[db.radio_counter])
+			if db.radio_sound then
+				db.radio_sound:play(db.actor, 0, sound_object.s2d)
+			end
+		db.radio_counter = db.radio_counter + 1
+	else
+		db.radio_counter = 1
+	end
+end
+
 if obj_sect == "sleeping_bag" then
 	level.set_time_factor (5000)
 	alife():set_switch_distance(1)
